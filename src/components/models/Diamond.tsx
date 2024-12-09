@@ -5,7 +5,7 @@ import { useRef } from "react";
 import * as THREE from "three";
 
 export const DiamondModel = (props: MeshProps) => {
-  const { nodes } = useGLTF("./public/DiamondModel/diamond.glb");
+  const { nodes } = useGLTF("/DiamondModel/diamond.glb");
   const ref = useRef<THREE.Mesh>(null);
   const scroll = useScroll();
 

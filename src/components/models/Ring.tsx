@@ -5,7 +5,7 @@ import { useRef } from "react";
 import * as THREE from "three";
 
 export const RingModel = (props: MeshProps) => {
-  const { nodes, materials } = useGLTF("RingModel/scene.gltf");
+  const { nodes, materials } = useGLTF("/RingModel/scene.gltf");
   const ref = useRef<THREE.Mesh>(null);
   const scroll = useScroll();
 
