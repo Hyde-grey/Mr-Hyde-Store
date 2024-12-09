@@ -2,6 +2,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import HomeLayout from "./homeLayout";
 import "./home.css";
+import Spiral from "../../components/Spiral";
 
 const Home = () => {
   return (
@@ -13,6 +14,7 @@ const Home = () => {
         <OrbitControls enableZoom={false} />
         <Stars />
         <ScrollControls pages={4}>
+          <Spiral />
           <HomeLayout />
         </ScrollControls>
       </Canvas>
