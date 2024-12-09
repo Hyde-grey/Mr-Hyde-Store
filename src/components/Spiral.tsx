@@ -6,6 +6,11 @@ import { DiamondModel } from "./models/Diamond";
 import CrossModel from "./models/Cross";
 import { useFrame } from "@react-three/fiber";
 
+//Add a type to nodes.geometry because it's impossible for a third-party library (like three-stdlib) to predict the types of nodes and materials in your custom model.
+export type GltfNode = THREE.Object3D<THREE.Object3DEventMap> & {
+  geometry: THREE.BufferGeometry<THREE.NormalBufferAttributes>;
+};
+
 const Spiral = () => {
   const groupRef = useRef<THREE.Group>(null);
   const scroll = useScroll();
@@ -30,7 +35,6 @@ const Spiral = () => {
         const x = radius * Math.cos(angle);
         const z = radius * Math.sin(angle);
         const y = index * height;
-        //@ts-ignore
         return <Model key={index} position={[x, y, z]} />;
       })}
     </group>

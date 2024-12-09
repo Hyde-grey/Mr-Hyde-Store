@@ -1,12 +1,15 @@
 import { useGLTF, useScroll } from "@react-three/drei";
-import { GroupProps, useFrame } from "@react-three/fiber";
+import { MeshProps, useFrame } from "@react-three/fiber";
+import { GltfNode } from "components/Spiral";
 import { useRef } from "react";
 import * as THREE from "three";
 
-export const DiamondModel = (props: GroupProps) => {
+export const DiamondModel = (props: MeshProps) => {
   const { nodes } = useGLTF("./public/DiamondModel/diamond.glb");
-  const ref = useRef<THREE.Group>(null);
+  const ref = useRef<THREE.Mesh>(null);
   const scroll = useScroll();
+
+  const geometryNode = nodes.pCone1_lambert1_0 as GltfNode;
 
   useFrame(() => {
     if (ref.current) {
@@ -16,25 +19,23 @@ export const DiamondModel = (props: GroupProps) => {
   });
 
   return (
-    <group ref={ref} {...props} dispose={null}>
-      <group scale={0.3}>
-        <mesh
-          //@ts-ignore
-          geometry={nodes.pCone1_lambert1_0.geometry}
-          material={
-            new THREE.MeshPhysicalMaterial({
-              color: 0x333333,
-              metalness: 0.9,
-              roughness: 0.1,
-              transmission: 1, // make the material transparent
-              thickness: 3, // how thick the glass is, to adjust refraction
-              clearcoat: 50,
-              clearcoatRoughness: 1,
-            })
-          }
-        />
-      </group>
-    </group>
+    <mesh
+      ref={ref}
+      geometry={geometryNode.geometry}
+      material={
+        new THREE.MeshPhysicalMaterial({
+          color: 0x333333,
+          metalness: 0.9,
+          roughness: 0.1,
+          transmission: 1, // make the material transparent
+          thickness: 3, // how thick the glass is, to adjust refraction
+          clearcoat: 50,
+          clearcoatRoughness: 1,
+        })
+      }
+      {...props}
+      scale={0.5}
+    />
   );
 };
 

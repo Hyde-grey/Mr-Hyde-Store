@@ -1,12 +1,15 @@
 import { useGLTF, useScroll } from "@react-three/drei";
-import { GroupProps, useFrame } from "@react-three/fiber";
+import { MeshProps, useFrame } from "@react-three/fiber";
+import { GltfNode } from "components/Spiral";
 import { useRef } from "react";
 import * as THREE from "three";
 
-export const RingModel = (props: GroupProps) => {
+export const RingModel = (props: MeshProps) => {
   const { nodes, materials } = useGLTF("RingModel/scene.gltf");
-  const ref = useRef<THREE.Group>(null);
+  const ref = useRef<THREE.Mesh>(null);
   const scroll = useScroll();
+
+  const geometryNode = nodes.bague_bague_0 as GltfNode;
 
   useFrame(() => {
     if (ref.current) {
@@ -15,16 +18,14 @@ export const RingModel = (props: GroupProps) => {
     }
   });
   return (
-    <group ref={ref} {...props} dispose={null}>
-      <group scale={0.5}>
-        <mesh
-          // @ts-ignore
-          geometry={nodes.bague_bague_0.geometry}
-          material={materials.bague}
-          position={[-0.002, 0, 0]}
-        />
-      </group>
-    </group>
+    <mesh
+      ref={ref}
+      {...props}
+      dispose={null}
+      scale={0.5}
+      geometry={geometryNode.geometry}
+      material={materials.bague}
+    />
   );
 };
 

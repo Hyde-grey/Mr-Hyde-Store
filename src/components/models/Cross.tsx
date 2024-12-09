@@ -1,9 +1,9 @@
 import * as THREE from "three";
 import { useRef } from "react";
-import { useFrame } from "@react-three/fiber";
+import { MeshProps, useFrame } from "@react-three/fiber";
 import { useGLTF, useScroll } from "@react-three/drei";
 
-const CrossModel = (props: THREE.Mesh) => {
+const CrossModel = (props: MeshProps) => {
   const cross = useGLTF("./CrossModel/scene.gltf");
 
   const ref = useRef<THREE.Mesh>(null);
