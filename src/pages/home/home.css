@@ -21,5 +21,6 @@ canvas{
   h1 {
     font-family: "Zaslia";
     font-size: 15rem;
+    user-select: none;
 }
   
