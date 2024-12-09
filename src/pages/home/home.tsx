@@ -1,11 +1,7 @@
 import { Canvas } from "@react-three/fiber";
-import {
-  OrbitControls,
-  Scroll,
-  ScrollControls,
-  Stars,
-} from "@react-three/drei";
+import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import "./home.css";
+import HomeHTML from "./homeHTML";
 
 const Home = () => {
   return (
@@ -17,11 +13,7 @@ const Home = () => {
         <OrbitControls enableZoom={false} />
         <Stars />
         <ScrollControls pages={4}>
-          <Scroll style={{ width: "100%" }} html>
-            <div className="hero">
-              <h1>Mr. Hyde Store</h1>
-            </div>
-          </Scroll>
+          <HomeHTML />
         </ScrollControls>
       </Canvas>
     </>

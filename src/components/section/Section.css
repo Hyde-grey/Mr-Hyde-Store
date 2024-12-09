@@ -1,0 +1,61 @@
+.section {
+    width: 100%;
+    height: 100vh;
+    margin: 0 auto;
+    display: grid;
+    place-items: center;
+
+  }
+
+  .section:nth-child(even){
+    place-items: center start;
+  }
+  .section:nth-child(odd){
+    place-items: center end;
+  }
+  
+  .section img {
+    width: 100%;
+  }
+  
+  .card-container {
+    position: relative;
+    background: rgba(0, 0, 0, 0.116); /* Semi-transparent background */
+    backdrop-filter: blur(10px); /* Apply blur to the background */
+    border-radius: 10px; /* Optional: for rounded corners */
+    padding: 40px; 
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.39);
+    transition: transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
+
+  }
+
+  .card-container:hover{
+    cursor: pointer;
+    transform: scale(1.1);
+    box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.39);
+  }
+  
+  .card-container img, .card-container .card {
+    position: relative;
+    z-index: 1; /* Ensure content stays above the blurred background */
+  }
+  
+
+  .card {
+    max-width: 500px;
+    padding: 0px 20px;
+    text-align: justify;
+  }
+
+.section:nth-child(odd) .card {
+    margin-left: auto;
+    }
+  
+  .card h3 {
+    font-size: 3rem;
+    font-family: "Zaslia";
+  }
+  
+  .card p {
+    font-size: 1.5rem;
+  }
