@@ -11,53 +11,26 @@ const Home: React.FC = () => {
   useEffect(() => {
     const userAgent = navigator.userAgent;
     const isMobileDevice =
-      /android|iPad|iPhone|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+      /android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
         userAgent
       );
     setIsMobile(isMobileDevice);
   }, []);
 
-  useEffect(() => {
-    const handleTouchStart = (e: TouchEvent) => {
-      if (isMobile) {
-        e.preventDefault();
-      }
-    };
-    const handleTouchMove = (e: TouchEvent) => {
-      if (isMobile) {
-        e.preventDefault();
-      }
-    };
-
-    if (isMobile) {
-      window.addEventListener("touchstart", handleTouchStart, {
-        passive: false,
-      });
-      window.addEventListener("touchmove", handleTouchMove, { passive: false });
-    }
-
-    return () => {
-      if (isMobile) {
-        window.removeEventListener("touchstart", handleTouchStart);
-        window.removeEventListener("touchmove", handleTouchMove);
-      }
-    };
-  }, [isMobile]);
-
   return (
-    <>
+    <div>
       <Canvas camera={{ position: [17, 4, 0], fov: 35 }}>
         <ambientLight intensity={5} />
         <directionalLight position={[30, 35, 5]} intensity={2} />
         <pointLight position={[0, -10, -10]} intensity={50} />
-        <OrbitControls enableZoom={false} enabled={!isMobile} />
+        {isMobile ? null : <OrbitControls enableZoom={false} />}
         <Stars />
-        <ScrollControls pages={4}>
+        <ScrollControls pages={4} enabled>
           <Spiral />
           <HomeLayout />
         </ScrollControls>
       </Canvas>
-    </>
+    </div>
   );
 };
 
