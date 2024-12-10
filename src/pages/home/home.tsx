@@ -5,15 +5,44 @@ import "./home.css";
 import Spiral from "../../components/Spiral";
 import { useEffect, useState } from "react";
 
-const Home = () => {
+const Home: React.FC = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const userAgent = navigator.userAgent;
-    if (/android|iPad|iPhone|iPod/i.test(userAgent)) {
-      setIsMobile(true);
-    }
+    const isMobileDevice =
+      /android|iPad|iPhone|iPod|webOS|BlackBerry|IEMobile|Opera Mini/i.test(
+        userAgent
+      );
+    setIsMobile(isMobileDevice);
   }, []);
+
+  useEffect(() => {
+    const handleTouchStart = (e: TouchEvent) => {
+      if (isMobile) {
+        e.preventDefault();
+      }
+    };
+    const handleTouchMove = (e: TouchEvent) => {
+      if (isMobile) {
+        e.preventDefault();
+      }
+    };
+
+    if (isMobile) {
+      window.addEventListener("touchstart", handleTouchStart, {
+        passive: false,
+      });
+      window.addEventListener("touchmove", handleTouchMove, { passive: false });
+    }
+
+    return () => {
+      if (isMobile) {
+        window.removeEventListener("touchstart", handleTouchStart);
+        window.removeEventListener("touchmove", handleTouchMove);
+      }
+    };
+  }, [isMobile]);
 
   return (
     <>
