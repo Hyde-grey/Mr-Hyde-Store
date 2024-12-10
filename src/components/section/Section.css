@@ -19,6 +19,7 @@
   }
   
   .card-container {
+    max-width: 780px;
     position: relative;
     background: rgba(0, 0, 0, 0.116); /* Semi-transparent background */
     backdrop-filter: blur(10px); /* Apply blur to the background */
@@ -52,10 +53,11 @@
     }
   
   .card h3 {
-    font-size: 3rem;
+    font-size: 2.8rem;
     font-family: "Zaslia";
+    text-align: left;
   }
   
   .card p {
-    font-size: 1.5rem;
+    font-size: 1.1rem;
   }
