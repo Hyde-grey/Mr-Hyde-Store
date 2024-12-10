@@ -24,3 +24,12 @@ canvas{
     user-select: none;
 }
 
+/* Mobile only (max-width: 767px) */
+@media only screen and (max-width: 767px) {
+  /* styles for mobile devices */
+  h1 {
+   
+    font-size: 3em;
+
+}
+}

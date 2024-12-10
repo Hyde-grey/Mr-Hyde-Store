@@ -61,3 +61,27 @@
   .card p {
     font-size: 1.1rem;
   }
+
+  /* Mobile only (max-width: 767px) */
+@media only screen and (max-width: 767px) {
+  /* styles for mobile devices */
+
+  .container{
+    max-width: 100%;
+    padding: 0;
+  }
+
+  .section{
+    width: 100vw;
+    place-items: center!important;
+  }
+
+  .card-container{
+    max-width: 95%;
+  }
+
+  .card h3{
+    font-size: 2rem;
+  }
+
+}
