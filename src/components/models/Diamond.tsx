@@ -24,12 +24,12 @@ export const DiamondModel = (props: MeshProps) => {
       geometry={geometryNode.geometry}
       material={
         new THREE.MeshPhysicalMaterial({
-          color: 0x333333,
+          color: 0x333332,
           metalness: 0.9,
           roughness: 0.1,
-          transmission: 1, // make the material transparent
-          thickness: 3, // how thick the glass is, to adjust refraction
-          clearcoat: 50,
+          transmission: 9, // make the material transparent
+          thickness: 99, // how thick the glass is, to adjust refraction
+          clearcoat: 5,
           clearcoatRoughness: 1,
         })
       }
