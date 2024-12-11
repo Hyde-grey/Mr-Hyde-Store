@@ -1,11 +1,12 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import HomeLayout from "./homeLayout";
-import "./home.css";
 import Spiral from "../../components/Spiral";
 import { useEffect, useState } from "react";
+import "./home.css";
+import NavigationBar from "../../components/navigationBar/NavigationBar";
 
-const Home: React.FC = () => {
+const Home = () => {
   const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
@@ -18,7 +19,8 @@ const Home: React.FC = () => {
   }, []);
 
   return (
-    <div>
+    <div className="main-container">
+      <NavigationBar />
       <Canvas camera={{ position: [17, 4, 0], fov: 35 }}>
         <ambientLight intensity={5} />
         <directionalLight position={[30, 35, 5]} intensity={2} />
