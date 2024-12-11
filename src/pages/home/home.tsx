@@ -22,9 +22,9 @@ const Home = () => {
     <div className="main-container">
       <NavigationBar />
       <Canvas camera={{ position: [17, 4, 0], fov: 35 }}>
-        <ambientLight intensity={5} />
-        <directionalLight position={[30, 35, 5]} intensity={2} />
-        <pointLight position={[0, -10, -10]} intensity={50} />
+        <ambientLight intensity={3} />
+        <directionalLight position={[30, 35, 5]} intensity={4} />
+        <pointLight position={[0, 10, 0]} intensity={15} />
         {isMobile ? null : <OrbitControls enableZoom={false} />}
         <Stars />
         <ScrollControls pages={4} enabled>

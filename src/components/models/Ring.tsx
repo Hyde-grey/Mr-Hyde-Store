@@ -1,8 +1,8 @@
 import { useGLTF, useScroll } from "@react-three/drei";
 import { MeshProps, useFrame } from "@react-three/fiber";
-import { GltfNode } from "components/Spiral";
 import { useRef } from "react";
 import * as THREE from "three";
+import { GltfNode } from "components/Spiral";
 
 export const RingModel = (props: MeshProps) => {
   const { nodes, materials } = useGLTF("/RingModel/scene.gltf");
@@ -13,10 +13,14 @@ export const RingModel = (props: MeshProps) => {
 
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.y = scroll.offset * Math.PI * 4; // Rotate the model based on scroll
-      ref.current.rotation.x = scroll.offset * Math.PI * 4; // Rotate the model based on scroll
+      ref.current.rotation.x = initialRotation.x + scroll.offset * Math.PI * 4;
+      ref.current.rotation.y = initialRotation.y + scroll.offset * Math.PI * 4;
     }
   });
+
+  // Set initial rotation
+  const initialRotation = { x: 0, y: Math.PI / 3.5, z: 0 };
+
   return (
     <mesh
       ref={ref}
@@ -25,8 +29,10 @@ export const RingModel = (props: MeshProps) => {
       scale={0.5}
       geometry={geometryNode.geometry}
       material={materials.bague}
+      position={[4, 0.1, 0]}
+      rotation={[initialRotation.x, initialRotation.y, initialRotation.z]} // Set initial rotation here
     />
   );
 };
 
-useGLTF.preload("/scene.gltf");
+useGLTF.preload("/RingModel/scene.gltf");
