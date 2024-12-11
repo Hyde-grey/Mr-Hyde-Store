@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FiHeart } from "react-icons/fi";
 import { PiShoppingCartLight } from "react-icons/pi";
@@ -10,20 +11,32 @@ const NavigationBar = () => {
       <ul className="nav-bar-items">
         <li>+ Collection</li>
       </ul>
-      <span className="logo nav-bar-items">Mr. Hyde Store</span>
+      <span className="logo nav-bar-items">
+        <Link to="/" className="nav-link">
+          Mr. Hyde Store
+        </Link>
+      </span>
       <ul className="nav-bar nav-bar-items">
-        <li>
-          <RiAccountCircleLine />
-        </li>
-        <li>
-          <FiHeart />
-        </li>
-        <li>
-          <PiShoppingCartLight />
-        </li>
-        <li>
-          <RxHamburgerMenu />
-        </li>
+        <Link to="/" className="nav-link">
+          <li>
+            <RiAccountCircleLine /> <p>Log-in</p>
+          </li>
+        </Link>
+        <Link to="/" className="nav-link">
+          <li>
+            <FiHeart /> <p>Favorite</p>
+          </li>
+        </Link>
+        <Link to="/" className="nav-link">
+          <li>
+            <PiShoppingCartLight /> <p>Cart</p>
+          </li>
+        </Link>
+        <Link to="/" className="nav-link">
+          <li>
+            <RxHamburgerMenu /> <p>Menu</p>
+          </li>
+        </Link>
       </ul>
     </div>
   );

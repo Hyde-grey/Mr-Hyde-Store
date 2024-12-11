@@ -2,21 +2,12 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import HomeLayout from "./homeLayout";
 import Spiral from "../../components/Spiral";
-import { useEffect, useState } from "react";
 import "./home.css";
 import NavigationBar from "../../components/navigationBar/NavigationBar";
+import useScreenSize from "../../components/hooks/useWindowSize";
 
 const Home = () => {
-  const [isMobile, setIsMobile] = useState(false);
-
-  useEffect(() => {
-    const userAgent = navigator.userAgent;
-    const isMobileDevice =
-      /android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-        userAgent
-      );
-    setIsMobile(isMobileDevice);
-  }, []);
+  const { isMobile } = useScreenSize();
 
   return (
     <div className="main-container">
