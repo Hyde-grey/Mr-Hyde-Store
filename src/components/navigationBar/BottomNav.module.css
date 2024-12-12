@@ -1,0 +1,28 @@
+.bottomNavContainer {
+  position: fixed;
+  bottom: 5%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 80px;
+  background-color: transparent;
+  border-radius: 50%;
+  border: solid 5px rgba(255, 255, 255, 0.11);
+
+  display: grid;
+  place-content: center;
+
+  z-index: 1000;
+  transition: all ease 0.5s;
+}
+
+.bottomNavBar {
+  display: grid;
+  place-content: end;
+}
+
+.bottomNavBar li {
+  display: grid;
+  place-content: center;
+  font-size: 1.5rem;
+}

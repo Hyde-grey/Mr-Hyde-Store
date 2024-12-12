@@ -1,9 +1,10 @@
-#root{
-    width: 100vw;
-    height: 100vh;
+#root {
+  width: 100vw;
+  height: 100vh;
 }
 
-body,html {
-    margin: 0!important;
-    padding: 0!important;
+body,
+html {
+  margin: 0;
+  padding: 0;
 }
