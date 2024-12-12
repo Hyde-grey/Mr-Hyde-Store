@@ -5,6 +5,7 @@ import Spiral from "../../components/Spiral";
 import "./home.css";
 import NavigationBar from "../../components/navigationBar/NavigationBar";
 import useScreenSize from "../../components/hooks/useWindowSize";
+import BottomNav from "../../components/navigationBar/BottomNav";
 
 const Home = () => {
   const { isMobile } = useScreenSize();
@@ -23,6 +24,7 @@ const Home = () => {
           <HomeLayout />
         </ScrollControls>
       </Canvas>
+      {isMobile ? <BottomNav /> : null}
     </div>
   );
 };
