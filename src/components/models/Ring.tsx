@@ -30,7 +30,7 @@ export const RingModel = (props: MeshProps) => {
       geometry={geometryNode.geometry}
       material={materials.bague}
       position={[4, 0.1, 0]}
-      rotation={[initialRotation.x, initialRotation.y, initialRotation.z]} // Set initial rotation here
+      rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
     />
   );
 };
