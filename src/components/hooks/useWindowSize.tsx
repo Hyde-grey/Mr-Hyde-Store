@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 
-// Define screen size breakpoints
 const breakpoints = {
   mobile: 768,
   tablet: 1024,
@@ -22,9 +21,9 @@ const useScreenSize = () => {
   };
 
   useEffect(() => {
-    updateScreenSize(); // Initial check
-    window.addEventListener("resize", updateScreenSize); // Add resize listener
-    return () => window.removeEventListener("resize", updateScreenSize); // Cleanup listener
+    updateScreenSize();
+    window.addEventListener("resize", updateScreenSize);
+    return () => window.removeEventListener("resize", updateScreenSize);
   }, []);
 
   return { isMobile, isTablet, isDesktop, isFullScreen };
