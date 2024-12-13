@@ -41,6 +41,11 @@
   justify-content: space-evenly;
   width: 100%;
   height: 30px;
+  transition: all ease-in-out 0.5s;
+}
+
+.burgerClicked {
+  transform: translateX(7px);
 }
 
 .burgerLines {
@@ -48,4 +53,23 @@
   height: 2px;
   background-color: rgb(146, 146, 146);
   border-radius: 2px;
+  transition: all ease-in-out 0.5s;
+}
+
+.topLine,
+.middleLine,
+.bottomLine {
+  transform-origin: center;
+}
+
+.topLineClicked {
+  transform: rotate(45deg) translateY(11px);
+}
+
+.middleLineClicked {
+  opacity: 0;
+}
+
+.bottomLineClicked {
+  transform: rotate(-45deg) translateY(-11px);
 }
