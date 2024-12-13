@@ -1,20 +1,18 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
+import { useFrame } from "@react-three/fiber";
+import { useScroll } from "@react-three/drei";
 
 export const useDetectScroll = (threshold: number) => {
   const [scrolledPast, setScrolledPast] = useState(false);
+  const scroll = useScroll();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      const scrollPosition = window.scrollY;
-      const viewportHeight = window.innerHeight;
-      setScrolledPast(scrollPosition > threshold * viewportHeight);
-    };
+  useFrame(() => {
+    const scrollY = scroll.offset;
+    setScrolledPast(scrollY > threshold);
+  });
 
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [threshold]);
-
-  return scrolledPast;
+  return {
+    scrolledPast,
+    scrollOffset: scroll.offset,
+  };
 };

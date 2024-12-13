@@ -5,11 +5,15 @@ type ScrollProviderProps = {
 };
 
 type ScrollContextType = {
+  scrollOffset: number;
+  setScrollOffset: (value: number) => void;
   isPassedThreshold: boolean;
   setIsPassedThreshold: (value: boolean) => void;
 };
 
 const ScrollContext = createContext<ScrollContextType>({
+  scrollOffset: 0,
+  setScrollOffset: () => {},
   isPassedThreshold: false,
   setIsPassedThreshold: () => {},
 });
@@ -18,9 +22,17 @@ export const useScrollContext = () => useContext(ScrollContext);
 
 export const ScrollProvider = ({ children }: ScrollProviderProps) => {
   const [isPassedThreshold, setIsPassedThreshold] = useState(false);
+  const [scrollOffset, setScrollOffset] = useState(0);
 
   return (
-    <ScrollContext.Provider value={{ isPassedThreshold, setIsPassedThreshold }}>
+    <ScrollContext.Provider
+      value={{
+        isPassedThreshold,
+        setIsPassedThreshold,
+        scrollOffset,
+        setScrollOffset,
+      }}
+    >
       {children}
     </ScrollContext.Provider>
   );
