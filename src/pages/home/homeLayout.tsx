@@ -1,15 +1,32 @@
-import { Scroll } from "@react-three/drei";
+import { Scroll, useScroll } from "@react-three/drei";
 import chromeHeart from "../../assets/chromeheart-collection.jpg";
 import darker from "../../assets/darker-than-black-collection.jpg";
 import faithless from "../../assets/faithless-collection.jpg";
 import "./home.css";
 import Section from "../../components/section/Section";
+import { useFrame } from "@react-three/fiber";
+import { useState } from "react";
+import useScreenSize from "../../components/hooks/useScreenSize";
 
 const HomeLayout = () => {
+  const scroll = useScroll();
+  const [titleSize, setTitleSize] = useState(10);
+  const { isMobile } = useScreenSize();
+
+  useFrame(() => {
+    if (isMobile) {
+      const scrollY = scroll.offset;
+      setTitleSize(3 - scrollY * 10);
+    } else {
+      const scrollY = scroll.offset;
+      setTitleSize(10 - scrollY * 55);
+    }
+  });
+
   return (
     <Scroll style={{ width: "100%" }} html>
       <div className="hero">
-        <h1>Mr. Hyde Store</h1>
+        <h1 style={{ fontSize: `${titleSize}rem` }}>Mr. Hyde Store</h1>
       </div>
       <div className="container">
         <Section
@@ -23,7 +40,6 @@ const HomeLayout = () => {
                 those who dare to stand out."
           current={0}
         />
-
         <Section
           img={darker}
           title="Darker Than Black Collection"
@@ -35,7 +51,6 @@ const HomeLayout = () => {
                 designed for those unafraid to tread the path less taken."
           current={1}
         />
-
         <Section
           img={faithless}
           title="Faithless Collection"
