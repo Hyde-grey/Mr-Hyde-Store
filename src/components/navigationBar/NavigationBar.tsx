@@ -1,57 +1,56 @@
 import { Link } from "react-router-dom";
+import classNames from "classnames";
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FiHeart } from "react-icons/fi";
 import { PiShoppingCartLight } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import styles from "./styles.module.css";
-import useScreenSize from "../../components/hooks/useWindowSize";
-import { useDetectScroll } from "../hooks/useDetectScroll";
+import { useScrollContext } from "../../contexts/ScrollContext";
 
 const NavigationBar = () => {
-  const isMobile = useScreenSize();
-  const isPassedThreshold = useDetectScroll(0.5); // Detect if scrolled past 50% of viewport
-
-  console.log("Is it passed threshold?", isPassedThreshold);
+  const { isPassedThreshold } = useScrollContext();
 
   return (
     <div
-      className={
-        isMobile && isPassedThreshold
-          ? styles.navBarContainer
-          : `${styles.navBarContainer} ${styles.hidden}`
-      }
+      className={classNames(styles.navBarContainer, {
+        [styles.hidden]: !isPassedThreshold,
+      })}
     >
-      <ul className={`${styles.navBarItems} ${styles.navCollection}`}>
+      <ul className={classNames(styles.navBarItems, styles.navCollection)}>
         <li>+ Collection</li>
       </ul>
-      <span className={`${styles.logo} ${styles.navBarItems}`}>
+      <span
+        className={classNames(styles.logo, styles.navBarItems, {
+          [styles.opacityZeron]: !isPassedThreshold,
+        })}
+      >
         <Link to="/" className={styles.navLink}>
           Mr. Hyde Store
         </Link>
       </span>
-      <ul className={`${styles.navBar} ${styles.navBarItems}`}>
+      <ul className={classNames(styles.navBar, styles.navBarItems)}>
         <Link to="/login" className={styles.navLink}>
           <li>
             <RiAccountCircleLine /> <p>Log-in</p>
-            <div className={styles.linkBorder}></div>
+            <div className={classNames(styles.linkBorder)}></div>
           </li>
         </Link>
-        <Link to="/favorites" className={styles.navLink}>
+        <Link to="/favorites" className={classNames(styles.navLink)}>
           <li>
             <FiHeart /> <p>Favorite</p>
-            <div className={styles.linkBorder}></div>
+            <div className={classNames(styles.linkBorder)}></div>
           </li>
         </Link>
-        <Link to="/cart" className={styles.navLink}>
+        <Link to="/cart" className={classNames(styles.navLink)}>
           <li>
             <PiShoppingCartLight /> <p>Cart</p>
-            <div className={styles.linkBorder}></div>
+            <div className={classNames(styles.linkBorder)}></div>
           </li>
         </Link>
-        <Link to="/menu" className={styles.navLink}>
+        <Link to="/menu" className={classNames(styles.navLink)}>
           <li>
             <RxHamburgerMenu /> <p>Menu</p>
-            <div className={styles.linkBorder}></div>
+            <div className={classNames(styles.linkBorder)}></div>
           </li>
         </Link>
       </ul>

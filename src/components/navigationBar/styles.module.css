@@ -22,6 +22,10 @@
   transform: translateY(-100%);
 }
 
+.opacityZero {
+  opacity: 0;
+}
+
 .navBarItems {
   width: 33%;
   display: flex;
@@ -31,6 +35,7 @@
 .navBarContainer span {
   font-family: "Zaslia";
   font-size: 1.5rem;
+  transition: all 0.5s;
 }
 
 .navBar {
@@ -62,7 +67,7 @@
   color: inherit;
 }
 
-.navBar li .link-border::before {
+.navBar li .linkBorder::before {
   content: "";
   position: absolute;
   bottom: 0;
