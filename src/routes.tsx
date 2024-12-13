@@ -1,15 +1,4 @@
-import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-
-// import Login from "./pages/Login";
-// import SignUp from "./pages/SignUp";
-// import Account from "./pages/Account";
-// import Favorites from "./pages/Favorites";
-// import Cart from "./pages/Cart";
-// import ChromeHeartCollection from "./pages/ChromeHeartCollection";
-// import DarkerThanBlackCollection from "./pages/DarkerThanBlackCollection";
-// import FaithlessCollection from "./pages/FaithlessCollection";
-// import Contact from "./pages/Contact";
 
 const RoutesConfig = () => (
   <Router>
