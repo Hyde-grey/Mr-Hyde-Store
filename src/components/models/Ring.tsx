@@ -13,8 +13,8 @@ export const RingModel = (props: MeshProps) => {
 
   useFrame(() => {
     if (ref.current) {
+      ref.current.rotation.y += 0.01;
       ref.current.rotation.x = initialRotation.x + scroll.offset * Math.PI * 4;
-      ref.current.rotation.y = initialRotation.y + scroll.offset * Math.PI * 4;
     }
   });
 

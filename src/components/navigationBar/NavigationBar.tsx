@@ -21,7 +21,7 @@ const NavigationBar = () => {
       </ul>
       <span
         className={classNames(styles.logo, styles.navBarItems, {
-          [styles.opacityZeron]: !isPassedThreshold,
+          [styles.opacityZero]: !isPassedThreshold,
         })}
       >
         <Link to="/" className={styles.navLink}>

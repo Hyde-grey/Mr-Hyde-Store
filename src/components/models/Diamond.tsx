@@ -13,8 +13,8 @@ export const DiamondModel = (props: MeshProps) => {
 
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.y = scroll.offset * Math.PI * 4; // Rotate the model based on scroll
-      ref.current.rotation.x = scroll.offset * Math.PI * 3; // Rotate the model based on scroll
+      ref.current.rotation.y += 0.003;
+      ref.current.rotation.x = scroll.offset * Math.PI * 3;
     }
   });
 
