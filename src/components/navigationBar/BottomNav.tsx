@@ -9,7 +9,6 @@ const BottomNav = () => {
 
   const burgerClickHandler = () => {
     setIsClicked(!isClicked);
-    console.log("is clicked", isClicked);
   };
 
   return (
