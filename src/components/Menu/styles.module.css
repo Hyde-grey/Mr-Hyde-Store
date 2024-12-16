@@ -66,8 +66,12 @@
 
 .collectionMenu {
   opacity: 0;
-  height: 0;
+
   transition: all ease 0.5s;
+  transition:
+    height 1s ease,
+    opacity 1s ease,
+    padding 1s ease;
   font-size: 0.8rem;
   font-weight: 400;
   padding-left: 20px;
@@ -75,6 +79,7 @@
 
 .collectionDisplay {
   opacity: 1;
+  min-height: fit-content;
 }
 
 .icons {
