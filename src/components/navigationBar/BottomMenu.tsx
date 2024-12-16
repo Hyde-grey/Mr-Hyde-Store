@@ -1,14 +1,14 @@
-import { useScrollContext } from "../../contexts/ScrollContext";
 import classNames from "classnames";
 import styles from "./BottomNav.module.css";
-import { useState } from "react";
+import { useScrollContext } from "../../contexts/ScrollContext";
+import { useMenuContext } from "../../contexts/MenuContext";
 
-const BottomNav = () => {
+const BottomMenu = () => {
   const { scrollOffset } = useScrollContext();
-  const [isClicked, setIsClicked] = useState(false);
+  const { isMenuOpen, setIsMenuOpen } = useMenuContext();
 
   const burgerClickHandler = () => {
-    setIsClicked(!isClicked);
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -28,22 +28,22 @@ const BottomNav = () => {
           <li>
             <div
               className={classNames(styles.burgerContainer, {
-                [styles.burgerClicked]: isClicked,
+                [styles.burgerClicked]: isMenuOpen,
               })}
             >
               <div
                 className={classNames(styles.burgerLines, styles.topLine, {
-                  [styles.topLineClicked]: isClicked,
+                  [styles.topLineClicked]: isMenuOpen,
                 })}
               ></div>
               <div
                 className={classNames(styles.burgerLines, styles.middleLine, {
-                  [styles.middleLineClicked]: isClicked,
+                  [styles.middleLineClicked]: isMenuOpen,
                 })}
               ></div>
               <div
                 className={classNames(styles.burgerLines, styles.bottomLine, {
-                  [styles.bottomLineClicked]: isClicked,
+                  [styles.bottomLineClicked]: isMenuOpen,
                 })}
               ></div>
             </div>
@@ -54,4 +54,4 @@ const BottomNav = () => {
   );
 };
 
-export default BottomNav;
+export default BottomMenu;
