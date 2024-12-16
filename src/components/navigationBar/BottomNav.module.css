@@ -1,14 +1,15 @@
 .scrollProgress {
   position: fixed;
   bottom: 5%;
-  right: 1%;
-  transform: translateX(-50%);
+  right: 50%;
+  transform: translateX(50%);
   width: 85px;
   height: 85px;
   border-radius: 50%;
   display: grid;
   place-items: center;
   transition: all 0.3s ease-in-out;
+  z-index: 9999;
 }
 
 .bottomNavContainer {

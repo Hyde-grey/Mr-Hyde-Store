@@ -6,14 +6,17 @@ import { PiShoppingCartLight } from "react-icons/pi";
 import { RxHamburgerMenu } from "react-icons/rx";
 import styles from "./styles.module.css";
 import { useScrollContext } from "../../contexts/ScrollContext";
+import { useMenuContext } from "../../contexts/MenuContext";
 
 const NavigationBar = () => {
   const { isPassedThreshold } = useScrollContext();
+  const { isMenuOpen } = useMenuContext();
 
   return (
     <div
       className={classNames(styles.navBarContainer, {
-        [styles.hidden]: !isPassedThreshold,
+        [styles.hidden]: !isPassedThreshold || isMenuOpen,
+        [styles.menuOpened]: isMenuOpen,
       })}
     >
       <ul className={classNames(styles.navBarItems, styles.navCollection)}>
@@ -21,13 +24,14 @@ const NavigationBar = () => {
       </ul>
       <span
         className={classNames(styles.logo, styles.navBarItems, {
-          [styles.opacityZero]: !isPassedThreshold,
+          [styles.opacityZero]: !isPassedThreshold && !isMenuOpen,
         })}
       >
         <Link to="/" className={styles.navLink}>
           Mr. Hyde Store
         </Link>
       </span>
+
       <ul className={classNames(styles.navBar, styles.navBarItems)}>
         <Link to="/login" className={styles.navLink}>
           <li>

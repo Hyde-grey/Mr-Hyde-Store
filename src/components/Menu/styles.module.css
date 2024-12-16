@@ -1,0 +1,86 @@
+.overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 0;
+  transition:
+    height 1s ease,
+    opacity 1s ease,
+    padding 1s ease;
+}
+
+.overlayIsOpened {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.151);
+  backdrop-filter: blur(10px);
+  z-index: 999;
+}
+
+.menuContainer {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 75%;
+  height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0;
+  background-color: white;
+  color: black;
+  font-size: 1.1rem;
+  font-weight: 500;
+  border-radius: 5px;
+  opacity: 0;
+  transition:
+    height 1s ease,
+    opacity 1s ease,
+    padding 1s ease;
+  z-index: 9999;
+  box-shadow: 5px 5px 15px black;
+}
+
+.menuLogo {
+  color: black;
+  font-family: "Zaslia";
+  font-size: 1.9rem;
+}
+
+.menuIsOpened {
+  height: 80vh;
+  padding: 20px;
+  opacity: 1;
+}
+
+.menuContainer ul li {
+  padding: 10px 0;
+  display: flex;
+  align-items: center;
+}
+
+.collectionMenu {
+  opacity: 0;
+  height: 0;
+  transition: all ease 0.5s;
+  font-size: 0.8rem;
+  font-weight: 400;
+  padding-left: 20px;
+}
+
+.collectionDisplay {
+  opacity: 1;
+}
+
+.icons {
+  margin-right: 15px;
+  font-size: 0.8rem;
+}
+
+.logout {
+  color: rgb(184, 35, 35);
+}
