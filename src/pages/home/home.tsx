@@ -1,9 +1,7 @@
-import React from "react";
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import HomeLayout from "./homeLayout";
 import Spiral from "../../components/Spiral";
-import "./home.css";
 import NavigationBar from "../../components/navigationBar/NavigationBar";
 import useScreenSize from "../../components/hooks/useScreenSize";
 import { ScrollProvider } from "../../contexts/ScrollContext";
@@ -11,6 +9,7 @@ import { ScrollUpdater } from "../../components/ScrollUpdater";
 import BottomMenu from "../../components/navigationBar/BottomMenu";
 import { MenuProvider } from "../../contexts/MenuContext";
 import Menu from "../../components/Menu/Menu";
+import "./home.css";
 
 const Home = () => {
   const { isMobile } = useScreenSize();

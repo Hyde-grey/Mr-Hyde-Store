@@ -16,7 +16,6 @@ const Menu = () => {
 
   const collectionDisplayHandler = () => {
     setIsCollectionOpen(!isCollectionOpen);
-    console.log("collectionn has been clicked", isCollectionOpen);
   };
 
   return (
