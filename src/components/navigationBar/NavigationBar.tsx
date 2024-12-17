@@ -1,21 +1,29 @@
 import { Link } from "react-router-dom";
 import classNames from "classnames";
+
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FiHeart } from "react-icons/fi";
 import { PiShoppingCartLight } from "react-icons/pi";
-import { RxHamburgerMenu } from "react-icons/rx";
-import styles from "./styles.module.css";
+
 import { useScrollContext } from "../../contexts/ScrollContext";
 import { useMenuContext } from "../../contexts/MenuContext";
 
+import MenuButton from "./MenuButton";
+
+import styles from "./styles.module.css";
+
 const NavigationBar = () => {
   const { isPassedThreshold } = useScrollContext();
-  const { isMenuOpen } = useMenuContext();
+  const { isMenuOpen, setIsMenuOpen } = useMenuContext();
+
+  const toggleMenuHandler = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   return (
     <div
       className={classNames(styles.navBarContainer, {
-        [styles.hidden]: !isPassedThreshold || isMenuOpen,
+        [styles.hidden]: !isPassedThreshold,
         [styles.menuOpened]: isMenuOpen,
       })}
     >
@@ -27,8 +35,14 @@ const NavigationBar = () => {
           [styles.opacityZero]: !isPassedThreshold && !isMenuOpen,
         })}
       >
-        <Link to="/" className={styles.navLink}>
-          Mr. Hyde Store
+        <Link to="/" className={classNames(styles.navLink)}>
+          <span
+            className={classNames({
+              [styles.hidden]: isMenuOpen,
+            })}
+          >
+            Mr. Hyde Store
+          </span>
         </Link>
       </span>
 
@@ -51,12 +65,11 @@ const NavigationBar = () => {
             <div className={classNames(styles.linkBorder)}></div>
           </li>
         </Link>
-        <Link to="/menu" className={classNames(styles.navLink)}>
-          <li>
-            <RxHamburgerMenu /> <p>Menu</p>
-            <div className={classNames(styles.linkBorder)}></div>
-          </li>
-        </Link>
+
+        <li onClick={() => toggleMenuHandler()}>
+          <p>Menu</p> <MenuButton />
+          <div className={classNames(styles.linkBorder)}></div>
+        </li>
       </ul>
     </div>
   );

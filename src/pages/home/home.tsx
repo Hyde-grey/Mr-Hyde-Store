@@ -1,14 +1,17 @@
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
+
+import { ScrollProvider } from "../../contexts/ScrollContext";
+import { ScrollUpdater } from "../../components/ScrollUpdater";
+import { MenuProvider } from "../../contexts/MenuContext";
+
 import HomeLayout from "./homeLayout";
 import Spiral from "../../components/Spiral";
 import NavigationBar from "../../components/navigationBar/NavigationBar";
 import useScreenSize from "../../components/hooks/useScreenSize";
-import { ScrollProvider } from "../../contexts/ScrollContext";
-import { ScrollUpdater } from "../../components/ScrollUpdater";
-import BottomMenu from "../../components/navigationBar/BottomMenu";
-import { MenuProvider } from "../../contexts/MenuContext";
 import Menu from "../../components/Menu/Menu";
+import MenuButton from "../../components/navigationBar/MenuButton";
+
 import "./home.css";
 
 const Home = () => {
@@ -32,7 +35,7 @@ const Home = () => {
               <HomeLayout />
             </ScrollControls>
           </Canvas>
-          {isMobile ? <BottomMenu /> : null}
+          {isMobile ? <MenuButton /> : null}
         </MenuProvider>
       </ScrollProvider>
     </div>
