@@ -1,9 +1,10 @@
 import classNames from "classnames";
-import styles from "./BottomNav.module.css";
 import { useScrollContext } from "../../contexts/ScrollContext";
 import { useMenuContext } from "../../contexts/MenuContext";
 
-const BottomMenu = () => {
+import styles from "./MenuButton.module.css";
+
+const MenuButton = () => {
   const { scrollOffset } = useScrollContext();
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
 
@@ -54,4 +55,4 @@ const BottomMenu = () => {
   );
 };
 
-export default BottomMenu;
+export default MenuButton;

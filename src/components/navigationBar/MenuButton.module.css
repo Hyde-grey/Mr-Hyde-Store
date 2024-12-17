@@ -74,3 +74,30 @@
 .bottomLineClicked {
   transform: rotate(-45deg) translateY(-11px);
 }
+
+@media (min-width: 1024px) {
+  .scrollProgress {
+    position: static;
+    bottom: auto;
+    right: initial;
+    transform: none;
+    border-radius: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  .bottomNavContainer {
+    width: 30px;
+    height: 30px;
+    background-color: black;
+    border-radius: 0;
+  }
+
+  .burgerLines {
+    width: 15px;
+    height: 2px;
+    background-color: rgb(146, 146, 146);
+    border-radius: 2px;
+    transition: all ease-in-out 0.5s;
+  }
+}

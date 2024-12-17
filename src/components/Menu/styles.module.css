@@ -9,7 +9,7 @@
     height 1s ease,
     opacity 1s ease,
     padding 1s ease;
-  z-index: 999;
+  z-index: 0;
 }
 
 .overlayIsOpened {
@@ -62,12 +62,16 @@
   padding: 10px 0;
   display: flex;
   align-items: center;
+  cursor: pointer;
+  transition: all ease 0.5s;
+}
+
+.menuContainer ul li:hover {
+  transform: translateY(-5px);
 }
 
 .collectionMenu {
   opacity: 0;
-
-  transition: all ease 0.5s;
   transition:
     height 1s ease,
     opacity 1s ease,
@@ -89,4 +93,37 @@
 
 .logout {
   color: rgb(184, 35, 35);
+}
+
+@media (min-width: 1024px) {
+  .overlay {
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    transition: all ease-in-out 0.5s;
+    z-index: 0;
+  }
+
+  .overlayIsOpened {
+    background-color: rgba(0, 0, 0, 0.151);
+    backdrop-filter: blur(10px);
+    z-index: 999;
+  }
+
+  .menuContainer {
+    position: absolute;
+    width: 20%;
+    top: 70px;
+    left: 100%;
+    height: 85vh;
+    transform: translateX(100%);
+    transition: all ease-in-out 0.5s;
+    text-align: right;
+  }
+
+  .menuIsOpened {
+    left: auto;
+    right: 0;
+    transform: translateX(0);
+  }
 }
