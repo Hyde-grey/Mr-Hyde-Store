@@ -1,4 +1,4 @@
-import MainCanvas from "../../components/MainCanvas/MainCanvas";
+import MainCanvas from "../../components/mainCanvas/MainCanvas";
 import Spiral from "../../components/Spiral";
 import HomeLayout from "./homeLayout";
 
