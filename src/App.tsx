@@ -1,14 +1,20 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import RoutesConfig from "./routes";
-import Home from "./pages/home/home";
+import { ScrollProvider } from "../src/contexts/ScrollContext";
+import { MenuProvider } from "../src/contexts/MenuContext";
+import classNames from "classnames";
+import styles from "./components/MainCanvas/MainCanvas.module.css";
 
 const App = () => (
-  <Router>
-    <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/" element={<RoutesConfig />} />
-    </Routes>
-  </Router>
+  <MenuProvider>
+    <ScrollProvider>
+      <div className={classNames(styles.mainContainer)}>
+        <Router>
+          <RoutesConfig />
+        </Router>
+      </div>
+    </ScrollProvider>
+  </MenuProvider>
 );
 
 export default App;

@@ -36,35 +36,22 @@
 }
 
 .burgerContainer {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 100%;
-  height: 30px;
-  transition: all ease-in-out 0.5s;
-}
-
-.burgerClicked {
-  transform: translateX(7px);
+  display: grid;
+  place-items: center;
+  height: 22px;
+  width: 22px;
+  transition: all ease 0.5s;
 }
 
 .burgerLines {
-  width: 25px;
-  height: 2px;
-  background-color: rgb(146, 146, 146);
-  border-radius: 2px;
-  transition: all ease-in-out 0.5s;
-}
-
-.topLine,
-.middleLine,
-.bottomLine {
-  transform-origin: center;
+  width: 100%;
+  height: 3px;
+  background-color: #bbb;
+  transition: all 0.5s ease-in-out;
 }
 
 .topLineClicked {
-  transform: rotate(45deg) translateY(11px);
+  transform: rotate(-45deg) translateY(200%) translateX(-33%);
 }
 
 .middleLineClicked {
@@ -72,7 +59,7 @@
 }
 
 .bottomLineClicked {
-  transform: rotate(-45deg) translateY(-11px);
+  transform: rotate(45deg) translateY(-200%) translateX(-33%);
 }
 
 @media (min-width: 1024px) {
@@ -82,22 +69,44 @@
     right: initial;
     transform: none;
     border-radius: 0;
-    width: 32px;
-    height: 32px;
+    width: 30px;
+    height: 30px;
+    display: grid;
+    place-items: center;
   }
 
   .bottomNavContainer {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
     background-color: black;
     border-radius: 0;
   }
 
+  .burgerContainer {
+    display: grid;
+    place-items: center;
+    padding: 3px 0;
+  }
+
+  .burgerClicked {
+    transform: translateX(3px);
+  }
+
   .burgerLines {
+    display: grid;
+    place-items: center;
     width: 15px;
     height: 2px;
     background-color: rgb(146, 146, 146);
     border-radius: 2px;
     transition: all ease-in-out 0.5s;
+  }
+
+  .topLineClicked {
+    transform: rotate(-45deg) translateY(70%) translateX(-40%);
+  }
+
+  .bottomLineClicked {
+    transform: rotate(45deg) translateY(-70%) translateX(-40%);
   }
 }

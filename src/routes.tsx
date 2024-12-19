@@ -1,19 +1,31 @@
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
+import AuthPage from "./pages/authPage/AuthPage";
+import Home from "./pages/home/home";
+import NavigationBar from "./components/navigationBar/NavigationBar";
 
 const RoutesConfig = () => (
-  <Router>
-    <Routes>
-      <Route path="/login" element={"/"} />
-      <Route path="/sign-up" element={"/"} />
-      <Route path="/account" element={"/"} />
-      <Route path="/favorites" element={"/"} />
-      <Route path="/cart" element={"/"} />
-      <Route path="/chrome-heart-collection" element={"/"} />
-      <Route path="/darker-than-black-collection" element={"/"} />
-      <Route path="/faithless-collection" element={"/"} />
-      <Route path="/contact" element={"/"} />
-    </Routes>
-  </Router>
+  <Routes>
+    <Route path="/" element={<NavigationBar />}>
+      <Route index element={<Home />} />
+      <Route path="/authentication" element={<AuthPage />} />
+      <Route path="/account" element={<div>Account Page</div>} />
+      <Route path="/favorites" element={<div>Favorites Page</div>} />
+      <Route path="/cart" element={<div>Cart Page</div>} />
+      <Route
+        path="/chrome-heart-collection"
+        element={<div>Chrome Heart Collection</div>}
+      />
+      <Route
+        path="/darker-than-black-collection"
+        element={<div>Darker Than Black Collection</div>}
+      />
+      <Route
+        path="/faithless-collection"
+        element={<div>Faithless Collection</div>}
+      />
+      <Route path="/contact" element={<div>Contact Page</div>} />
+    </Route>
+  </Routes>
 );
 
 export default RoutesConfig;
