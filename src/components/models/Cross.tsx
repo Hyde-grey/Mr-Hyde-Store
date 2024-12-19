@@ -11,8 +11,8 @@ const CrossModel = (props: MeshProps) => {
 
   useFrame(() => {
     if (ref.current) {
-      ref.current.rotation.y = scroll.offset * Math.PI * 4; // Rotate the model based on scroll
-      ref.current.rotation.x = scroll.offset * Math.PI * 4; // Rotate the model based on scroll
+      ref.current.rotation.y = scroll.offset * Math.PI * 4;
+      ref.current.rotation.x = scroll.offset * Math.PI * 4;
     }
   });
 
