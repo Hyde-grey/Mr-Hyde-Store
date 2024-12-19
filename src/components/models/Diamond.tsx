@@ -39,4 +39,4 @@ export const DiamondModel = (props: MeshProps) => {
   );
 };
 
-useGLTF.preload("./public/DiamondModel/diamond.glb");
+useGLTF.preload("/DiamondModel/diamond.glb");
