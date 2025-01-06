@@ -4,3 +4,71 @@
   display: grid;
   place-items: center;
 }
+
+.authComponentContainer {
+  min-height: 580px;
+  max-height: 580px;
+  min-width: 360px;
+  max-width: 360px;
+  display: grid;
+  place-items: center;
+  background: rgba(243, 243, 243, 0.089);
+  backdrop-filter: blur(3px);
+  border-radius: 10px;
+  padding: 40px;
+  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.39);
+  border: 1px solid rgba(255, 255, 255, 0.219);
+}
+
+.authComponentContainer h2 {
+  font-size: 1.3rem;
+}
+
+.authSelectorsContainer {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 100%;
+  display: flex;
+  justify-content: baseline;
+  padding: 10px;
+}
+
+.authSelector {
+  margin: 0 20px;
+  color: gray;
+  display: flex;
+  flex-direction: column;
+  transition: all ease 0.5s;
+}
+
+.authSelector:hover {
+  cursor: pointer;
+}
+
+.activeTab {
+  color: white;
+}
+
+.linkBorder {
+  position: relative;
+  height: 2px;
+  background-color: transparent;
+  margin-top: 1rem;
+}
+
+.linkBorder::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background-color: white;
+  transition: width 0.3s ease-out;
+  transform: translateX(-50%);
+}
+
+.activelinkBorder::before {
+  width: 90%;
+}
