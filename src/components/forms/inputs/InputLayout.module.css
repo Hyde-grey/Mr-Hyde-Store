@@ -1,0 +1,22 @@
+.inputStyle {
+  background-color: rgba(128, 128, 128, 0.062);
+  backdrop-filter: blur(3px);
+  width: 100%;
+  height: 2.5rem;
+  margin: 0.5rem 0;
+  border-style: none;
+  text-indent: 5px;
+  max-width: 350px;
+  border-radius: 3px;
+}
+
+.inputStyle::placeholder {
+  color: rgba(151, 151, 151, 0.61);
+  opacity: 1;
+}
+
+.inputStyle:focus {
+  outline: none;
+  border: 2px solid rgba(231, 242, 255, 0.8);
+  box-shadow: 0 0 5px rgba(231, 242, 255, 0.8);
+}
