@@ -13,6 +13,7 @@
     "@react-icons/all-files": "^4.1.0",
     "@react-three/drei": "^9.117.3",
     "@react-three/fiber": "^8.17.10",
+    "@types/firebase": "^3.2.3",
     "@types/three": "^0.170.0",
     "babel-runtime": "^5.3.3",
     "classnames": "^2.5.1",
