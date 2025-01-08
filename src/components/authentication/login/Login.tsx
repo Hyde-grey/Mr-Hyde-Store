@@ -14,7 +14,7 @@ const defaultFormFields: FormFields = {
   password: "",
 };
 
-const LoginForm = () => {
+const Login = () => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { email, password } = formFields;
 
@@ -61,10 +61,10 @@ const LoginForm = () => {
           value={password}
           name="password"
         />
-        <ButtonLayout buttonType="submit">Login</ButtonLayout>
+        <ButtonLayout buttonType="submit">Log in</ButtonLayout>
       </div>
     </FormLayout>
   );
 };
 
-export default LoginForm;
+export default Login;
