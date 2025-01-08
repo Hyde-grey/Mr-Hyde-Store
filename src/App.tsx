@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from "react-router-dom";
+import { BrowserRouter } from "react-router-dom";
 import RoutesConfig from "./routes";
 import { ScrollProvider } from "../src/contexts/ScrollContext";
 import { MenuProvider } from "../src/contexts/MenuContext";
@@ -9,9 +9,9 @@ const App = () => (
   <MenuProvider>
     <ScrollProvider>
       <div className={classNames(styles.mainContainer)}>
-        <Router>
+        <BrowserRouter>
           <RoutesConfig />
-        </Router>
+        </BrowserRouter>
       </div>
     </ScrollProvider>
   </MenuProvider>

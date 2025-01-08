@@ -2,15 +2,21 @@ import { Scroll } from "@react-three/drei";
 import classNames from "classnames";
 
 import MainCanvas from "../../components/mainCanvas/MainCanvas";
-import LoginForm from "../../components/authentication/login/Login";
+import LogIn from "../../components/authentication/login/Login";
 import SignUp from "../../components/authentication/signup/Signup";
 
 import styles from "./AuthStyles.module.css";
 import { KeyModel } from "../../components/models/Key";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const AuthPage = () => {
+  const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
+
+  const redirectOnSubmit = (url: string) => {
+    navigate(url);
+  };
 
   const toggleTabHandler = (tab: string) => {
     setActiveTab(tab);
@@ -30,7 +36,7 @@ const AuthPage = () => {
                   })}
                   onClick={() => toggleTabHandler("login")}
                 >
-                  Login
+                  Log in
                 </div>
                 <div
                   className={classNames(styles.linkBorder, {
@@ -45,7 +51,7 @@ const AuthPage = () => {
                   })}
                   onClick={() => toggleTabHandler("signup")}
                 >
-                  Sign Up
+                  Sign up
                 </div>
                 <div
                   className={classNames(styles.linkBorder, {
@@ -54,7 +60,11 @@ const AuthPage = () => {
                 ></div>
               </div>
             </div>
-            {activeTab === "login" ? <LoginForm /> : <SignUp />}
+            {activeTab === "login" ? (
+              <LogIn />
+            ) : (
+              <SignUp redirectOnSubmit={redirectOnSubmit} />
+            )}
           </div>
         </div>
       </Scroll>

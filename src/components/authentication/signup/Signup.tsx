@@ -1,6 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
 import { useSignUp } from "../../hooks/useSignUp";
-
 import FormLayout from "../../forms/FormLayout";
 import InputLayout from "../../forms/inputs/Inputs";
 import ButtonLayout from "../../button/Button";
@@ -13,6 +12,10 @@ type FormFields = {
   confirmPassword: string;
 };
 
+type SignUpProps = {
+  redirectOnSubmit: (url: string) => void;
+};
+
 const defaultFormFields: FormFields = {
   displayName: "",
   email: "",
@@ -20,7 +23,7 @@ const defaultFormFields: FormFields = {
   confirmPassword: "",
 };
 
-const SignUpForm = () => {
+const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
   const { signUp, error, loading } = useSignUp();
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
@@ -40,6 +43,7 @@ const SignUpForm = () => {
     try {
       await signUp(email, password, displayName);
       resetFormFields();
+      redirectOnSubmit("/");
     } catch (error) {
       console.log("User sign-up failed", error);
     }
@@ -47,13 +51,12 @@ const SignUpForm = () => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-
     setFormFields({ ...formFields, [name]: value });
   };
 
   return (
     <FormLayout
-      title="Don't have an account ?"
+      title="Don't have an account?"
       text="Sign up with your email and password"
       formSubmitHandler={formSubmitHandler}
     >
@@ -95,4 +98,4 @@ const SignUpForm = () => {
   );
 };
 
-export default SignUpForm;
+export default SignUp;
