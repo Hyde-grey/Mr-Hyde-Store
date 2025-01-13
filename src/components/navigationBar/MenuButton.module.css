@@ -38,8 +38,8 @@
 .burgerContainer {
   display: grid;
   place-items: center;
-  height: 22px;
-  width: 22px;
+  height: 25px;
+  width: 25px;
   transition: all ease 0.5s;
 }
 
@@ -47,19 +47,33 @@
   width: 100%;
   height: 3px;
   background-color: #bbb;
-  transition: all 0.5s ease-in-out;
+}
+
+.topLine {
+  transform-origin: 0% 0%;
+  transition: transform 0.4s ease-in-out;
+}
+
+.middleLine {
+  transition: transform 0.2s ease-in-out;
+}
+
+.bottomLine {
+  transform-origin: 0% 100%;
+  transition: transform 0.4s ease-in-out;
 }
 
 .topLineClicked {
-  transform: rotate(-45deg) translateY(200%) translateX(-33%);
+  transform: rotate(45deg) translateY(-100%);
+  width: 30px;
 }
 
 .middleLineClicked {
-  opacity: 0;
+  transform: scaleY(0);
 }
 
 .bottomLineClicked {
-  transform: rotate(45deg) translateY(-200%) translateX(-33%);
+  transform: rotate(-45deg) translateY(100%);
 }
 
 @media (min-width: 1024px) {
@@ -85,17 +99,12 @@
   .burgerContainer {
     display: grid;
     place-items: center;
-    padding: 3px 0;
-  }
-
-  .burgerClicked {
-    transform: translateX(3px);
+    padding: 3px;
   }
 
   .burgerLines {
     display: grid;
     place-items: center;
-    width: 15px;
     height: 2px;
     background-color: rgb(146, 146, 146);
     border-radius: 2px;
@@ -103,10 +112,6 @@
   }
 
   .topLineClicked {
-    transform: rotate(-45deg) translateY(70%) translateX(-40%);
-  }
-
-  .bottomLineClicked {
-    transform: rotate(45deg) translateY(-70%) translateX(-40%);
+    width: 22px;
   }
 }
