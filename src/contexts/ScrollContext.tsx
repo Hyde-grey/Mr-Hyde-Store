@@ -22,6 +22,7 @@ export const useScrollContext = () => useContext(ScrollContext);
 
 export const ScrollProvider = ({ children }: ScrollProviderProps) => {
   const [isPassedThreshold, setIsPassedThreshold] = useState(false);
+  //TODO: Seperate isPassedThreshold into a new context to reduce unecessary renders
   const [scrollOffset, setScrollOffset] = useState(0);
 
   return (
