@@ -3,7 +3,7 @@ import FormLayout from "../../forms/FormLayout";
 import ButtonLayout from "../../button/Button";
 import InputLayout from "../../forms/inputs/Inputs";
 import styles from "../../forms/FormLayout.module.css";
-import { useLogin } from "../../../hooks/useLogin"; // Import your custom hook
+import { useLogin } from "../../../hooks/useLogin";
 
 type FormFields = {
   email: string;
@@ -18,8 +18,7 @@ const defaultFormFields: FormFields = {
 const Login = () => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { email, password } = formFields;
-  const { login, error, loading } = useLogin(); // Use the custom hook
-
+  const { login, error, loading } = useLogin();
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
   };
@@ -30,7 +29,7 @@ const Login = () => {
     try {
       const userCredential = await login(email, password);
       if (userCredential) {
-        console.log("User logged in successfully:", userCredential.user);
+        console.log("User logged in successfully:");
         resetFormFields();
       }
     } catch (error) {
