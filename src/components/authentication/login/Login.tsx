@@ -3,6 +3,7 @@ import FormLayout from "../../forms/FormLayout";
 import ButtonLayout from "../../button/Button";
 import InputLayout from "../../forms/inputs/Inputs";
 import styles from "../../forms/FormLayout.module.css";
+import { useLogin } from "../../../hooks/useLogin"; // Import your custom hook
 
 type FormFields = {
   email: string;
@@ -17,6 +18,7 @@ const defaultFormFields: FormFields = {
 const Login = () => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { email, password } = formFields;
+  const { login, error, loading } = useLogin(); // Use the custom hook
 
   const resetFormFields = () => {
     setFormFields(defaultFormFields);
@@ -26,8 +28,11 @@ const Login = () => {
     event.preventDefault();
 
     try {
-      console.log("this form is being submitted");
-      resetFormFields();
+      const userCredential = await login(email, password);
+      if (userCredential) {
+        console.log("User logged in successfully:", userCredential.user);
+        resetFormFields();
+      }
     } catch (error) {
       console.log("user sign in failed", error);
     }
@@ -61,7 +66,10 @@ const Login = () => {
           value={password}
           name="password"
         />
-        <ButtonLayout buttonType="submit">Log in</ButtonLayout>
+        <ButtonLayout buttonType="submit" disabled={loading}>
+          {loading ? "Logging in..." : "Log in"}
+        </ButtonLayout>
+        {error && <p>{error}</p>}
       </div>
     </FormLayout>
   );
