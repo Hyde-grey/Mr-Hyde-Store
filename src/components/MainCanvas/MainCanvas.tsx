@@ -1,9 +1,9 @@
 import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import { Canvas } from "@react-three/fiber";
 import { ScrollUpdater } from "../ScrollUpdater";
-import useScreenSize from "../hooks/useScreenSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
-type MainCanvasProps = {
+export type MainCanvasProps = {
   children: React.ReactNode;
   numberOfPages: number;
 };
@@ -17,6 +17,7 @@ const MainCanvas = ({ children, numberOfPages }: MainCanvasProps) => {
       {isMobile ? null : <OrbitControls enableZoom={false} />}
       <ScrollControls pages={numberOfPages} enabled>
         <Stars />
+        {/* TODO: Find a better way to implement scroll event listener as useFrame cannot be used outside of Canvas */}
         <ScrollUpdater />
         {children}
       </ScrollControls>

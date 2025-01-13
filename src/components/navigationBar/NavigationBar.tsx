@@ -1,4 +1,4 @@
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useLocation } from "react-router-dom";
 import classNames from "classnames";
 
 import { RiAccountCircleLine } from "react-icons/ri";
@@ -10,7 +10,7 @@ import { useMenuContext } from "../../contexts/MenuContext";
 
 import MenuButton from "./MenuButton";
 import Menu from "../menu/Menu";
-import useScreenSize from "../hooks/useScreenSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
 import styles from "./styles.module.css";
 
@@ -18,6 +18,9 @@ const NavigationBar = () => {
   const { isPassedThreshold } = useScrollContext();
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
   const { isMobile } = useScreenSize();
+
+  const isHomePage =
+    useLocation().pathname === "/" || useLocation().pathname === "/home";
 
   const toggleMenuHandler = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -27,7 +30,7 @@ const NavigationBar = () => {
     <>
       <div
         className={classNames(styles.navBarContainer, {
-          [styles.hidden]: !isPassedThreshold,
+          [styles.hidden]: !isPassedThreshold && isHomePage,
           [styles.menuOpened]: isMenuOpen,
         })}
       >
@@ -36,7 +39,8 @@ const NavigationBar = () => {
         </ul>
         <span
           className={classNames(styles.logo, styles.navBarItems, {
-            [styles.opacityZero]: !isPassedThreshold && !isMenuOpen,
+            [styles.opacityZero]:
+              !isPassedThreshold && !isMenuOpen && isHomePage,
           })}
         >
           <Link to="/" className={classNames(styles.navLink)}>

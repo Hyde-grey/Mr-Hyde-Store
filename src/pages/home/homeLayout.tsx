@@ -6,7 +6,7 @@ import "./home.css";
 import Section from "../../components/section/Section";
 import { useFrame } from "@react-three/fiber";
 import { useState } from "react";
-import useScreenSize from "../../components/hooks/useScreenSize";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const HomeLayout = () => {
   const scroll = useScroll();
