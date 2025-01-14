@@ -28,14 +28,10 @@ const createUserDocumentFromAuth = async (
   userAuth: User | null,
   additionalInformation: { [key: string]: any } = {}
 ): Promise<void> => {
-  console.log("createUserDocumentFromAuth has been triggered", userAuth);
-
   if (!userAuth) return;
 
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
-
-  console.log("userSnapshot", userSnapshot);
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;
@@ -70,7 +66,7 @@ export const useSignUp = (): UseSignUpResult => {
   ) => {
     setLoading(true);
     setError(null);
-    console.log("signUp has been called");
+
     try {
       const userCredential = await createUserWithEmailAndPassword(
         auth,
