@@ -9,13 +9,27 @@ import { FaPhone } from "react-icons/fa";
 import styles from "./styles.module.css";
 import { useMenuContext } from "../../contexts/MenuContext";
 import { useState } from "react";
+import { useLogout } from "../../hooks/useLogOut";
+import { useAuth } from "../../hooks/useAuth";
+import { Link } from "react-router-dom";
+import { RiAccountCircleLine } from "react-icons/ri";
 
 const Menu = () => {
   const [isCollectionOpen, setIsCollectionOpen] = useState(false);
-  const { isMenuOpen } = useMenuContext();
+  const { isMenuOpen, setIsMenuOpen } = useMenuContext();
+  const { logout, error, loading } = useLogout();
+  const { user } = useAuth();
 
   const collectionDisplayHandler = () => {
     setIsCollectionOpen(!isCollectionOpen);
+  };
+
+  const overlayClickHandler = () => {
+    setIsMenuOpen(false);
+  };
+
+  const menuClickHandler = (e: React.MouseEvent) => {
+    e.stopPropagation();
   };
 
   return (
@@ -25,7 +39,15 @@ const Menu = () => {
           [styles.overlayIsOpened]: isMenuOpen,
         })}
       >
+        <button
+          onClick={overlayClickHandler}
+          className={classNames(styles.overlayButton)}
+          aria-label="Close Menu"
+        >
+          {/* Hidden button for accessibility */}
+        </button>
         <div
+          onClick={menuClickHandler}
           className={classNames(styles.menuContainer, {
             [styles.menuIsOpened]: isMenuOpen,
           })}
@@ -34,13 +56,24 @@ const Menu = () => {
             <span>Mr. Hyde Store</span>
           </div>
           <ul>
-            <li>
-              <HiHome className={classNames(styles.icons)} /> Home
-            </li>
-            <li>
-              <MdAccountCircle className={classNames(styles.icons)} />
-              My Account
-            </li>
+            <Link to="/" className={styles.navLink}>
+              <li>
+                <HiHome className={classNames(styles.icons)} /> Home
+              </li>
+            </Link>
+            {user ? (
+              <li>
+                <MdAccountCircle className={classNames(styles.icons)} />
+                My Account
+              </li>
+            ) : (
+              <Link to="/authentication" className={styles.navLink}>
+                <li>
+                  <RiAccountCircleLine /> <p>Login | Sign Up</p>
+                  <div className={classNames(styles.linkBorder)}></div>
+                </li>
+              </Link>
+            )}
             <li>
               <MdFavorite className={classNames(styles.icons)} />
               Favorites
@@ -49,7 +82,7 @@ const Menu = () => {
               <FaShoppingCart className={classNames(styles.icons)} />
               Cart
             </li>
-            <li onClick={() => collectionDisplayHandler()}>
+            <li onClick={collectionDisplayHandler}>
               <AiOutlinePlusCircle className={classNames(styles.icons)} />
               Collections
             </li>
@@ -74,10 +107,13 @@ const Menu = () => {
               <FaPhone className={classNames(styles.icons)} />
               Contact Us
             </li>
-            <li>
-              <FiLogOut className={classNames(styles.icons, styles.logout)} />
-              Logout
-            </li>
+            {user ? (
+              <li onClick={logout}>
+                <FiLogOut className={classNames(styles.icons, styles.logout)} />
+                {loading ? "Logging out..." : "Logout"}
+              </li>
+            ) : null}
+            {error && <p>{error}</p>}
           </ul>
         </div>
       </div>
