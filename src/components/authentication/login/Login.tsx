@@ -10,12 +10,16 @@ type FormFields = {
   password: string;
 };
 
+type LoginProps = {
+  redirectOnSubmit: (url: string) => void;
+};
+
 const defaultFormFields: FormFields = {
   email: "",
   password: "",
 };
 
-const Login = () => {
+const Login = ({ redirectOnSubmit }: LoginProps) => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { email, password } = formFields;
   const { login, error, loading } = useLogin();
@@ -31,6 +35,7 @@ const Login = () => {
       if (userCredential) {
         console.log("User logged in successfully:");
         resetFormFields();
+        redirectOnSubmit("/");
       }
     } catch (error) {
       console.log("user sign in failed", error);

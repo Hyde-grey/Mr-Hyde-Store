@@ -61,7 +61,7 @@ const AuthPage = () => {
               </div>
             </div>
             {activeTab === "login" ? (
-              <LogIn />
+              <LogIn redirectOnSubmit={redirectOnSubmit} />
             ) : (
               <SignUp redirectOnSubmit={redirectOnSubmit} />
             )}
