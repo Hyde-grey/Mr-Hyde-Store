@@ -13,11 +13,13 @@ import Menu from "../menu/Menu";
 import useScreenSize from "../../hooks/useScreenSize";
 
 import styles from "./styles.module.css";
+import { useAuth } from "../../hooks/useAuth";
 
 const NavigationBar = () => {
   const { isPassedThreshold } = useScrollContext();
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
   const { isMobile } = useScreenSize();
+  const { user } = useAuth();
 
   const isHomePage =
     useLocation().pathname === "/" || useLocation().pathname === "/home";
@@ -30,7 +32,7 @@ const NavigationBar = () => {
     <>
       <div
         className={classNames(styles.navBarContainer, {
-          [styles.hidden]: !isPassedThreshold && isHomePage,
+          [styles.hidden]: !isPassedThreshold && isHomePage && !user,
           [styles.menuOpened]: isMenuOpen,
         })}
       >
@@ -55,12 +57,21 @@ const NavigationBar = () => {
         </span>
 
         <ul className={classNames(styles.navBar, styles.navBarItems)}>
-          <Link to="/authentication" className={styles.navLink}>
-            <li>
-              <RiAccountCircleLine /> <p>Login | Sign Up</p>
-              <div className={classNames(styles.linkBorder)}></div>
-            </li>
-          </Link>
+          {user ? (
+            <Link to="/account" className={styles.navLink}>
+              <li>
+                <RiAccountCircleLine /> <p>My account</p>
+                <div className={classNames(styles.linkBorder)}></div>
+              </li>
+            </Link>
+          ) : (
+            <Link to="/authentication" className={styles.navLink}>
+              <li>
+                <RiAccountCircleLine /> <p>Login</p>
+                <div className={classNames(styles.linkBorder)}></div>
+              </li>
+            </Link>
+          )}
           <Link to="/favorites" className={classNames(styles.navLink)}>
             <li>
               <FiHeart /> <p>Favorite</p>
