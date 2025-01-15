@@ -1,4 +1,4 @@
-import { RefObject, useRef } from "react";
+import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import "./Section.css";
 
@@ -10,14 +10,14 @@ type SectionProps = {
 };
 
 const Section = ({ img, title, description, current }: SectionProps) => {
-  const cardContainerRefs = useRef<RefObject<HTMLDivElement>[]>([]);
+  const cardContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   useFrame(() => {
     const viewportHeight = window.innerHeight;
 
     cardContainerRefs.current.forEach((ref) => {
-      if (ref.current) {
-        const rect = ref.current.getBoundingClientRect();
+      if (ref) {
+        const rect = ref.getBoundingClientRect();
         const elementCenterY = rect.top + rect.height / 2;
         const viewportCenterY = viewportHeight / 2;
         const distanceFromCenter = Math.abs(viewportCenterY - elementCenterY);
@@ -29,7 +29,7 @@ const Section = ({ img, title, description, current }: SectionProps) => {
           0
         );
 
-        ref.current.style.opacity = `${opacityValue}`;
+        ref.style.opacity = `${opacityValue}`;
       }
     });
   });
@@ -38,9 +38,9 @@ const Section = ({ img, title, description, current }: SectionProps) => {
     <div className="section">
       <div
         className="card-container"
-        ref={(el) =>
-          el && (cardContainerRefs.current[current] = { current: el })
-        }
+        ref={(el) => {
+          cardContainerRefs.current[current] = el;
+        }}
       >
         <img src={img} alt={title} />
         <div className="card">

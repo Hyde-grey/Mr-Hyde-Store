@@ -9,7 +9,7 @@ import { useScrollContext } from "../../contexts/ScrollContext";
 import { useMenuContext } from "../../contexts/MenuContext";
 
 import MenuButton from "./MenuButton";
-import Menu from "../menu/Menu";
+import Menu from "../Menu/Menu";
 import useScreenSize from "../../hooks/useScreenSize";
 
 import styles from "./styles.module.css";

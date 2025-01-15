@@ -19,6 +19,7 @@ export const DiamondModel = (props: MeshProps) => {
   });
 
   return (
+    // @ts-expect-error mismatch between types
     <mesh
       ref={ref}
       geometry={geometryNode.geometry}

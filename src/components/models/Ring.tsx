@@ -21,6 +21,7 @@ export const RingModel = (props: MeshProps) => {
   const initialRotation = { x: 0, y: Math.PI / 3.5, z: 0 };
 
   return (
+    // @ts-expect-error mismatch between types
     <mesh
       ref={ref}
       {...props}
