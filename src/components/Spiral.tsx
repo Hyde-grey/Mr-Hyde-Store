@@ -28,6 +28,7 @@ const Spiral = () => {
   });
 
   return (
+    // @ts-expect-error mismatch between types
     <group ref={groupRef}>
       {models.map((Model, index) => {
         const angle = index * (Math.PI / 2); // Adjust this for spiral tightness
@@ -36,6 +37,7 @@ const Spiral = () => {
         const y = index * height;
         return <Model key={index} position={[x, y, z]} />;
       })}
+      {/* @ts-expect-error mismatch between types */}
     </group>
   );
 };

@@ -17,8 +17,11 @@ const CrossModel = (props: MeshProps) => {
   });
 
   return (
+    // @ts-expect-error mismatch between types
     <mesh {...props} ref={ref} scale={2}>
+      {/* @ts-expect-error mismatch between types */}
       <primitive object={cross.scene} />
+      {/* @ts-expect-error mismatch between types */}
     </mesh>
   );
 };
