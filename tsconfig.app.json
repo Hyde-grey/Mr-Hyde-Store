@@ -18,10 +18,10 @@
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
-    "baseUrl": "./src",
+    "baseUrl": ".",
     "paths": {
-      "@react-three/*": ["./node_modules/@react-three/*"],
-      "*": ["*", "components/*"]
+      "@/*": ["src/*"],
+      "@components/*": ["src/components/*"]
     },
     "types": [
       "vite/client",
