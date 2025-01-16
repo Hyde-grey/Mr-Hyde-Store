@@ -1,7 +1,7 @@
 import { Scroll } from "@react-three/drei";
 import classNames from "classnames";
 
-import MainCanvas from "../../components/mainCanvas/MainCanvas.tsx";
+import MainCanvas from "../../components/MainCanvas/MainCanvas.tsx";
 import LogIn from "../../components/authentication/login/Login";
 import SignUp from "../../components/authentication/signup/Signup";
 
