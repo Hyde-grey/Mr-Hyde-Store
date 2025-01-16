@@ -8,7 +8,4 @@
 [[redirects]]
   from = "/*"
   to = "/index.html"
-  status = 200
-
-[[plugins]]
-# Empty plugins array with correct syntax 
+  status = 200 
