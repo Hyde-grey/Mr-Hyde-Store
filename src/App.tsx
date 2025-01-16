@@ -3,7 +3,7 @@ import RoutesConfig from "./routes";
 import { ScrollProvider } from "../src/contexts/ScrollContext";
 import { MenuProvider } from "../src/contexts/MenuContext";
 import classNames from "classnames";
-import styles from "./components/mainCanvas/mainCanvas.module.css";
+import styles from "./components/MainCanvas/MainCanvas.module.css";
 
 const App = () => (
   <MenuProvider>
