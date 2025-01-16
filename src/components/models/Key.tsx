@@ -14,9 +14,7 @@ type GLTFResult = GLTF & {
 };
 
 export const KeyModel = (props: JSX.IntrinsicElements["group"]) => {
-  const { nodes, materials } = useGLTF(
-    "public/KeyModel/KeyAsset.gltf"
-  ) as GLTFResult;
+  const { nodes, materials } = useGLTF("/KeyModel/KeyAsset.gltf") as GLTFResult;
 
   const ref = useRef<THREE.Mesh>(null);
   const scroll = useScroll();
