@@ -1,4 +1,4 @@
-import MainCanvas from "../../components/mainCanvas/MainCanvas";
+import MainCanvas from "../../components/mainCanvas/MainCanvas.tsx";
 import Spiral from "../../components/Spiral";
 import HomeLayout from "./homeLayout";
 

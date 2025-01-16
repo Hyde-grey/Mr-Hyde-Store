@@ -33,5 +33,5 @@
       "three"
     ]
   },
-  "include": ["src/**/*", "src/types/**/*.d.ts"]
+  "include": ["src/**/*", "src/**/*.ts", "src/**/*.tsx"]
 }
