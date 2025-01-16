@@ -10,5 +10,5 @@
   to = "/index.html"
   status = 200
 
-[plugins]
-# Explicitly empty to override any UI settings 
+[[plugins]]
+# Empty plugins array with correct syntax 
