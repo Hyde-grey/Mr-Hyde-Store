@@ -64,7 +64,9 @@ const Menu = () => {
             {user ? (
               <li>
                 <MdAccountCircle className={classNames(styles.icons)} />
-                My Account
+                <Link to="/account" className={styles.navLink}>
+                  My Account
+                </Link>
               </li>
             ) : (
               <Link to="/authentication" className={styles.navLink}>
