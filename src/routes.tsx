@@ -1,5 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import AuthPage from "./pages/authPage/AuthPage";
+import AccountPage from "./pages/account/account";
 import Home from "./pages/home/home";
 import NavigationBar from "./components/navigationBar/NavigationBar";
 
@@ -8,7 +9,7 @@ const RoutesConfig = () => (
     <Route path="/" element={<NavigationBar />}>
       <Route index element={<Home />} />
       <Route path="/authentication" element={<AuthPage />} />
-      <Route path="/account" element={<div>Account Page</div>} />
+      <Route path="/account" element={<AccountPage />} />
       <Route path="/favorites" element={<div>Favorites Page</div>} />
       <Route path="/cart" element={<div>Cart Page</div>} />
       <Route
