@@ -2,7 +2,7 @@ import { ChangeEvent, FormEvent, useEffect, useState } from "react";
 import ButtonLayout from "../button/Button";
 import FormLayout from "../forms/FormLayout";
 import InputLayout from "../forms/inputs/Inputs";
-import styles from "./myDetails.module.css";
+import styles from "./MyDetails.module.css";
 import { useUpdateProfile } from "../../hooks/useUpdateProfile";
 import { User } from "firebase/auth";
 
