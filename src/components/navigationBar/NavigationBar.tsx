@@ -37,7 +37,9 @@ const NavigationBar = () => {
         })}
       >
         <ul className={classNames(styles.navBarItems, styles.navCollection)}>
-          <li>+ Collection</li>
+          <Link to="/shop" className={styles.navLink}>
+            <li>+ Collection</li>
+          </Link>
         </ul>
         <span
           className={classNames(styles.logo, styles.navBarItems, {
@@ -85,10 +87,12 @@ const NavigationBar = () => {
             </li>
           </Link>
 
-          <li onClick={() => toggleMenuHandler()}>
-            <p>Menu</p> <MenuButton />
-            <div className={classNames(styles.linkBorder)}></div>
-          </li>
+          {isMobile ? (
+            <li onClick={() => toggleMenuHandler()}>
+              <p>Menu</p> <MenuButton />
+              <div className={classNames(styles.linkBorder)}></div>
+            </li>
+          ) : null}
         </ul>
       </div>
       <Menu />
