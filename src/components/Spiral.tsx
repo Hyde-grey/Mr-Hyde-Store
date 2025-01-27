@@ -1,29 +1,39 @@
 import * as THREE from "three";
 import { useScroll } from "@react-three/drei";
 import { useRef } from "react";
-import { RingModel } from "./models/Ring";
-import { DiamondModel } from "./models/Diamond";
-import CrossModel from "./models/Cross";
+import { ChromeHeartRingModel } from "./models/ChromeHeartRing";
 import { useFrame } from "@react-three/fiber";
+import { ChromeCrossModel } from "./models/ChromeCross";
+import Diamond from "./models/Diamond/BlackDiamond"; // Ensure correct import path
 
 export type GltfNode = THREE.Object3D<THREE.Object3DEventMap> & {
   geometry: THREE.BufferGeometry<THREE.NormalBufferAttributes>;
 };
 
-const Spiral = () => {
+type SpiralProps = {
+  initialPosition?: THREE.Vector3;
+};
+
+const Spiral: React.FC<SpiralProps> = ({
+  initialPosition = new THREE.Vector3(0, 0, 0),
+}) => {
   const groupRef = useRef<THREE.Group>(null);
   const scroll = useScroll();
 
-  const models = [RingModel, DiamondModel, CrossModel, RingModel]; // List of models to place
-  const radius = 6.5; // Radius of the spiral
-  const height = 6.5; // Height increment per model
-  const initialYOffset = 0.9; // Initial vertical offset
+  const models = [ChromeHeartRingModel, Diamond, ChromeCrossModel]; // List of models to place
+  const radius = 7; // Radius of the spiral
+  const height = 7; // Height increment per model
+  const initialYOffset = initialPosition.y; // Initial vertical offset
 
   useFrame(() => {
     if (groupRef.current) {
       const scrollOffset = scroll.offset;
-      groupRef.current.rotation.y = -scrollOffset * Math.PI * 2; // Rotate the group based on scroll, in the opposite direction
-      groupRef.current.position.y = initialYOffset - scrollOffset * 13; // Move the group down based on scroll
+      groupRef.current.rotation.y = scrollOffset * Math.PI * 2; // Rotate the group based on scroll
+      groupRef.current.position.set(
+        initialPosition.x,
+        initialYOffset - scrollOffset * 15,
+        initialPosition.z
+      ); // Move the group down based on scroll
     }
   });
 
@@ -35,7 +45,8 @@ const Spiral = () => {
         const x = radius * Math.cos(angle);
         const z = radius * Math.sin(angle);
         const y = index * height;
-        return <Model key={index} position={[x, y, z]} />;
+        const position = new THREE.Vector3(x, y, z); // Convert to Vector3
+        return <Model key={index} position={position} />;
       })}
       {/* @ts-expect-error mismatch between types */}
     </group>
