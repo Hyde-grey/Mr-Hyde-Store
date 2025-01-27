@@ -1,16 +1,31 @@
-import { useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import "./Section.css";
+import classNames from "classnames";
 
 type SectionProps = {
   img: string;
   title: string;
   description: string;
   current: number;
+  children?: React.ReactNode;
 };
 
-const Section = ({ img, title, description, current }: SectionProps) => {
+const Section = ({
+  img,
+  title,
+  description,
+  current,
+  children,
+}: SectionProps) => {
   const cardContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
+  const [isShop, setIsShop] = useState(false);
+
+  useEffect(() => {
+    if (location.pathname === "/shop") {
+      setIsShop(true);
+    }
+  }, [location.pathname]);
 
   useFrame(() => {
     const viewportHeight = window.innerHeight;
@@ -35,7 +50,7 @@ const Section = ({ img, title, description, current }: SectionProps) => {
   });
 
   return (
-    <div className="section">
+    <div className={classNames("section", { sectionShop: isShop })}>
       <div
         className="card-container"
         ref={(el) => {
@@ -48,6 +63,7 @@ const Section = ({ img, title, description, current }: SectionProps) => {
           <p>{description}</p>
         </div>
       </div>
+      {children}
     </div>
   );
 };
