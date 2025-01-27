@@ -8,12 +8,14 @@ type ButtonLayoutProps = {
   buttonType: "button" | "submit" | "reset";
   children: string;
   disabled?: boolean;
+  isIcon?: boolean;
 };
 
 const ButtonLayout = ({
   buttonType,
   children,
   disabled = false,
+  isIcon = false,
 }: ButtonLayoutProps) => {
   return (
     <button
@@ -22,7 +24,7 @@ const ButtonLayout = ({
       disabled={disabled}
     >
       {children}
-      <BsFillArrowRightSquareFill />
+      {isIcon && <BsFillArrowRightSquareFill />}
     </button>
   );
 };
