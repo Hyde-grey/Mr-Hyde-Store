@@ -1,0 +1,33 @@
+.collectionSection {
+  width: 100%;
+  max-width: 1500px;
+}
+
+.collectionTitle {
+  display: flex;
+  align-items: center;
+}
+
+.collectionTitle h2 {
+  font-family: "Zaslia", sans-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+  width: fit-content;
+}
+
+.collectionDivider {
+  height: 0.09em;
+  width: 100%;
+  background: linear-gradient(to left, rgba(240, 240, 240, 0), #fff);
+  margin-top: 1rem;
+}
+
+.productsContainer {
+  width: 100%;
+  margin: 100px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1rem;
+  justify-content: space-evenly;
+}
