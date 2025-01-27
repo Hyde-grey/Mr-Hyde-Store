@@ -1,0 +1,18 @@
+.shopContainer {
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: baseline;
+  align-items: center;
+  padding: 2rem;
+}
+
+.shopHero {
+  width: 100%;
+  max-width: 1500px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
