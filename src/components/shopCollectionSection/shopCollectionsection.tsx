@@ -1,6 +1,6 @@
 import { Collection } from "../../hooks/useGetCollections";
 import ProductCard from "../productCard/productCard";
-import styles from "./shopCollectionsection.module.css";
+import styles from "./shopCollectionSection.module.css";
 
 const ShopCollectionSection = ({
   collections,
