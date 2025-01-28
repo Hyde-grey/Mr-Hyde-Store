@@ -6,7 +6,7 @@ import useScreenSize from "../../hooks/useScreenSize";
 export type MainCanvasProps = {
   children: React.ReactNode;
   numberOfPages: number;
-  cameraPosition: Vector3 | [number, number, number];
+  cameraPosition?: Vector3 | [number, number, number];
 };
 const MainCanvas = ({
   children,
