@@ -1,37 +1,46 @@
 import * as THREE from "three";
 import { useScroll } from "@react-three/drei";
 import { useRef } from "react";
-import { ChromeHeartRingModel } from "./models/ChromeHeartRing";
 import { useFrame } from "@react-three/fiber";
-import { ChromeCrossModel } from "./models/ChromeCross";
-import Diamond from "./models/Diamond/BlackDiamond"; // Ensure correct import path
 
 export type GltfNode = THREE.Object3D<THREE.Object3DEventMap> & {
   geometry: THREE.BufferGeometry<THREE.NormalBufferAttributes>;
 };
 
 type SpiralProps = {
+  models: React.FC<{ position: THREE.Vector3 }>[];
   initialPosition?: THREE.Vector3;
+  rotationDirection?: "clockwise" | "counterclockwise";
+  initialRotation?: number;
+  height?: number;
+  scrollSpeed?: number;
+  radius?: number;
 };
 
 const Spiral: React.FC<SpiralProps> = ({
+  models,
   initialPosition = new THREE.Vector3(0, 0, 0),
+  rotationDirection = "clockwise",
+  initialRotation = 0,
+  height = 7,
+  scrollSpeed = 15,
+  radius = 7,
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const scroll = useScroll();
 
-  const models = [ChromeHeartRingModel, Diamond, ChromeCrossModel]; // List of models to place
-  const radius = 7; // Radius of the spiral
-  const height = 7; // Height increment per model
   const initialYOffset = initialPosition.y; // Initial vertical offset
+  const directionMultiplier = rotationDirection === "clockwise" ? 1 : -1;
 
   useFrame(() => {
     if (groupRef.current) {
       const scrollOffset = scroll.offset;
-      groupRef.current.rotation.y = scrollOffset * Math.PI * 2; // Rotate the group based on scroll
+      // Set the initial rotation and add the scroll-based rotation
+      groupRef.current.rotation.y =
+        initialRotation + directionMultiplier * scrollOffset * Math.PI * 2;
       groupRef.current.position.set(
         initialPosition.x,
-        initialYOffset - scrollOffset * 15,
+        initialYOffset - scrollOffset * scrollSpeed,
         initialPosition.z
       ); // Move the group down based on scroll
     }
