@@ -9,7 +9,10 @@ import { useScroll } from "@react-three/drei";
 
 export default function Diamond({ position }) {
   const { nodes } = useLoader(GLTFLoader, "/DiamondModel/diamond.glb") as any;
-  useLayoutEffect(() => nodes.pCone1_lambert1_0.geometry.center(), [nodes]);
+
+  useLayoutEffect(() => {
+    nodes.pCone1_lambert1_0.geometry.center();
+  }, [nodes]);
 
   const { size, gl, scene, camera } = useThree();
   const ref = useRef<THREE.Mesh>(null!);
