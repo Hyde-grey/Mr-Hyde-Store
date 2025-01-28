@@ -16,11 +16,11 @@ export function ChromeGrillModel(props: JSX.IntrinsicElements["group"]) {
     "/ChromeGrill/ChromeGrill.gltf"
   ) as GLTFResult;
   return (
-    <group {...props} dispose={null} position={[0, 1, -0.1]}>
+    <group {...props} dispose={null} position={[4, 1, 0]}>
       <mesh
         geometry={nodes._gltfNode_0.geometry}
         material={nodes._gltfNode_0.material}
-        rotation={[4.7, 0, 0]}
+        rotation={[4.7, 0, 2.9]}
         scale={5}
       />
     </group>
