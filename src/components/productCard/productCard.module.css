@@ -118,3 +118,10 @@
   background: #4c4c4c;
   opacity: 1;
 }
+
+@media (max-width: 768px) {
+  .productCardContainer {
+    width: 40%; /* Adjust width to fit 2 cards side by side */
+    height: 250px; /* Adjust height to fit 4 cards in viewport */
+  }
+}
