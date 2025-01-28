@@ -13,8 +13,6 @@ const ProductCard = ({ product }: { product: Product }) => {
   const [selectedSize, setSelectedSize] = useState(defaultSize);
   const [isFavorite, setIsFavorite] = useState(false);
 
-  console.log(imageUrls);
-
   const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     setSelectedSize(event.target.value);
   };
