@@ -11,7 +11,6 @@ import { useGetCollections } from "../../hooks/useGetCollections.tsx";
 
 const Home = () => {
   const collections = useGetCollections();
-  console.log(collections);
 
   return (
     <>
