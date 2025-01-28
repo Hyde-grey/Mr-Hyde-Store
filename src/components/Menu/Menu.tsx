@@ -8,21 +8,22 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import { FaPhone } from "react-icons/fa";
 import styles from "./styles.module.css";
 import { useMenuContext } from "../../contexts/MenuContext";
-import { useState } from "react";
 import { useLogout } from "../../hooks/useLogOut";
 import { useAuth } from "../../hooks/useAuth";
-import { Link } from "react-router-dom";
-import { RiAccountCircleLine } from "react-icons/ri";
+import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { RiAccountCircle2Fill } from "react-icons/ri";
+import { useEffect } from "react";
 
 const Menu = () => {
-  const [isCollectionOpen, setIsCollectionOpen] = useState(false);
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
   const { logout, error, loading } = useLogout();
   const { user } = useAuth();
+  const location = useLocation(); // Use useLocation hook
 
-  const collectionDisplayHandler = () => {
-    setIsCollectionOpen(!isCollectionOpen);
-  };
+  // Close menu on path change
+  useEffect(() => {
+    setIsMenuOpen(false);
+  }, [location.pathname]);
 
   const overlayClickHandler = () => {
     setIsMenuOpen(false);
@@ -62,16 +63,17 @@ const Menu = () => {
               </li>
             </Link>
             {user ? (
-              <li>
-                <MdAccountCircle className={classNames(styles.icons)} />
-                <Link to="/account" className={styles.navLink}>
+              <Link to="/account" className={styles.navLink}>
+                <li>
+                  <MdAccountCircle className={classNames(styles.icons)} />
                   My Account
-                </Link>
-              </li>
+                </li>
+              </Link>
             ) : (
               <Link to="/authentication" className={styles.navLink}>
                 <li>
-                  <RiAccountCircleLine /> <p>Login | Sign Up</p>
+                  <RiAccountCircle2Fill className={classNames(styles.icons)} />{" "}
+                  Login | Sign Up
                   <div className={classNames(styles.linkBorder)}></div>
                 </li>
               </Link>
@@ -84,25 +86,12 @@ const Menu = () => {
               <FaShoppingCart className={classNames(styles.icons)} />
               Cart
             </li>
-            <li onClick={collectionDisplayHandler}>
-              <AiOutlinePlusCircle className={classNames(styles.icons)} />
-              Collections
-            </li>
-            <li
-              className={classNames(styles.collectionMenu, {
-                [styles.collectionDisplay]: isCollectionOpen,
-              })}
-            >
-              <ul
-                className={classNames(styles.collectionMenu, {
-                  [styles.collectionDisplay]: isCollectionOpen,
-                })}
-              >
-                <li>ChromeHeart Collection</li>
-                <li>Darker Than Black Collection</li>
-                <li>Faithless Collection</li>
-              </ul>
-            </li>
+            <Link to="/shop" className={styles.navLink}>
+              <li>
+                <AiOutlinePlusCircle className={classNames(styles.icons)} />
+                Collections
+              </li>
+            </Link>
           </ul>
           <ul>
             <li>
