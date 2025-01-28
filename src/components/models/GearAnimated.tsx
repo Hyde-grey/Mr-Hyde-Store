@@ -35,14 +35,19 @@ export function GearAnimatedModel(props: JSX.IntrinsicElements["group"]) {
   }, [actions]);
 
   const silverMaterial = new THREE.MeshStandardMaterial({
-    color: 0xc0c0c0,
-    metalness: 0.8,
-    roughness: 0,
+    metalness: 1,
+    roughness: 0.2,
   });
 
   return (
     // @ts-expect-error mismatch library types
-    <group ref={group} {...props} dispose={null}>
+    <group
+      ref={group}
+      {...props}
+      dispose={null}
+      scale={0.2}
+      position={[1, -0.5, 1]}
+    >
       {/* @ts-expect-error mismatch library types */}
       <group name="Sketchfab_Scene">
         {/* @ts-expect-error mismatch library types */}
