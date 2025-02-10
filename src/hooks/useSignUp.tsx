@@ -21,6 +21,7 @@ type UserDocument = {
   displayName: string | null;
   email: string | null;
   createdAt: Date;
+  favorites: number[];
   [key: string]: any;
 };
 
@@ -41,6 +42,7 @@ const createUserDocumentFromAuth = async (
       displayName,
       email,
       createdAt,
+      favorites: [],
       ...additionalInformation,
     };
 
