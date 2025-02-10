@@ -1,5 +1,14 @@
-import { createContext, ReactNode, useEffect, useState } from "react";
+import {
+  createContext,
+  ReactNode,
+  useEffect,
+  useState,
+  useContext,
+} from "react";
 import { Product } from "../hooks/useGetCollections";
+import { UserContext } from "./UserContext";
+import { doc, getDoc, setDoc } from "firebase/firestore";
+import { db } from "../firebase/firebaseConfig";
 
 type CartContextType = {
   cart: CartItem[];
@@ -29,10 +38,70 @@ export const CartContext = createContext<CartContextType>(defaultCartContext);
 
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cart, setCart] = useState<CartItem[]>([]);
+  const { userID } = useContext(UserContext);
+  const [isInitialLoadComplete, setIsInitialLoadComplete] = useState(false);
 
+  // Load initial cart
   useEffect(() => {
-    console.log(cart);
-  }, [cart]);
+    const loadCart = async () => {
+      setIsInitialLoadComplete(false);
+      if (userID) {
+        try {
+          const userDocRef = doc(db, "users", userID);
+          const userDoc = await getDoc(userDocRef);
+
+          if (userDoc.exists()) {
+            const userData = userDoc.data();
+            if (userData.cart) {
+              setCart(userData.cart);
+            }
+          } else {
+            const saved = localStorage.getItem("cart");
+            if (saved) {
+              const parsed = JSON.parse(saved);
+              if (Array.isArray(parsed)) {
+                setCart(parsed);
+                await setDoc(userDocRef, { cart: parsed }, { merge: true });
+              }
+            }
+          }
+        } catch (error) {
+          console.error("Error loading cart:", error);
+        }
+      } else {
+        const saved = localStorage.getItem("cart");
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            setCart(parsed);
+          }
+        }
+      }
+      setIsInitialLoadComplete(true);
+    };
+
+    loadCart();
+  }, [userID]);
+
+  // Save cart whenever it changes
+  useEffect(() => {
+    if (!isInitialLoadComplete) return;
+
+    const saveCart = async () => {
+      localStorage.setItem("cart", JSON.stringify(cart));
+
+      if (userID) {
+        try {
+          const userDocRef = doc(db, "users", userID);
+          await setDoc(userDocRef, { cart }, { merge: true });
+        } catch (error) {
+          console.error("Error saving cart to Firestore:", error);
+        }
+      }
+    };
+
+    saveCart();
+  }, [cart, userID, isInitialLoadComplete]);
 
   const getCart = () => {
     return cart;
