@@ -121,7 +121,43 @@
 
 @media (max-width: 768px) {
   .productCardContainer {
-    width: 40%; /* Adjust width to fit 2 cards side by side */
-    height: 250px; /* Adjust height to fit 4 cards in viewport */
+    width: 45%;
+    height: 300px;
+    padding: 0.5rem;
+    border: none;
+  }
+
+  .productCardInfo {
+    margin-top: 0;
+  }
+
+  .productCardInfo h3 {
+    font-size: 0.7rem;
+  }
+
+  .productCardInfo p {
+    font-size: 0.6rem;
+  }
+
+  .productCardPriceContainer {
+    font-size: 1rem;
+  }
+
+  .productCardInfo h4 {
+    font-size: 1rem;
+  }
+
+  .productCardInfo select {
+    width: 30px;
+    height: 20px;
+    font-size: 0.6rem;
+  }
+
+  .productCardInfo input {
+    width: 30px;
+    height: 20px;
+  }
+  .favoriteButton {
+    font-size: 1rem;
   }
 }
