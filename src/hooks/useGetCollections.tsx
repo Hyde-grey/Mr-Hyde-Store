@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 // Define the type for the products
 export type Product = {
-  id: string;
+  id: number;
   name: string;
   description: string;
   price: number;
