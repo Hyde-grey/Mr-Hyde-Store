@@ -26,9 +26,10 @@ const CartHtmlLayout = memo(
   }: CartHtmlLayoutProps) => {
     return (
       <Scroll html>
-        <div className={styles.cartContainer}>
+        <div className={styles.cartHero}>
           <h1>Shopping Cart</h1>
-
+        </div>
+        <div className={styles.cartContainer}>
           {cartItems.length === 0 ? (
             <div className={styles.emptyState}>
               <h2>Your cart is empty</h2>
