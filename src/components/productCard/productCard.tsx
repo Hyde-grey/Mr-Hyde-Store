@@ -32,11 +32,6 @@ const ProductCard = memo(
     };
 
     const handleAddToCart = () => {
-      if (!selectedSize) {
-        console.error("No size selected");
-        return;
-      }
-      console.log("Add to cart clicked:", { id, selectedSize });
       addToCart(product, selectedSize);
     };
 

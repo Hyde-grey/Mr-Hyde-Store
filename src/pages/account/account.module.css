@@ -38,6 +38,7 @@
   margin-bottom: 2rem;
   backdrop-filter: blur(10px);
   height: 100%;
+  background: rgba(70, 70, 70, 0.558);
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.39);
   border: 1px solid rgba(255, 255, 255, 0.219);
 }
@@ -66,26 +67,26 @@
 .column li {
   margin-bottom: 1rem;
   font-size: 1.5rem;
-  color: #ffffffb1;
+  color: #abababb1;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 0.5rem;
   font-size: 1rem;
-  background: rgba(16, 16, 16, 0.358);
+  background: rgba(0, 0, 0, 0.358);
   border-radius: 2rem;
   padding: 0rem 1rem;
   transition: all 0.3s ease;
 }
 
 .column li:hover {
-  background: rgba(16, 16, 16, 0.558);
+  background: rgba(0, 0, 0, 0.558);
   cursor: pointer;
   color: #fff;
 }
 
 .column li.activeTab {
-  background: rgba(16, 16, 16, 0.558);
+  background: rgba(0, 0, 0, 0.558);
   color: #fff;
   border: 1px solid rgba(255, 255, 255, 0.219);
 }

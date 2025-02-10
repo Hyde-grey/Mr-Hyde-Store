@@ -40,10 +40,11 @@ const AccountPage = () => {
         return <div>My Orders</div>;
       case "myAddresses":
         return <div>My Addresses</div>;
-      case "myWishlist":
-        return <div>My Wishlist</div>;
+      case "myFavorites":
+        return <div>My Favorites</div>;
       case "mySettings":
         return <div>My Settings</div>;
+
       default:
         return null;
     }
@@ -94,12 +95,12 @@ const AccountPage = () => {
                 <li
                   className={classNames(
                     styles.tab,
-                    currentTab === "myWishlist" && styles.activeTab
+                    currentTab === "myFavorites" && styles.activeTab
                   )}
-                  onClick={() => handleTabChange("myWishlist")}
+                  onClick={() => handleTabChange("myFavorites")}
                 >
                   <FaHeart />
-                  <p>Wishlist</p>
+                  <p>Favorites</p>
                 </li>
                 <li
                   className={classNames(

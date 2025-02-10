@@ -87,10 +87,12 @@ const Menu = () => {
                 </li>
               </Link>
             ) : null}
-            <li>
-              <FaShoppingCart className={classNames(styles.icons)} />
-              Cart
-            </li>
+            <Link to="/cart" className={styles.navLink}>
+              <li>
+                <FaShoppingCart className={classNames(styles.icons)} />
+                Cart
+              </li>
+            </Link>
             <Link to="/shop" className={styles.navLink}>
               <li>
                 <AiOutlinePlusCircle className={classNames(styles.icons)} />
