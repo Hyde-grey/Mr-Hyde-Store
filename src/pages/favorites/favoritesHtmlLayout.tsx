@@ -1,4 +1,4 @@
-import { memo, useState } from "react";
+import { memo, useContext, useState } from "react";
 import { Scroll, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
@@ -7,6 +7,7 @@ import { Collection } from "../../hooks/useGetCollections";
 import useScreenSize from "../../hooks/useScreenSize";
 
 import styles from "./favorites.module.css";
+import { CartContext } from "../../contexts/CartContext";
 
 const FavoritesHtmlLayout = memo(
   ({
@@ -21,6 +22,7 @@ const FavoritesHtmlLayout = memo(
     const scroll = useScroll();
     const { isMobile } = useScreenSize();
     const [fontSize, setFontSize] = useState(3);
+    const { addToCart } = useContext(CartContext);
 
     useFrame(() => {
       if (isMobile) {
@@ -43,6 +45,7 @@ const FavoritesHtmlLayout = memo(
               collections={collections}
               favorites={favorites}
               setFavorites={setFavorites}
+              addToCart={addToCart}
             />
           ) : (
             <div className={styles.emptyState}>
