@@ -1,12 +1,14 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import classNames from "classnames";
+import { useContext } from "react";
 
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FiHeart } from "react-icons/fi";
-import { PiShoppingCartLight } from "react-icons/pi";
+import { BsCart3 } from "react-icons/bs";
 
 import { useScrollContext } from "../../contexts/ScrollContext";
 import { useMenuContext } from "../../contexts/MenuContext";
+import { CartContext } from "../../contexts/CartContext";
 
 import MenuButton from "./MenuButton";
 import Menu from "../Menu/Menu";
@@ -15,13 +17,13 @@ import useScreenSize from "../../hooks/useScreenSize";
 import styles from "./styles.module.css";
 
 import { UserContext } from "../../contexts/UserContext";
-import { useContext } from "react";
 
 const NavigationBar = () => {
   const { isPassedThreshold } = useScrollContext();
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
   const { isMobile } = useScreenSize();
   const { currentUser } = useContext(UserContext);
+  const { getCartItemCount } = useContext(CartContext);
 
   const isHomePage =
     useLocation().pathname === "/" || useLocation().pathname === "/home";
@@ -29,6 +31,8 @@ const NavigationBar = () => {
   const toggleMenuHandler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  const cartItemCount = getCartItemCount();
 
   return (
     <>
@@ -84,10 +88,21 @@ const NavigationBar = () => {
               </li>
             </Link>
           ) : null}
-          <Link to="/cart" className={classNames(styles.navLink)}>
+          <Link to="/cart" className={styles.navLink}>
             <li>
-              <PiShoppingCartLight /> <p>Cart</p>
-              <div className={classNames(styles.linkBorder)}></div>
+              <div className={styles.cartIconContainer}>
+                <BsCart3 />
+                {cartItemCount === 0 ? (
+                  <p>Cart</p>
+                ) : (
+                  <p
+                    className={styles.cartBadge}
+                    data-digits={cartItemCount.toString().length}
+                  >
+                    {cartItemCount > 99 ? "99+" : cartItemCount}
+                  </p>
+                )}
+              </div>
             </li>
           </Link>
 

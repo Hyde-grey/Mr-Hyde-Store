@@ -83,6 +83,36 @@
   width: 100%;
 }
 
+.cartIconContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+.cartBadge {
+  color: white;
+  border-radius: 50%;
+  padding: 5px;
+  min-width: 20px;
+  min-height: 20px;
+  height: 20px;
+  width: 20px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.cartBadge[data-digits="2"] {
+  width: 24px;
+  min-width: 24px;
+  height: 24px;
+  min-height: 24px;
+}
+
 @media only screen and (max-width: 767px) {
   .navBarContainer {
     color: white;

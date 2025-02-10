@@ -17,6 +17,7 @@ type CartContextType = {
   updateQuantity: (productId: number, quantity: number) => void;
   getCart: () => CartItem[];
   getCartTotal: () => number;
+  getCartItemCount: () => number;
 };
 
 export type CartItem = {
@@ -32,6 +33,7 @@ const defaultCartContext: CartContextType = {
   updateQuantity: () => {},
   getCart: () => [],
   getCartTotal: () => 0,
+  getCartItemCount: () => 0,
 };
 
 export const CartContext = createContext<CartContextType>(defaultCartContext);
@@ -114,6 +116,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     );
   };
 
+  const getCartItemCount = () => {
+    return cart.reduce((total, item) => total + item.quantity, 0);
+  };
+
   const addToCart = (product: Product, size: string) => {
     const existingItem = cart.find((item) => item.product.id === product.id);
 
@@ -152,6 +158,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         updateQuantity,
         getCart,
         getCartTotal,
+        getCartItemCount,
       }}
     >
       {children}
