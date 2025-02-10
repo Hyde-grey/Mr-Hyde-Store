@@ -1,18 +1,13 @@
 .shopContainer {
   width: 100vw;
-  display: flex;
-  flex-direction: column;
-  justify-content: baseline;
-  align-items: center;
-  padding: 2rem;
+  position: relative;
 }
 
 .shopHero {
-  width: 100%;
-  max-width: 1500px;
-  height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
   align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
 }
