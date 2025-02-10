@@ -13,13 +13,15 @@ import Menu from "../Menu/Menu";
 import useScreenSize from "../../hooks/useScreenSize";
 
 import styles from "./styles.module.css";
-import { useAuth } from "../../hooks/useAuth";
+
+import { UserContext } from "../../contexts/UserContext";
+import { useContext } from "react";
 
 const NavigationBar = () => {
   const { isPassedThreshold } = useScrollContext();
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
   const { isMobile } = useScreenSize();
-  const { user } = useAuth();
+  const { currentUser } = useContext(UserContext);
 
   const isHomePage =
     useLocation().pathname === "/" || useLocation().pathname === "/home";
@@ -32,7 +34,7 @@ const NavigationBar = () => {
     <>
       <div
         className={classNames(styles.navBarContainer, {
-          [styles.hidden]: !isPassedThreshold && isHomePage && !user,
+          [styles.hidden]: !isPassedThreshold && isHomePage && !currentUser,
           [styles.menuOpened]: isMenuOpen,
         })}
       >
@@ -59,7 +61,7 @@ const NavigationBar = () => {
         </span>
 
         <ul className={classNames(styles.navBar, styles.navBarItems)}>
-          {user ? (
+          {currentUser ? (
             <Link to="/account" className={styles.navLink}>
               <li>
                 <RiAccountCircleLine /> <p>My account</p>
@@ -74,12 +76,14 @@ const NavigationBar = () => {
               </li>
             </Link>
           )}
-          <Link to="/favorites" className={classNames(styles.navLink)}>
-            <li>
-              <FiHeart /> <p>Favorite</p>
-              <div className={classNames(styles.linkBorder)}></div>
-            </li>
-          </Link>
+          {currentUser ? (
+            <Link to="/favorites" className={classNames(styles.navLink)}>
+              <li>
+                <FiHeart /> <p>Favorite</p>
+                <div className={classNames(styles.linkBorder)}></div>
+              </li>
+            </Link>
+          ) : null}
           <Link to="/cart" className={classNames(styles.navLink)}>
             <li>
               <PiShoppingCartLight /> <p>Cart</p>
