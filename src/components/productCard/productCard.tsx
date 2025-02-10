@@ -1,4 +1,4 @@
-import { useState, memo, useContext } from "react";
+import { useState, memo } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/swiper-bundle.css";
@@ -6,18 +6,18 @@ import styles from "./productCard.module.css";
 import { Product } from "../../hooks/useGetCollections";
 import Button from "../button/Button";
 import { FaHeart, FaRegHeart } from "react-icons/fa";
-// import { CartContext } from "../../contexts/CartContext";
 
 type ProductCardProps = {
   product: Product;
   favorites: number[];
   setFavorites: (favorites: number[]) => void;
+  addToCart: (product: Product, size: string) => void;
 };
 
 const ProductCard = memo(
-  ({ product, favorites, setFavorites }: ProductCardProps) => {
+  ({ product, favorites, setFavorites, addToCart }: ProductCardProps) => {
     const { imageUrls, name, description, price, sizes, id } = product;
-    // const { addToCart } = useContext(CartContext);
+
     const [selectedSize, setSelectedSize] = useState<string>(
       sizes.length > 0 ? sizes[0].size.toString() : ""
     );
@@ -36,10 +36,8 @@ const ProductCard = memo(
         console.error("No size selected");
         return;
       }
-
-      console.log("Adding to cart:", { id, selectedSize });
-      // addToCart(id, selectedSize);
-      console.log("Added to cart");
+      console.log("Add to cart clicked:", { id, selectedSize });
+      addToCart(product, selectedSize);
     };
 
     const handleSizeChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
@@ -95,7 +93,7 @@ const ProductCard = memo(
             <h4>{price} £</h4>
           </div>
           <div className={styles.productCardButton}>
-            <Button buttonType="submit" onClick={handleAddToCart}>
+            <Button buttonType="button" onClick={handleAddToCart}>
               Add to cart
             </Button>
           </div>
