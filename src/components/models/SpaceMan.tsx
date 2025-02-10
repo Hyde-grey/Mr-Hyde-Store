@@ -4,7 +4,7 @@ Command: npx gltfjsx@6.5.3 public/SpaceManModel/spaceMan.gltf --types
 */
 //@ts-nocheck
 import * as THREE from "three";
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { useGLTF, useScroll } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
@@ -82,7 +82,7 @@ export function SpaceManModel(props: JSX.IntrinsicElements["group"]) {
   const scroll = useScroll();
   const radius = 50; // Radius of the circular path
   const { nodes, materials } = useGLTF(
-    "/SpaceManModel/spaceMan.gltf"
+    "/SpaceManModel/SpaceMan.gltf"
   ) as GLTFResult;
 
   useEffect(() => {
@@ -93,11 +93,7 @@ export function SpaceManModel(props: JSX.IntrinsicElements["group"]) {
     if (materials.suit) {
       materials.suit.color.set(new THREE.Color(0x00333333));
     }
-
-    if (materials["Material.001"]) {
-      materials["Material.001"].color.set(new THREE.Color(0x00333333));
-    }
-  }, [materials.suit_accessories, materials.suit, materials["Material.001"]]);
+  }, [materials.suit_accessories, materials.suit]);
 
   useFrame(({ camera }) => {
     if (groupRef.current) {
@@ -319,4 +315,4 @@ export function SpaceManModel(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/spaceMan.gltf");
+useGLTF.preload("/SpaceManModel/SpaceMan.gltf");
