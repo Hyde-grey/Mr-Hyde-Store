@@ -1,4 +1,4 @@
-import { Collection } from "../../hooks/useGetCollections";
+import { Collection, Product } from "../../hooks/useGetCollections";
 import ProductCard from "../productCard/productCard";
 import { memo } from "react";
 
@@ -9,10 +9,13 @@ const ShopCollectionSection = memo(
     collections,
     favorites,
     setFavorites,
+    addToCart,
   }: {
     collections: Collection[];
     favorites: number[];
+
     setFavorites: (favorites: number[]) => void;
+    addToCart: (product: Product, size: string) => void;
   }) => {
     return (
       <div className={styles.shopCollectionSection}>
@@ -29,6 +32,7 @@ const ShopCollectionSection = memo(
                   product={product}
                   favorites={favorites}
                   setFavorites={setFavorites}
+                  addToCart={addToCart}
                 />
               ))}
             </div>
