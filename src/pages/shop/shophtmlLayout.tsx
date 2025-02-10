@@ -1,22 +1,25 @@
-import { memo, useState } from "react";
 import { Scroll, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 
 import ShopCollectionSection from "../../components/shopCollectionSection/shopCollectionsection";
-import { Collection } from "../../hooks/useGetCollections";
+import { Collection, Product } from "../../hooks/useGetCollections";
 import useScreenSize from "../../hooks/useScreenSize";
 
 import styles from "./shop.module.css";
+import { useState } from "react";
+import { memo } from "react";
 
 const ShopHtmlLayout = memo(
   ({
     collections,
     favorites,
     setFavorites,
+    addToCart,
   }: {
     collections: Collection[];
     favorites: number[];
     setFavorites: (favorites: number[]) => void;
+    addToCart: (product: Product, size: string) => void;
   }) => {
     const scroll = useScroll();
     const { isMobile } = useScreenSize();
@@ -42,6 +45,7 @@ const ShopHtmlLayout = memo(
             collections={collections}
             favorites={favorites}
             setFavorites={setFavorites}
+            addToCart={addToCart}
           />
         </div>
       </Scroll>
