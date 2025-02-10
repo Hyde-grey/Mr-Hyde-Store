@@ -1,6 +1,6 @@
 import { Scroll, useScroll } from "@react-three/drei";
 
-import "./home.css";
+import styles from "./home.module.css";
 import Section from "../../components/section/Section";
 import { useFrame } from "@react-three/fiber";
 import { useState } from "react";
@@ -24,10 +24,10 @@ const HomeLayout = ({ collections }: { collections: Collection[] }) => {
 
   return (
     <Scroll style={{ width: "100%" }} html>
-      <div className="hero">
+      <div className={styles.hero}>
         <h1 style={{ fontSize: `${titleSize}rem` }}>Mr. Hyde Store</h1>
       </div>
-      <div className="container">
+      <div className={styles.container}>
         {collections.map(({ imageUrl, name, description }, index) => (
           <Section
             key={index}
