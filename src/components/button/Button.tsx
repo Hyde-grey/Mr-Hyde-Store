@@ -9,6 +9,7 @@ type ButtonLayoutProps = {
   children: string;
   disabled?: boolean;
   isIcon?: boolean;
+  onClick?: () => void;
 };
 
 const ButtonLayout = ({
@@ -16,12 +17,14 @@ const ButtonLayout = ({
   children,
   disabled = false,
   isIcon = false,
+  onClick,
 }: ButtonLayoutProps) => {
   return (
     <button
       type={buttonType}
       className={classNames(styles.buttonLayout)}
       disabled={disabled}
+      onClick={onClick}
     >
       {children}
       {isIcon && <BsFillArrowRightSquareFill />}
