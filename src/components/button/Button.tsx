@@ -19,20 +19,12 @@ const ButtonLayout = ({
   isIcon = false,
   onClick,
 }: ButtonLayoutProps) => {
-  const handleClick = (e: React.MouseEvent) => {
-    e.preventDefault();
-
-    if (onClick) {
-      onClick();
-    }
-  };
-
   return (
     <button
       type={buttonType}
       className={classNames(styles.buttonLayout)}
       disabled={disabled}
-      onClick={handleClick}
+      onClick={onClick}
     >
       {children}
       {isIcon && <BsFillArrowRightSquareFill />}
