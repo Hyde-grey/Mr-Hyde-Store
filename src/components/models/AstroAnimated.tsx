@@ -108,7 +108,9 @@ export function AstroAnimatedModel(props: JSX.IntrinsicElements["group"]) {
   const scroll = useScroll();
   const radius = 20; // Radius of the circular path
 
-  const { scene, animations } = useGLTF("/AstroAnimatedModel/Astro.gltf");
+  const { scene, animations } = useGLTF(
+    "/AstroAnimatedModel/optimized-astro.glb"
+  );
   const clone = useMemo(() => SkeletonUtils.clone(scene), [scene]);
   const { nodes, materials } = useGraph(clone) as GLTFResult;
   const { actions, names, mixer } = useAnimations(animations, group);
@@ -588,4 +590,4 @@ export function AstroAnimatedModel(props: JSX.IntrinsicElements["group"]) {
   );
 }
 
-useGLTF.preload("/Astro.gltf");
+useGLTF.preload("/AstroAnimatedModel/optimized-astro.glb");
