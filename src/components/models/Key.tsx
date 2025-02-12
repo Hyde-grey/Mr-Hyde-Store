@@ -25,7 +25,7 @@ export const KeyModel = (props: JSX.IntrinsicElements["group"]) => {
     }
   });
 
-  const initialRotation = { x: 0.5, y: 0, z: 2 };
+  const initialRotation = { x: 1, y: 3.1, z: 0 };
 
   return (
     // @ts-expect-error mismatch library types
@@ -33,10 +33,10 @@ export const KeyModel = (props: JSX.IntrinsicElements["group"]) => {
       {/* @ts-expect-error mismatch library types */}
       <mesh
         ref={ref}
-        scale={2.5}
+        scale={0.7}
         geometry={nodes.Key_2.geometry}
         material={materials["silver mat"]}
-        position={[-0.016, 0, -0.238]}
+        position={[0, -0.1, 0]}
         rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
       />
       {/* @ts-expect-error mismatch library types */}

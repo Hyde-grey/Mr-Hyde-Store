@@ -1,9 +1,10 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import FormLayout from "../../forms/FormLayout";
-import ButtonLayout from "../../button/Button";
 import InputLayout from "../../forms/inputs/Inputs";
 import styles from "../../forms/FormLayout.module.css";
 import { useLogin } from "../../../hooks/useLogin";
+import StartBorder from "../../button/StartBorder";
+import buttonStyles from "../../button/Button.module.css";
 
 type FormFields = {
   email: string;
@@ -54,25 +55,36 @@ const Login = ({ redirectOnSubmit }: LoginProps) => {
       text="Sign in with your email and password"
       formSubmitHandler={formSubmitHandler}
     >
-      <div className={styles.inputContainer}>
-        <InputLayout
-          type="text"
-          placeholder="Email"
-          onChange={handleChange}
-          value={email}
-          name="email"
-        />
+      <div className={styles.formInputContainer}>
+        <div className={styles.inputContainer}>
+          <InputLayout
+            type="text"
+            placeholder="Email"
+            onChange={handleChange}
+            value={email}
+            name="email"
+          />
 
-        <InputLayout
-          type="password"
-          placeholder="Password"
-          onChange={handleChange}
-          value={password}
-          name="password"
-        />
-        <ButtonLayout buttonType="submit" disabled={loading}>
-          {loading ? "Logging in..." : "Log in"}
-        </ButtonLayout>
+          <InputLayout
+            type="password"
+            placeholder="Password"
+            onChange={handleChange}
+            value={password}
+            name="password"
+          />
+        </div>
+        <div className={styles.buttonContainer}>
+          <StartBorder
+            className={buttonStyles.buttonLayout}
+            as="button"
+            type="submit"
+            disabled={loading}
+            color="white"
+            speed="5s"
+          >
+            {loading ? "Logging in..." : "Log in"}
+          </StartBorder>
+        </div>
         {error && <p>{error}</p>}
       </div>
     </FormLayout>

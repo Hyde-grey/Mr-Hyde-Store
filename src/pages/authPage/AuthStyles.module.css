@@ -6,13 +6,13 @@
 }
 
 .authComponentContainer {
-  min-height: 580px;
+  min-height: 650px;
   max-height: 580px;
   min-width: 360px;
   max-width: 360px;
   display: grid;
   place-items: center;
-  background: rgba(243, 243, 243, 0.089);
+  background-image: linear-gradient(to bottom, #2e2e34, #1e1e222d);
   backdrop-filter: blur(3px);
   border-radius: 10px;
   padding: 40px;
@@ -28,7 +28,7 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 100%;
+
   display: flex;
   justify-content: baseline;
   padding: 10px;

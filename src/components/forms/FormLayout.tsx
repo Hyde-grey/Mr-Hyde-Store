@@ -21,6 +21,7 @@ const FormLayout = ({
         <h2>{title}</h2>
         <p>{text}</p>
       </div>
+      <div className={classNames(styles.formDivider)}></div>
       <form
         className={classNames(styles.formField)}
         onSubmit={formSubmitHandler}

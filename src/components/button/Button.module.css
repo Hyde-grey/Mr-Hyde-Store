@@ -1,18 +1,13 @@
 .buttonLayout {
-  max-width: 350px;
-  width: 100%;
-  padding: 5px 20px;
-  border-radius: 5px;
   border-style: none;
   margin-top: 20px;
   font-size: 1.1rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   cursor: pointer;
+  background-image: linear-gradient(to bottom, #1f1f1f, #111);
+  width: 100%;
+  font-size: 16px;
 }
 
-.buttonLayout:active {
-  transform: translateY(2px);
-  box-shadow: 0 0px 10px rgb(255, 255, 255);
+.buttonLayout:hover {
+  color: white;
 }

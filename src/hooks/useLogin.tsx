@@ -23,9 +23,13 @@ export const useLogin = () => {
         email,
         password
       );
+      setError(null);
       return userCredential;
     } catch (err: any) {
-      setError(err.message);
+      const errorMessage =
+        err instanceof Error ? err.message : "An error occurred during login";
+      setError(errorMessage);
+      setTimeout(() => setError(null), 10000);
       return null;
     } finally {
       setLoading(false);

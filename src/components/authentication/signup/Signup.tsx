@@ -2,8 +2,9 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import { useSignUp } from "../../../hooks/useSignUp";
 import FormLayout from "../../forms/FormLayout";
 import InputLayout from "../../forms/inputs/Inputs";
-import ButtonLayout from "../../button/Button";
 import styles from "../../forms/FormLayout.module.css";
+import StartBorder from "../../button/StartBorder";
+import buttonStyles from "../../button/Button.module.css";
 
 type FormFields = {
   displayName: string;
@@ -41,9 +42,11 @@ const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
     }
 
     try {
-      await signUp(email, password, displayName);
-      resetFormFields();
-      redirectOnSubmit("/");
+      const success = await signUp(email, password, displayName);
+      if (success) {
+        resetFormFields();
+        redirectOnSubmit("/");
+      }
     } catch (error) {
       console.log("User sign-up failed", error);
     }
@@ -89,10 +92,18 @@ const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
           value={confirmPassword}
           name="confirmPassword"
         />
-        {error && <p>{error}</p>}
-        <ButtonLayout buttonType="submit">
+
+        <StartBorder
+          className={buttonStyles.buttonLayout}
+          as="button"
+          type="submit"
+          disabled={loading}
+          color="white"
+          speed="5s"
+        >
           {loading ? "Signing Up..." : "Sign Up"}
-        </ButtonLayout>
+        </StartBorder>
+        {error && <p>{error}</p>}
       </div>
     </FormLayout>
   );

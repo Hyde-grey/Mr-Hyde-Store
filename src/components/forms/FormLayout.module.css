@@ -5,7 +5,32 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: baseline;
-  margin-top: 150px;
+  margin-top: 125px;
+}
+
+.formDivider {
+  width: 90%;
+  margin: 30px auto;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent
+  );
+}
+
+.formInputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.formTitleContainer {
+  color: rgb(182, 182, 182);
 }
 
 .formField {
@@ -15,5 +40,12 @@
 .inputContainer {
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin-top: 10px;
+}
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
 }

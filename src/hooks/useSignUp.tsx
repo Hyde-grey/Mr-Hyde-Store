@@ -12,7 +12,7 @@ type UseSignUpResult = {
     email: string,
     password: string,
     displayName: string
-  ) => Promise<void>;
+  ) => Promise<boolean>;
   error: string | null;
   loading: boolean;
 };
@@ -65,7 +65,7 @@ export const useSignUp = (): UseSignUpResult => {
     email: string,
     password: string,
     displayName: string
-  ) => {
+  ): Promise<boolean> => {
     setLoading(true);
     setError(null);
 
@@ -77,8 +77,16 @@ export const useSignUp = (): UseSignUpResult => {
       );
       await updateProfile(userCredential.user, { displayName });
       await createUserDocumentFromAuth(userCredential.user);
-    } catch (err) {
-      setError((err as Error).message);
+      setError(null);
+      return true;
+    } catch (error) {
+      const errorMessage =
+        error instanceof Error
+          ? error.message
+          : "An error occurred during sign up";
+      setError(errorMessage);
+      setTimeout(() => setError(null), 10000);
+      return false;
     } finally {
       setLoading(false);
     }
