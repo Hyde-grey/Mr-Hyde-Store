@@ -7,6 +7,7 @@ type InputLayoutProps = {
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string;
   name: string;
+  addRotation: (amount: number) => void;
 };
 
 const InputLayout = ({
@@ -15,7 +16,12 @@ const InputLayout = ({
   value,
   onChange,
   name,
+  addRotation,
 }: InputLayoutProps) => {
+  const handleKeyPress = () => {
+    addRotation(0.1);
+  };
+
   return (
     <input
       className={styles.inputStyle}
@@ -24,6 +30,7 @@ const InputLayout = ({
       onChange={onChange}
       value={value}
       name={name}
+      onKeyDown={handleKeyPress}
     />
   );
 };

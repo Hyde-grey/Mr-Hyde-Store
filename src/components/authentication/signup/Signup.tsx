@@ -15,6 +15,9 @@ type FormFields = {
 
 type SignUpProps = {
   redirectOnSubmit: (url: string) => void;
+  addRotation: (amount: number) => void;
+  triggerSpinAnimation: () => void;
+  triggerFailAnimation: () => void;
 };
 
 const defaultFormFields: FormFields = {
@@ -24,7 +27,12 @@ const defaultFormFields: FormFields = {
   confirmPassword: "",
 };
 
-const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
+const SignUp = ({
+  redirectOnSubmit,
+  addRotation,
+  triggerSpinAnimation,
+  triggerFailAnimation,
+}: SignUpProps) => {
   const { signUp, error, loading } = useSignUp();
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { displayName, email, password, confirmPassword } = formFields;
@@ -46,9 +54,15 @@ const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
       if (success) {
         resetFormFields();
         redirectOnSubmit("/");
+        setTimeout(() => {
+          triggerSpinAnimation();
+        }, 2000);
+      } else {
+        triggerFailAnimation();
       }
     } catch (error) {
       console.log("User sign-up failed", error);
+      triggerFailAnimation();
     }
   };
 
@@ -70,6 +84,7 @@ const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
           onChange={handleChange}
           value={displayName}
           name="displayName"
+          addRotation={addRotation}
         />
         <InputLayout
           type="email"
@@ -77,6 +92,7 @@ const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
           onChange={handleChange}
           value={email}
           name="email"
+          addRotation={addRotation}
         />
         <InputLayout
           type="password"
@@ -84,6 +100,7 @@ const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
           onChange={handleChange}
           value={password}
           name="password"
+          addRotation={addRotation}
         />
         <InputLayout
           type="password"
@@ -91,6 +108,7 @@ const SignUp = ({ redirectOnSubmit }: SignUpProps) => {
           onChange={handleChange}
           value={confirmPassword}
           name="confirmPassword"
+          addRotation={addRotation}
         />
 
         <StartBorder

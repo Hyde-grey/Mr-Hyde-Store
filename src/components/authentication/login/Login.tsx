@@ -13,6 +13,9 @@ type FormFields = {
 
 type LoginProps = {
   redirectOnSubmit: (url: string) => void;
+  addRotation: (amount: number) => void;
+  triggerSpinAnimation: () => void;
+  triggerFailAnimation: () => void;
 };
 
 const defaultFormFields: FormFields = {
@@ -20,7 +23,12 @@ const defaultFormFields: FormFields = {
   password: "",
 };
 
-const Login = ({ redirectOnSubmit }: LoginProps) => {
+const Login = ({
+  redirectOnSubmit,
+  addRotation,
+  triggerSpinAnimation,
+  triggerFailAnimation,
+}: LoginProps) => {
   const [formFields, setFormFields] = useState<FormFields>(defaultFormFields);
   const { email, password } = formFields;
   const { login, error, loading } = useLogin();
@@ -34,12 +42,18 @@ const Login = ({ redirectOnSubmit }: LoginProps) => {
     try {
       const userCredential = await login(email, password);
       if (userCredential) {
+        triggerSpinAnimation();
         console.log("User logged in successfully:");
         resetFormFields();
-        redirectOnSubmit("/");
+        setTimeout(() => {
+          redirectOnSubmit("/");
+        }, 2000);
+      } else {
+        triggerFailAnimation();
       }
     } catch (error) {
       console.log("user sign in failed", error);
+      triggerFailAnimation();
     }
   };
 
@@ -63,6 +77,7 @@ const Login = ({ redirectOnSubmit }: LoginProps) => {
             onChange={handleChange}
             value={email}
             name="email"
+            addRotation={addRotation}
           />
 
           <InputLayout
@@ -71,6 +86,7 @@ const Login = ({ redirectOnSubmit }: LoginProps) => {
             onChange={handleChange}
             value={password}
             name="password"
+            addRotation={addRotation}
           />
         </div>
         <div className={styles.buttonContainer}>

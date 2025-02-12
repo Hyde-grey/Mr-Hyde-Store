@@ -7,12 +7,16 @@ import SignUp from "../../components/authentication/signup/Signup";
 
 import styles from "./AuthStyles.module.css";
 import { KeyModel } from "../../components/models/Key";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { KeyRotationContext } from "../../contexts/KeyRotationContext.tsx";
 
 const AuthPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
+
+  const { addRotation, triggerSpinAnimation, triggerFailAnimation } =
+    useContext(KeyRotationContext)!;
 
   const redirectOnSubmit = (url: string) => {
     navigate(url);
@@ -61,9 +65,19 @@ const AuthPage = () => {
               </div>
             </div>
             {activeTab === "login" ? (
-              <LogIn redirectOnSubmit={redirectOnSubmit} />
+              <LogIn
+                redirectOnSubmit={redirectOnSubmit}
+                addRotation={addRotation}
+                triggerSpinAnimation={triggerSpinAnimation}
+                triggerFailAnimation={triggerFailAnimation}
+              />
             ) : (
-              <SignUp redirectOnSubmit={redirectOnSubmit} />
+              <SignUp
+                redirectOnSubmit={redirectOnSubmit}
+                addRotation={addRotation}
+                triggerSpinAnimation={triggerSpinAnimation}
+                triggerFailAnimation={triggerFailAnimation}
+              />
             )}
           </div>
         </div>
