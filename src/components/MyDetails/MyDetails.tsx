@@ -66,6 +66,7 @@ const MyDetails = ({ user }: { user: User }) => {
               value={displayName}
               onChange={handleChange}
               name="displayName"
+              addRotation={() => {}}
             />
             <InputLayout
               type="email"
@@ -73,6 +74,7 @@ const MyDetails = ({ user }: { user: User }) => {
               onChange={handleChange}
               name="email"
               value={email}
+              addRotation={() => {}}
             />
           </div>
           <ButtonLayout buttonType="submit" disabled={loading}>
