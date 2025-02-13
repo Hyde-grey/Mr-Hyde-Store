@@ -72,3 +72,12 @@
 .activelinkBorder::before {
   width: 90%;
 }
+
+@media (max-width: 360px) {
+  .authComponentContainer {
+    min-width: 300px;
+    max-width: 300px;
+    min-height: 550px;
+    max-height: 550px;
+  }
+}
