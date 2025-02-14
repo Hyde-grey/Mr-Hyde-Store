@@ -1,0 +1,37 @@
+.starBorder {
+  position: relative;
+  padding: 1rem;
+  overflow: hidden;
+}
+
+.starBorder::before,
+.starBorder::after {
+  content: "";
+  position: absolute;
+  inset: -0.2rem;
+  background: conic-gradient(
+    from var(--angle),
+    var(--border-color) 0%,
+    transparent 20%,
+    transparent 80%,
+    var(--border-color) 100%
+  );
+  animation: rotate var(--animation-speed) linear infinite;
+  z-index: -1;
+}
+
+.starBorder::after {
+  filter: blur(1.5rem);
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate {
+  to {
+    --angle: 360deg;
+  }
+}

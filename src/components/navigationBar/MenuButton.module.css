@@ -3,8 +3,8 @@
   bottom: 5%;
   right: 50%;
   transform: translateX(50%);
-  width: 85px;
-  height: 85px;
+  width: 45px;
+  height: 45px;
   border-radius: 50%;
   display: grid;
   place-items: center;
@@ -13,14 +13,12 @@
 }
 
 .bottomNavContainer {
-  width: 80px;
-  height: 80px;
+  width: 40px;
+  height: 40px;
   background-color: #0d0d0d;
   border-radius: 50%;
-
   display: grid;
   place-content: center;
-
   transition: all ease 0.5s;
 }
 
@@ -41,39 +39,47 @@
   height: 25px;
   width: 25px;
   transition: all ease 0.5s;
+  position: relative;
 }
 
 .burgerLines {
-  width: 100%;
-  height: 3px;
+  width: 70%;
+  height: 2px;
   background-color: #bbb;
+  position: absolute;
 }
 
 .topLine {
-  transform-origin: 0% 0%;
+  transform-origin: center;
   transition: transform 0.4s ease-in-out;
+  top: 30%;
 }
 
 .middleLine {
   transition: transform 0.2s ease-in-out;
+  top: 50%;
 }
 
 .bottomLine {
-  transform-origin: 0% 100%;
+  transform-origin: center;
   transition: transform 0.4s ease-in-out;
+  top: 70%;
 }
 
 .topLineClicked {
-  transform: rotate(45deg) translateY(-100%);
-  width: 30px;
+  transform: rotate(45deg);
+  top: 50%;
+  width: 70%;
 }
 
 .middleLineClicked {
-  transform: scaleY(0);
+  transform: scaleX(0);
 }
 
 .bottomLineClicked {
-  transform: rotate(-45deg) translateY(100%);
+  transform: rotate(-45deg);
+  top: 50%;
+  width: 70%;
 }
 
 @media (min-width: 1024px) {
@@ -99,19 +105,20 @@
   .burgerContainer {
     display: grid;
     place-items: center;
+    height: 18px;
+    width: 18px;
     padding: 3px;
   }
 
   .burgerLines {
-    display: grid;
-    place-items: center;
     height: 2px;
     background-color: rgb(146, 146, 146);
     border-radius: 2px;
     transition: all ease-in-out 0.5s;
+    width: 80%;
   }
 
   .topLineClicked {
-    width: 22px;
+    width: 80%;
   }
 }

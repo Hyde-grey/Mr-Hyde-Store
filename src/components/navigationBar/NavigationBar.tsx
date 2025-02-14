@@ -103,6 +103,7 @@ const NavigationBar = () => {
                   </p>
                 )}
               </div>
+              <div className={classNames(styles.linkBorder)}></div>
             </li>
           </Link>
 

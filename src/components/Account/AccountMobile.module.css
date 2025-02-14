@@ -1,0 +1,14 @@
+.accountMobile {
+  position: relative;
+  height: 100vh;
+  width: 100vw;
+}
+
+.accountMobileContent {
+  position: relative;
+  height: 80%;
+  width: 95vw;
+  border: 1px solid red;
+  margin: 0 auto;
+  margin-top: 70px;
+}
