@@ -6,11 +6,8 @@ import styles from "./AccountMobile.module.css";
 type AccountMobileProps = AccountProps;
 
 const AccountMobile = ({
-  currentUserName,
   currentTab,
   handleTabChange,
-  userProfileImage,
-  logout,
   renderCurrentTab,
 }: AccountMobileProps) => {
   return (
