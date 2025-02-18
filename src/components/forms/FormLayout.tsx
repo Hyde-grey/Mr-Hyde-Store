@@ -7,6 +7,7 @@ type FormLayoutProps = {
   text: string;
   children: React.ReactNode;
   formSubmitHandler: (event: React.FormEvent<HTMLFormElement>) => void;
+  ActionButton: React.ReactNode;
 };
 
 const FormLayout = ({
@@ -14,6 +15,7 @@ const FormLayout = ({
   text,
   children,
   formSubmitHandler,
+  ActionButton,
 }: FormLayoutProps) => {
   return (
     <div className={classNames(styles.formContainer)}>
@@ -26,7 +28,11 @@ const FormLayout = ({
         className={classNames(styles.formField)}
         onSubmit={formSubmitHandler}
       >
-        {children}
+        <div className={classNames(styles.formInputContainer)}>
+          <div className={classNames(styles.inputContainer)}>{children}</div>
+
+          <div className={styles.buttonContainer}>{ActionButton}</div>
+        </div>
       </form>
     </div>
   );

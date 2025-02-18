@@ -2,7 +2,6 @@ import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import { Canvas, Vector3 } from "@react-three/fiber";
 import { ScrollUpdater } from "../ScrollUpdater";
 import useScreenSize from "../../hooks/useScreenSize";
-import { Suspense } from "react";
 
 export type MainCanvasProps = {
   children: React.ReactNode;
@@ -26,14 +25,13 @@ const MainCanvas = ({
       {/* @ts-expect-error mismatch library types */}
       <pointLight position={[1, 4, -2]} intensity={54} />
       {!isMobile && <OrbitControls enableZoom={false} />}
-      <Suspense fallback={null}>
-        <ScrollControls pages={numberOfPages} damping={0.1}>
-          <Stars />
-          {/* TODO: Find a better way to implement scroll event listener as useFrame cannot be used outside of Canvas */}
-          <ScrollUpdater />
-          {children}
-        </ScrollControls>
-      </Suspense>
+
+      <ScrollControls pages={numberOfPages} damping={0.1}>
+        <Stars />
+        {/* TODO: Find a better way to implement scroll event listener as useFrame cannot be used outside of Canvas */}
+        <ScrollUpdater />
+        {children}
+      </ScrollControls>
     </Canvas>
   );
 };

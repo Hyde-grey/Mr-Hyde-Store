@@ -1,11 +1,9 @@
 .formContainer {
   width: 100%;
+  max-width: 25rem;
+  margin: 0 auto;
+  padding: 0.5rem;
   height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: baseline;
-  margin-top: 125px;
 }
 
 .formDivider {
@@ -22,11 +20,12 @@
 }
 
 .formInputContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
   width: 100%;
+
+  display: grid;
+  grid-template-rows: 1fr auto; /* First row takes available space, second row for button */
+  gap: 1rem;
+  min-height: 20rem; /* Ensure consistent form height */
 }
 
 .formTitleContainer {
@@ -38,14 +37,34 @@
 }
 
 .inputContainer {
+  width: 100%;
   display: flex;
   flex-direction: column;
-  width: 100%;
-  margin-top: 10px;
+  gap: 0.5rem;
 }
+
 .buttonContainer {
+  width: 100%;
   display: flex;
   justify-content: center;
-  align-items: center;
-  width: 100%;
+  grid-row: 2; /* Explicitly place in second row */
+}
+
+.formTitle {
+  margin-bottom: 1.25rem;
+}
+
+@media (max-width: 768px) {
+  .formContainer {
+    width: 100%;
+    max-width: 25rem;
+    margin: 0 auto;
+    padding: 0rem;
+    height: 100%;
+  }
+
+  .formInputContainer {
+    padding: 0px;
+    min-height: 14.5rem;
+  }
 }
