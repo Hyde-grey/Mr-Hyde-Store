@@ -14,8 +14,8 @@ const AccountMobile = ({
     <Scroll html>
       <div className={styles.accountMobile}>
         <div className={styles.accountMobileContent}>{renderCurrentTab()}</div>
-        <BottomMenu currentTab={currentTab} handleTabChange={handleTabChange} />
       </div>
+      <BottomMenu currentTab={currentTab} handleTabChange={handleTabChange} />
     </Scroll>
   );
 };
