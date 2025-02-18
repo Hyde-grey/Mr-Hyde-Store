@@ -10,10 +10,11 @@ import { KeyModel } from "../../components/models/Key";
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeyRotationContext } from "../../contexts/KeyRotationContext.tsx";
-
+import useWindowSize from "../../hooks/useScreenSize.tsx";
 const AuthPage = () => {
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
+  const { isMobile } = useWindowSize();
 
   const { addRotation, triggerSpinAnimation, triggerFailAnimation } =
     useContext(KeyRotationContext)!;
@@ -28,7 +29,7 @@ const AuthPage = () => {
 
   return (
     <MainCanvas numberOfPages={1}>
-      <KeyModel />
+      <KeyModel position={isMobile ? [0, 0, 0] : [0.6, 0, 0]} />
       <Scroll html>
         <div className={styles.authPageContainer}>
           <div className={styles.authComponentContainer}>

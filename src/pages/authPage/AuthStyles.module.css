@@ -1,15 +1,16 @@
 .authPageContainer {
   width: 100vw;
   height: 100vh;
-  display: grid;
-  place-items: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
 }
 
 .authComponentContainer {
-  min-height: 650px;
-  max-height: 580px;
-  min-width: 360px;
-  max-width: 360px;
+  width: 95%;
+  height: 90%;
+  margin: 0 auto;
   display: grid;
   place-items: center;
   background-image: linear-gradient(to bottom, #2e2e34, #1e1e222d);
@@ -20,15 +21,25 @@
   border: 1px solid rgba(255, 255, 255, 0.219);
 }
 
+@media (min-width: 768px) {
+  .authPageContainer {
+    justify-content: flex-start;
+  }
+
+  .authComponentContainer {
+    width: 25%;
+    height: 60%;
+    max-height: 60%;
+    margin: 0;
+    margin-left: 20%;
+  }
+}
+
 .authComponentContainer h2 {
   font-size: 1.3rem;
 }
 
 .authSelectorsContainer {
-  position: absolute;
-  top: 20px;
-  left: 20px;
-
   display: flex;
   justify-content: baseline;
   padding: 10px;
@@ -79,5 +90,6 @@
     max-width: 300px;
     min-height: 550px;
     max-height: 550px;
+    padding: 0px;
   }
 }

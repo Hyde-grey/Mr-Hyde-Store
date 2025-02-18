@@ -1,11 +1,11 @@
 import { useState, ChangeEvent, FormEvent } from "react";
 import FormLayout from "../../forms/FormLayout";
 import InputLayout from "../../forms/inputs/Inputs";
-import styles from "../../forms/FormLayout.module.css";
+
 import { useLogin } from "../../../hooks/useLogin";
 import StartBorder from "../../button/StartBorder";
 import buttonStyles from "../../button/Button.module.css";
-
+import styles from "../../forms/FormLayout.module.css";
 type FormFields = {
   email: string;
   password: string;
@@ -68,6 +68,18 @@ const Login = ({
       title="Already have an account ?"
       text="Sign in with your email and password"
       formSubmitHandler={formSubmitHandler}
+      ActionButton={
+        <StartBorder
+          className={buttonStyles.buttonLayout}
+          as="button"
+          type="submit"
+          disabled={loading}
+          color="white"
+          speed="5s"
+        >
+          <p>{loading ? "Logging in..." : "Log in"}</p>
+        </StartBorder>
+      }
     >
       <div className={styles.formInputContainer}>
         <div className={styles.inputContainer}>
@@ -89,19 +101,8 @@ const Login = ({
             addRotation={addRotation}
           />
         </div>
-        <div className={styles.buttonContainer}>
-          <StartBorder
-            className={buttonStyles.buttonLayout}
-            as="button"
-            type="submit"
-            disabled={loading}
-            color="white"
-            speed="5s"
-          >
-            {loading ? "Logging in..." : "Log in"}
-          </StartBorder>
-        </div>
-        {error && <p>{error}</p>}
+
+        {error && <p className={styles.message}>{error}</p>}
       </div>
     </FormLayout>
   );
