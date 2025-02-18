@@ -1,6 +1,6 @@
 import { Link, Outlet, useLocation } from "react-router-dom";
 import classNames from "classnames";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import { RiAccountCircleLine } from "react-icons/ri";
 import { FiHeart } from "react-icons/fi";
@@ -17,6 +17,7 @@ import useScreenSize from "../../hooks/useScreenSize";
 import styles from "./styles.module.css";
 
 import { UserContext } from "../../contexts/UserContext";
+import BottomMenu from "../Account/AccountBottomMenu/BottomMenu";
 
 const NavigationBar = () => {
   const { isPassedThreshold } = useScrollContext();
@@ -30,11 +31,19 @@ const NavigationBar = () => {
 
   const isAuthPage = useLocation().pathname === "/authentication";
 
+  const isAccountPage = useLocation().pathname === "/account";
+
   const toggleMenuHandler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
   const cartItemCount = getCartItemCount();
+
+  const [currentTab, setCurrentTab] = useState("account");
+
+  const handleTabChange = (tab: string) => {
+    setCurrentTab(tab);
+  };
 
   return (
     <>
@@ -121,6 +130,9 @@ const NavigationBar = () => {
         </ul>
       </div>
       <Menu />
+      {isMobile && !isAccountPage ? (
+        <BottomMenu currentTab={currentTab} handleTabChange={handleTabChange} />
+      ) : null}
       {isMobile ? <MenuButton /> : null}
       <Outlet />
     </>
