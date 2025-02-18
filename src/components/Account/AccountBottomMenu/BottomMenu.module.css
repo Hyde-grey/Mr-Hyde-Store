@@ -1,6 +1,6 @@
 .bottomMenu {
   position: absolute;
-  bottom: 123px;
+  bottom: 15.2%;
   left: 50%;
   right: 50%;
   z-index: 1000;
@@ -21,7 +21,7 @@
 
 .bottomMenuBorder {
   position: absolute;
-  bottom: 122px;
+  bottom: 15%;
   left: 50%;
   right: 50%;
   z-index: 999;
@@ -39,27 +39,29 @@
 .bottomMenuBorder::after {
   content: "";
   position: absolute;
-  width: 20%;
-  height: 25px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.5) 40%,
-    rgba(255, 255, 255, 0.5) 60%,
+    rgba(255, 255, 255, 0.878) 40%,
+    rgba(255, 255, 255, 0.878) 60%,
     rgba(255, 255, 255, 0) 100%
   );
-  clip-path: polygon(0 0, 100% 0, 80% 100%, 20% 100%);
 }
 
 .bottomMenuBorder::before {
-  top: 0;
+  top: -50%;
   left: -80%;
+  filter: blur(5px);
   animation: moveTopLine 15s ease-in-out infinite;
 }
 
 .bottomMenuBorder::after {
-  bottom: 0;
+  bottom: -50%;
   right: -80%;
+  filter: blur(5px);
   animation: moveBottomLine 15s ease-in-out infinite;
 }
 
@@ -126,9 +128,9 @@
 }
 
 .activeTab {
-  transform: scale(1.3) translateY(-12px);
+  transform: scale(1.3) translateY(-15px);
 }
 
 .secondaryTab {
-  transform: scale(1.1) translateY(-8px);
+  transform: scale(1.1) translateY(-9px);
 }

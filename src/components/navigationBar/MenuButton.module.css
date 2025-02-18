@@ -1,6 +1,6 @@
 .scrollProgress {
   position: fixed;
-  bottom: 5%;
+  bottom: 2.5%;
   right: 50%;
   transform: translateX(50%);
   width: 45px;

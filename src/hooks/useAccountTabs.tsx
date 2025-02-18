@@ -7,12 +7,12 @@ type TabContent = {
 };
 
 export const useAccountTabs = (currentUser: User | null) => {
-  const [currentTab, setCurrentTab] = useState("myDetails");
+  const [currentTab, setCurrentTab] = useState<string>("myDetails");
 
   const tabContent: TabContent = {
-    myDetails: (user) => (user ? <MyDetails user={user} /> : null),
-    myOrders: () => <div>My Orders</div>,
     myAddresses: () => <div>My Addresses</div>,
+    myOrders: () => <div>My Orders</div>,
+    myDetails: (user) => (user ? <MyDetails user={user} /> : null),
     myFavorites: () => <div>My Favorites</div>,
     mySettings: () => <div>My Settings</div>,
   };
