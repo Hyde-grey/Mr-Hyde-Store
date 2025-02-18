@@ -28,6 +28,8 @@ const NavigationBar = () => {
   const isHomePage =
     useLocation().pathname === "/" || useLocation().pathname === "/home";
 
+  const isAuthPage = useLocation().pathname === "/authentication";
+
   const toggleMenuHandler = () => {
     setIsMenuOpen(!isMenuOpen);
   };
@@ -38,7 +40,10 @@ const NavigationBar = () => {
     <>
       <div
         className={classNames(styles.navBarContainer, {
-          [styles.hidden]: !isPassedThreshold && isHomePage && !currentUser,
+          [styles.hidden]:
+            (isAuthPage && isMobile) ||
+            (!isPassedThreshold && isHomePage) ||
+            (isMobile && isMenuOpen),
           [styles.menuOpened]: isMenuOpen,
         })}
       >
