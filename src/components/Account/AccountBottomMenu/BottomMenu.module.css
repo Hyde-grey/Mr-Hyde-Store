@@ -1,6 +1,6 @@
 .bottomMenu {
   position: fixed;
-  bottom: 4.5%;
+  bottom: 5.6%;
   left: 50%;
   right: 50%;
   z-index: 1000;
@@ -21,7 +21,7 @@
 
 .bottomMenuBorder {
   position: fixed;
-  bottom: 4.4%;
+  bottom: 5.4%;
   left: 50%;
   right: 50%;
   z-index: 999;

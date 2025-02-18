@@ -63,7 +63,7 @@ export function ChromeHeartRingModel(props: JSX.IntrinsicElements["group"]) {
       dispose={null}
       ref={ref}
       scale={0.18}
-      position={[-5, 0.6, 0]}
+      position={[0, 0, -7]}
     >
       <group
         rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}

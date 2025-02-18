@@ -2,22 +2,27 @@ import { OrbitControls, ScrollControls, Stars } from "@react-three/drei";
 import { Canvas, Vector3 } from "@react-three/fiber";
 import { ScrollUpdater } from "../ScrollUpdater";
 import useScreenSize from "../../hooks/useScreenSize";
+import { Euler } from "three";
 
 export type MainCanvasProps = {
   children: React.ReactNode;
   numberOfPages: number;
   cameraPosition?: Vector3 | [number, number, number];
+  cameraRotation?: Euler;
 };
 
 const MainCanvas = ({
   children,
   numberOfPages,
   cameraPosition,
+  cameraRotation,
 }: MainCanvasProps) => {
   const { isMobile } = useScreenSize();
 
   return (
-    <Canvas camera={{ position: cameraPosition, fov: 20 }}>
+    <Canvas
+      camera={{ position: cameraPosition, fov: 20, rotation: cameraRotation }}
+    >
       {/* @ts-expect-error mismatch library types */}
       <ambientLight intensity={5.6} position={[-2, 0, 5]} />
       {/* @ts-expect-error mismatch library types */}

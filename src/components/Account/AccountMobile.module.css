@@ -1,7 +1,7 @@
 .accountMobile {
-  position: relative;
   height: 100vh;
   width: 100vw;
+  border: 1px solid transparent;
 }
 
 .accountMobileContent {

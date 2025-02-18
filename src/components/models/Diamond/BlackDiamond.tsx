@@ -81,7 +81,7 @@ export default function Diamond({ position }) {
   useFrame((state) => {
     if (ref.current) {
       ref.current.rotation.y += 0.003; // Slow spin
-      ref.current.rotation.x = scroll.offset * Math.PI * 3;
+      // ref.current.rotation.x = scroll.offset * Math.PI * 3;
     }
   });
 
@@ -90,7 +90,7 @@ export default function Diamond({ position }) {
       ref={ref}
       geometry={nodes.pCone1_lambert1_0.geometry}
       position={position} // Use the position prop
-      scale={0.4}
+      scale={0.17}
     />
   );
 }

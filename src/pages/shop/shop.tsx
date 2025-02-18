@@ -5,7 +5,8 @@ import { useContext } from "react";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import { CartContext } from "../../contexts/CartContext";
 import useScreenSize from "../../hooks/useScreenSize";
-
+import Diamond from "../../components/models/Diamond/BlackDiamond";
+import { Euler } from "three";
 const Shop = () => {
   const collections = useGetCollections();
   const { addToCart } = useContext(CartContext);
@@ -22,7 +23,12 @@ const Shop = () => {
   };
 
   return (
-    <MainCanvas numberOfPages={isMobile ? 7 : 4}>
+    <MainCanvas
+      numberOfPages={isMobile ? 7 : 4}
+      cameraPosition={[0, 0, 16]}
+      cameraRotation={new Euler(0, 0, 0)}
+    >
+      <Diamond position={[0, 0, 0]} />
       <ShopHtmlLayout
         collections={collections}
         favorites={favorites}

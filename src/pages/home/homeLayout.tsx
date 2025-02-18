@@ -9,7 +9,7 @@ import { Collection } from "../../hooks/useGetCollections";
 
 const HomeLayout = ({ collections }: { collections: Collection[] }) => {
   const scroll = useScroll();
-  const [titleSize, setTitleSize] = useState(10);
+  const [titleSize, setTitleSize] = useState(0);
   const { isMobile } = useScreenSize();
 
   useFrame(() => {

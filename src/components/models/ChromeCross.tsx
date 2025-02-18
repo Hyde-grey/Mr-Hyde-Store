@@ -47,7 +47,7 @@ export function ChromeCrossModel(props: JSX.IntrinsicElements["group"]) {
   return (
     <group {...props} dispose={null} ref={ref} scale={1}>
       <group
-        position={[0, -0.56, 0]}
+        position={[2.5, -0.56, 0]}
         rotation={[0, -Math.PI / 2, 0]}
         scale={0.01}
       >

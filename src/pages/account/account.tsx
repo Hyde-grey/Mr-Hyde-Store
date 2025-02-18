@@ -44,7 +44,7 @@ const AccountPage = () => {
   };
 
   return (
-    <MainCanvas numberOfPages={1}>
+    <MainCanvas numberOfPages={0}>
       <GearAnimatedModel />
       {isMobile ? (
         <AccountMobile {...sharedProps} />
