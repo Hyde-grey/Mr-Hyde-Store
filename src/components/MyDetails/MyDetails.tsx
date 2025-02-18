@@ -58,31 +58,43 @@ const MyDetails = ({ user }: { user: User }) => {
           title="My Details"
           text="Update your personal information"
           formSubmitHandler={formSubmitHandler}
+          ActionButton={
+            <ButtonLayout
+              buttonType="submit"
+              disabled={loading}
+              isIcon={false}
+              onClick={() => {}}
+            >
+              <p> {loading ? "Updating..." : "Update"}</p>
+            </ButtonLayout>
+          }
         >
-          <div className={styles.inputContainer}>
-            <InputLayout
-              type="text"
-              placeholder="Display Name"
-              value={displayName}
-              onChange={handleChange}
-              name="displayName"
-              addRotation={() => {}}
-            />
-            <InputLayout
-              type="email"
-              placeholder="Email"
-              onChange={handleChange}
-              name="email"
-              value={email}
-              addRotation={() => {}}
-            />
+          <div className={styles.formInputContainer}>
+            <div className={styles.inputContainer}>
+              <InputLayout
+                type="text"
+                placeholder="Display Name"
+                value={displayName}
+                onChange={handleChange}
+                name="displayName"
+                addRotation={() => {}}
+              />
+              <InputLayout
+                type="email"
+                placeholder="Email"
+                onChange={handleChange}
+                name="email"
+                value={email}
+                addRotation={() => {}}
+              />
+            </div>
+
+            {isMessageVisible && (
+              <p className={styles.message}>
+                User profile updated successfully
+              </p>
+            )}
           </div>
-          <ButtonLayout buttonType="submit" disabled={loading}>
-            {loading ? "Updating..." : "Update"}
-          </ButtonLayout>
-          {isMessageVisible && (
-            <p className={styles.message}>User profile updated successfully</p>
-          )}
         </FormLayout>
       </div>
     </div>
