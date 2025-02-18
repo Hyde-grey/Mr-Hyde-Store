@@ -130,7 +130,7 @@ const NavigationBar = () => {
         </ul>
       </div>
       <Menu />
-      {isMobile && !isAccountPage ? (
+      {isMobile && isAccountPage ? (
         <BottomMenu currentTab={currentTab} handleTabChange={handleTabChange} />
       ) : null}
       {isMobile ? <MenuButton /> : null}
