@@ -1,7 +1,10 @@
 .accountMobile {
-  height: 100%;
+  height: 100vh;
   width: 100vw;
-  border: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .accountMobileContent {
@@ -9,14 +12,15 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 10vh auto;
-  min-height: 80vh;
-  width: 90%;
-  max-width: 500px;
+
+  margin: 0 auto;
+
+  height: 70%;
+  width: 80%;
+
   background-image: linear-gradient(to bottom, #2e2e34, #1e1e222d);
   backdrop-filter: blur(3px);
   border-radius: 10px;
-  padding: 20px;
   box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.39);
   border: 1px solid rgba(255, 255, 255, 0.219);
 }
