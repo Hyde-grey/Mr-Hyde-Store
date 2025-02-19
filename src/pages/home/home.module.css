@@ -1,5 +1,5 @@
 .container {
-  max-width: 100%;
+  max-width: 80%;
   margin: 0 auto;
   padding: 0 50px;
 }
@@ -29,5 +29,6 @@ h1 {
 
   .container {
     padding: 0;
+    width: 100%;
   }
 }

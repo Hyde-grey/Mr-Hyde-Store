@@ -1,8 +1,11 @@
 import { memo } from "react";
-import { Scroll } from "@react-three/drei";
+import { Scroll, useScroll } from "@react-three/drei";
 import { Product } from "../../hooks/useGetCollections";
 import Button from "../../components/button/Button";
 import styles from "./cart.module.css";
+import useScreenSize from "../../hooks/useScreenSize";
+import { useFrame } from "@react-three/fiber";
+import { useState } from "react";
 
 type CartItem = {
   product: Product;
@@ -24,10 +27,24 @@ const CartHtmlLayout = memo(
     removeFromCart,
     total,
   }: CartHtmlLayoutProps) => {
+    const { isMobile } = useScreenSize();
+    const [fontSize, setFontSize] = useState(0);
+    const scroll = useScroll();
+
+    useFrame(() => {
+      if (isMobile) {
+        const scrollY = scroll.offset;
+        setFontSize(3 - scrollY * 8);
+      } else {
+        const scrollY = scroll.offset;
+        setFontSize(10 - scrollY * 19);
+      }
+    });
+
     return (
       <Scroll html>
         <div className={styles.cartHero}>
-          <h1>Shopping Cart</h1>
+          <h1 style={{ fontSize: `${fontSize}rem` }}>Shopping Cart</h1>
         </div>
         <div className={styles.cartContainer}>
           {cartItems.length === 0 ? (

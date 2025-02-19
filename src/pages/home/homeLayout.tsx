@@ -9,23 +9,23 @@ import { Collection } from "../../hooks/useGetCollections";
 
 const HomeLayout = ({ collections }: { collections: Collection[] }) => {
   const scroll = useScroll();
-  const [titleSize, setTitleSize] = useState(0);
   const { isMobile } = useScreenSize();
+  const [fontSize, setFontSize] = useState(0);
 
   useFrame(() => {
     if (isMobile) {
       const scrollY = scroll.offset;
-      setTitleSize(3 - scrollY * 10);
+      setFontSize(3 - scrollY * 10);
     } else {
       const scrollY = scroll.offset;
-      setTitleSize(10 - scrollY * 55);
+      setFontSize(10 - scrollY * 55);
     }
   });
 
   return (
     <Scroll style={{ width: "100%" }} html>
       <div className={styles.hero}>
-        <h1 style={{ fontSize: `${titleSize}rem` }}>Mr. Hyde Store</h1>
+        <h1 style={{ fontSize: `${fontSize}rem` }}>Mr. Hyde Store</h1>
       </div>
       <div className={styles.container}>
         {collections.map(({ imageUrl, name, description }, index) => (

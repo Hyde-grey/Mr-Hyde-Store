@@ -21,7 +21,7 @@ const FavoritesHtmlLayout = memo(
   }) => {
     const scroll = useScroll();
     const { isMobile } = useScreenSize();
-    const [fontSize, setFontSize] = useState(3);
+    const [fontSize, setFontSize] = useState(0);
     const { addToCart } = useContext(CartContext);
 
     useFrame(() => {
