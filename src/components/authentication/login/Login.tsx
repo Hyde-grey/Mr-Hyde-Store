@@ -74,10 +74,11 @@ const Login = ({
           as="button"
           type="submit"
           disabled={loading}
+          isLoading={loading}
           color="white"
           speed="5s"
         >
-          <p>{loading ? "Logging in..." : "Log in"}</p>
+          <p>Log in</p>
         </StartBorder>
       }
     >
@@ -102,7 +103,7 @@ const Login = ({
           />
         </div>
 
-        {error && <p className={styles.message}>{error}</p>}
+        {error && <p className={styles.formError}>{error}</p>}
       </div>
     </FormLayout>
   );

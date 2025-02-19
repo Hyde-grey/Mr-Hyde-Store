@@ -8,6 +8,7 @@ type StarBorderProps<T extends React.ElementType> =
     children?: React.ReactNode;
     color?: string;
     speed?: React.CSSProperties["animationDuration"];
+    isLoading?: boolean;
   };
 
 const StarBorder = <T extends React.ElementType = "button">({
@@ -16,6 +17,7 @@ const StarBorder = <T extends React.ElementType = "button">({
   color = "white",
   speed = "6s",
   children,
+  isLoading,
   ...rest
 }: StarBorderProps<T>) => {
   const Component = as || "button";
@@ -36,7 +38,9 @@ const StarBorder = <T extends React.ElementType = "button">({
           animationDuration: speed,
         }}
       ></div>
-      <div className="inner-content">{children}</div>
+      <div className="inner-content">
+        {isLoading ? <p>Loading...</p> : children}
+      </div>
     </Component>
   );
 };

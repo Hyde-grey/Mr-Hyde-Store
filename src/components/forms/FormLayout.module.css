@@ -54,6 +54,17 @@
   margin-bottom: 1.25rem;
 }
 
+.formError {
+  /* position: absolute;
+  bottom: 17%;
+  left: 50%;
+  transform: translateX(-50%); */
+  color: red;
+  font-size: 0.6rem;
+  margin: 0 auto;
+  text-align: center;
+}
+
 @media (max-width: 768px) {
   .formContainer {
     width: 100%;
@@ -68,3 +79,9 @@
     min-height: 14.5rem;
   }
 }
+
+/* @media (max-width: 480px) {
+  .formInputContainer {
+    min-height: 11.5rem;
+  }
+} */

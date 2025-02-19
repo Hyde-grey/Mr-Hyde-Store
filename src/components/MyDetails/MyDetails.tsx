@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react";
+import { ChangeEvent, FormEvent, useState, useEffect } from "react";
 import ButtonLayout from "../button/Button";
 import FormLayout from "../forms/FormLayout";
 import InputLayout from "../forms/inputs/Inputs";
@@ -47,7 +47,6 @@ const MyDetails = ({ user }: { user: User }) => {
 
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
-
     setFormFields({ ...formFields, [name]: value });
   };
 
@@ -64,8 +63,9 @@ const MyDetails = ({ user }: { user: User }) => {
               disabled={loading}
               isIcon={false}
               onClick={() => {}}
+              isLoading={loading}
             >
-              <p> {loading ? "Updating..." : "Update"}</p>
+              <p>Update</p>
             </ButtonLayout>
           }
         >

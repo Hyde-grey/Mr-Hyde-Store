@@ -11,6 +11,7 @@ type ButtonLayoutProps = {
   disabled?: boolean;
   isIcon?: boolean;
   onClick?: () => void;
+  isLoading?: boolean;
 };
 
 const ButtonLayout = ({
@@ -19,6 +20,7 @@ const ButtonLayout = ({
   disabled = false,
   isIcon = false,
   onClick,
+  isLoading = false,
 }: ButtonLayoutProps) => {
   return (
     <div className={styles.buttonContainer}>
@@ -28,7 +30,7 @@ const ButtonLayout = ({
         disabled={disabled}
         onClick={onClick}
       >
-        {children}
+        {isLoading ? <p>Loading...</p> : children}
         {isIcon && <BsFillArrowRightSquareFill />}
       </button>
     </div>
