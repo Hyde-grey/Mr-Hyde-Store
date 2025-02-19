@@ -1,6 +1,6 @@
 .collectionSection {
   height: 100%;
-  min-height: 100vh;
+  min-height: 650px;
   width: 80vw;
   margin: 59px auto;
 }
@@ -32,12 +32,14 @@
   flex-wrap: wrap;
   justify-content: flex-start;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
 }
 
 @media (max-width: 768px) {
   .productsContainer {
+    width: 100%;
     grid-template-columns: repeat(2, 50%);
+    justify-content: center;
   }
   .collectionSection {
     height: auto;
