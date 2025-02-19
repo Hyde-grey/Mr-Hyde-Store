@@ -40,8 +40,8 @@ export default function Diamond({ position }) {
 
   // Adjust the camera position and look-at direction
   useLayoutEffect(() => {
-    // camera.position.set(17, 4, 0);
-    // camera.lookAt(0, 10, 0);
+    camera.position.set(15, 10, 105);
+    camera.lookAt(0, 0, 0);
 
     gl.autoClear = false;
 
@@ -90,7 +90,7 @@ export default function Diamond({ position }) {
       ref={ref}
       geometry={nodes.pCone1_lambert1_0.geometry}
       position={position} // Use the position prop
-      scale={0.17}
+      scale={1}
     />
   );
 }
