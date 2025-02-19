@@ -82,6 +82,10 @@
   width: 70%;
 }
 
+.burgerClicked {
+  background-color: #0d0d0d;
+}
+
 @media (min-width: 1024px) {
   .scrollProgress {
     position: static;

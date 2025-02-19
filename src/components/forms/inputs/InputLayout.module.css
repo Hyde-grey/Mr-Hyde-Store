@@ -5,8 +5,14 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   background-color: rgba(255, 255, 255, 0.05);
   font-size: 0.9rem;
-  color: white;
+  color: rgba(234, 234, 234, 0.704);
   margin-bottom: 0.55rem;
+
+  border-radius: 15px;
+  background: #1e1e22;
+  box-shadow:
+    inset 4px 4px 8px #121214,
+    inset -4px -4px 8px #2a2a30;
 }
 
 .inputStyle::placeholder {
@@ -14,7 +20,9 @@
 }
 
 .inputStyle:focus {
-  outline: none;
-  border: 2px solid rgba(231, 242, 255, 0.8);
-  box-shadow: 0 0 5px rgba(231, 242, 255, 0.8);
+  border-radius: 15px;
+  background: #1e1e22;
+  box-shadow:
+    inset 9px 9px 18px #0c0c0e,
+    inset -9px -9px 18px #303036;
 }

@@ -5,19 +5,20 @@ import { MdFavorite } from "react-icons/md";
 import { FaShoppingCart } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import { AiOutlinePlusCircle } from "react-icons/ai";
-import { FaPhone } from "react-icons/fa";
+
 import styles from "./styles.module.css";
-import { useMenuContext } from "../../contexts/MenuContext";
+
 import { useLogout } from "../../hooks/useLogOut";
 
 import { Link, useLocation } from "react-router-dom"; // Import useLocation
 import { RiAccountCircle2Fill } from "react-icons/ri";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
+import { useMenuContext } from "../../contexts/MenuContext";
 
 const Menu = () => {
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
-  const { logout, error, loading } = useLogout();
+  const { logout, error } = useLogout();
   const { currentUser } = useContext(UserContext);
   const location = useLocation(); // Use useLocation hook
 
@@ -57,24 +58,34 @@ const Menu = () => {
           <div className={classNames(styles.menuLogo)}>
             <span>Mr. Hyde Store</span>
           </div>
+          <div className={styles.divider}></div>
           <ul>
             <Link to="/" className={styles.navLink}>
               <li>
-                <HiHome className={classNames(styles.icons)} /> Home
+                <div className={classNames(styles.iconsContainer)}>
+                  <HiHome className={classNames(styles.icons)} />
+                </div>
+                <span>Home</span>
               </li>
             </Link>
             {currentUser ? (
               <Link to="/account" className={styles.navLink}>
                 <li>
-                  <MdAccountCircle className={classNames(styles.icons)} />
-                  My Account
+                  <div className={classNames(styles.iconsContainer)}>
+                    <MdAccountCircle className={classNames(styles.icons)} />
+                  </div>
+                  <span>Account</span>
                 </li>
               </Link>
             ) : (
               <Link to="/authentication" className={styles.navLink}>
                 <li>
-                  <RiAccountCircle2Fill className={classNames(styles.icons)} />{" "}
-                  Login | Sign Up
+                  <div className={classNames(styles.iconsContainer)}>
+                    <RiAccountCircle2Fill
+                      className={classNames(styles.icons)}
+                    />
+                  </div>
+                  <span>Login | Register</span>
                   <div className={classNames(styles.linkBorder)}></div>
                 </li>
               </Link>
@@ -82,33 +93,39 @@ const Menu = () => {
             {currentUser ? (
               <Link to="/favorites" className={styles.navLink}>
                 <li>
-                  <MdFavorite className={classNames(styles.icons)} />
-                  Favorites
+                  <div className={classNames(styles.iconsContainer)}>
+                    <MdFavorite className={classNames(styles.icons)} />
+                  </div>
+                  <span>Favorites</span>
                 </li>
               </Link>
             ) : null}
             <Link to="/cart" className={styles.navLink}>
               <li>
-                <FaShoppingCart className={classNames(styles.icons)} />
-                Cart
+                <div className={classNames(styles.iconsContainer)}>
+                  <FaShoppingCart className={classNames(styles.icons)} />
+                </div>
+                <span>Cart</span>
               </li>
             </Link>
             <Link to="/shop" className={styles.navLink}>
               <li>
-                <AiOutlinePlusCircle className={classNames(styles.icons)} />
-                Collections
+                <div className={classNames(styles.iconsContainer)}>
+                  <AiOutlinePlusCircle className={classNames(styles.icons)} />
+                </div>
+                <span>Shop</span>
               </li>
             </Link>
           </ul>
           <ul>
-            <li>
-              <FaPhone className={classNames(styles.icons)} />
-              Contact Us
-            </li>
             {currentUser ? (
               <li onClick={logout}>
-                <FiLogOut className={classNames(styles.icons, styles.logout)} />
-                {loading ? "Logging out..." : "Logout"}
+                <div className={classNames(styles.iconsContainer)}>
+                  <FiLogOut
+                    className={classNames(styles.icons, styles.logout)}
+                  />
+                </div>
+                <span>Logout</span>
               </li>
             ) : null}
             {error && <p>{error}</p>}
