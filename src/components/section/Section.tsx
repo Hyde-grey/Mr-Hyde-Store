@@ -31,23 +31,28 @@ const Section = ({
     const viewportHeight = window.innerHeight;
 
     cardContainerRefs.current.forEach((ref) => {
-      if (ref) {
-        const rect = ref.getBoundingClientRect();
-        const elementCenterY = rect.top + rect.height / 2;
-        const viewportCenterY = viewportHeight / 2;
-        const distanceFromCenter = Math.abs(viewportCenterY - elementCenterY);
+      if (!ref) return;
 
-        // Calculate opacity value based on distance from center
-        const maxOpacity = 1;
-        const opacityValue = Math.max(
-          maxOpacity - (distanceFromCenter / viewportHeight) * maxOpacity,
-          0
-        );
+      const rect = ref.getBoundingClientRect();
+      const elementCenterY = rect.top + rect.height / 2;
+      const viewportCenterY = viewportHeight / 2;
+      const distanceFromCenter = Math.abs(viewportCenterY - elementCenterY);
 
-        ref.style.opacity = `${opacityValue}`;
-      }
+      const maxOpacity = 1;
+      const opacityValue = Math.max(
+        maxOpacity - (distanceFromCenter / viewportHeight) * maxOpacity,
+        0
+      );
+
+      ref.style.opacity = `${opacityValue}`;
     });
   });
+
+  const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    window.history.pushState({}, "", "/shop");
+    window.dispatchEvent(new PopStateEvent("popstate"));
+  };
 
   return (
     <div className={classNames("section", { sectionShop: isShop })}>
@@ -56,6 +61,8 @@ const Section = ({
         ref={(el) => {
           cardContainerRefs.current[current] = el;
         }}
+        onClick={handleClick}
+        style={{ cursor: "pointer" }}
       >
         <img src={img} alt={title} />
         <div className="card">
