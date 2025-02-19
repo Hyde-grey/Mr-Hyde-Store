@@ -20,7 +20,7 @@
   height: 100%;
   border: none;
   cursor: pointer;
-  background: linear-gradient(to top, #1e1e22 50%, transparent);
+  background: transparent;
 }
 
 .overlayIsOpened {
@@ -28,6 +28,7 @@
   height: 100vh;
 
   z-index: 2;
+  background: linear-gradient(to top, #1e1e22 50%, transparent);
 }
 
 .menuContainer {
