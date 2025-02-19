@@ -1,6 +1,16 @@
+.bottomMenuContainer {
+  position: relative;
+  width: 100%;
+  margin-top: 10px;
+  left: 50%;
+  right: 50%;
+  z-index: 1000;
+  transform: translateX(-50%);
+}
+
 .bottomMenu {
-  position: fixed;
-  bottom: 5.6%;
+  position: absolute;
+  top: 50%;
   left: 50%;
   right: 50%;
   z-index: 1000;
@@ -20,8 +30,9 @@
 }
 
 .bottomMenuBorder {
-  position: fixed;
-  bottom: 5.4%;
+  position: absolute;
+  top: 50%;
+
   left: 50%;
   right: 50%;
   z-index: 999;

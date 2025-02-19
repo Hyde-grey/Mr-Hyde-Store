@@ -78,7 +78,7 @@ const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
   };
 
   return (
-    <>
+    <div className={styles.bottomMenuContainer}>
       <div
         className={classNames(
           styles.bottomMenuBorder,
@@ -101,7 +101,7 @@ const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
 
