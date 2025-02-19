@@ -1,5 +1,5 @@
 .collectionSection {
-  height: 100vh;
+  height: 100%;
   width: 80vw;
   margin: 59px auto;
 }
@@ -25,11 +25,12 @@
 }
 
 .productsContainer {
-  width: 100%;
+  width: 70%;
   margin: 100px auto;
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
+  justify-content: flex-start;
+  align-items: center;
   gap: 1rem;
 }
 

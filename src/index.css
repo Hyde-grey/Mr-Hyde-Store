@@ -43,3 +43,11 @@ body {
 h1 {
   font-family: "Zaslia";
 }
+
+option {
+  color: white;
+}
+
+select {
+  color: white;
+}

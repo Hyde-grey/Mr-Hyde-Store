@@ -27,7 +27,7 @@ const Shop = () => {
   };
 
   return (
-    <MainCanvas numberOfPages={isMobile ? 7 : 4} cameraPosition={[0, 0, 16]}>
+    <MainCanvas numberOfPages={isMobile ? 7 : 5} cameraPosition={[0, 0, 16]}>
       <Spiral
         models={models}
         initialPosition={new Vector3(0, 0, 0)}
