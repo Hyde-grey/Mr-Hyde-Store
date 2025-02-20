@@ -72,12 +72,12 @@
 .productCardPriceContainer {
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
   margin: 0;
   padding: 0;
 }
 
-.productCardInfo h4 {
+.productCardPriceContainer h4 {
   font-size: 1.7rem;
   font-weight: 600;
   margin: 0;
@@ -120,8 +120,12 @@
 }
 
 @media (max-width: 768px) {
+  .productsContainer {
+    gap: 1.5rem;
+  }
+
   .productCardContainer {
-    width: 45%;
+    width: 43%;
     height: 300px;
     padding: 0.5rem;
     border: none;
@@ -144,7 +148,7 @@
   }
 
   .productCardInfo h4 {
-    font-size: 1rem;
+    font-size: 1.5rem;
   }
 
   .productCardInfo select {
