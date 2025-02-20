@@ -93,7 +93,14 @@ const CartHtmlLayout = memo(
                             ))}
                           </select>
                         </div>
-                        <p className={styles.price}>£{item.product.price}</p>
+                        <p className={styles.price}>
+                          £{(item.product.price * item.quantity).toFixed(2)}
+                          {item.quantity > 1 && (
+                            <span className={styles.unitPrice}>
+                              (£{item.product.price} each)
+                            </span>
+                          )}
+                        </p>
                       </div>
                     </div>
                     <div className={styles.itemActions}>
