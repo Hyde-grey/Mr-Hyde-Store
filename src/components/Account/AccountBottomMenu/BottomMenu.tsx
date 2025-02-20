@@ -49,138 +49,117 @@ const MENU_ITEMS: MenuItem[] = [
 
 const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
   const touchStartX = useRef<number>(0);
-  const menuRef = useRef<HTMLDivElement>(null);
-  const isSwipingRef = useRef(false);
+  const menuRef = useRef<HTMLUListElement>(null);
 
   const getPositionClass = (position: number) => {
-    switch (position) {
-      case 1:
-        return styles.firstItemActive;
-      case 2:
-        return styles.secondItemActive;
-      case 3:
-        return styles.thirdItemActive;
-      case 4:
-        return styles.fourthItemActive;
-      case 5:
-        return styles.fifthItemActive;
-      default:
-        return "";
-    }
+    const positionClasses = {
+      1: styles.firstItemActive,
+      2: styles.secondItemActive,
+      3: styles.thirdItemActive,
+      4: styles.fourthItemActive,
+      5: styles.fifthItemActive,
+    };
+    return positionClasses[position as keyof typeof positionClasses];
   };
 
   const getCurrentPosition = () => {
     const currentItem = MENU_ITEMS.find((item) => item.id === currentTab);
-    return currentItem ? getPositionClass(currentItem.position) : "";
+    return currentItem ? currentItem.position : 3; // Default to center position
   };
 
   const getTabClass = (itemId: string) => {
-    if (itemId === currentTab) return styles.activeTab;
+    const isActive = currentTab === itemId;
+    const currentPosition = getCurrentPosition();
+    const itemPosition =
+      MENU_ITEMS.find((item) => item.id === itemId)?.position || 3;
+    const isAdjacent = Math.abs(currentPosition - itemPosition) === 1;
 
-    const currentIndex = MENU_ITEMS.findIndex((item) => item.id === currentTab);
-    const itemIndex = MENU_ITEMS.findIndex((item) => item.id === itemId);
-    const distance = Math.abs(currentIndex - itemIndex);
-
-    return distance === 1 ? styles.secondaryTab : "";
+    return classNames(styles.tab, {
+      [styles.activeTab]: isActive,
+      [styles.secondaryTab]: isAdjacent,
+    });
   };
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
-    isSwipingRef.current = true;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!isSwipingRef.current || !menuRef.current) return;
+    if (!menuRef.current) return;
 
     const touchCurrentX = e.touches[0].clientX;
-    const diffX = touchCurrentX - touchStartX.current;
+    const diff = touchCurrentX - touchStartX.current;
+    const containerWidth = menuRef.current.offsetWidth;
 
-    // Prevent default only for horizontal swipes
-    if (Math.abs(diffX) > 10) {
-      e.preventDefault();
-    }
+    // Calculate percentage moved
+    const percentMoved = (diff / containerWidth) * 100;
 
-    // Get current index and prevent swiping if at the edges
-    const currentIndex = MENU_ITEMS.findIndex((item) => item.id === currentTab);
-    if (
-      (currentIndex === 0 && diffX > 0) ||
-      (currentIndex === MENU_ITEMS.length - 1 && diffX < 0)
-    ) {
-      return;
-    }
+    // Add resistance to the swipe
+    const resistance = Math.min(Math.abs(percentMoved) / 100, 1);
+    const currentPosition = getCurrentPosition();
 
-    // Apply transform to both menu and border
-    const transform = `translateX(${diffX}px)`;
-    menuRef.current.style.transform = transform;
-    if (menuRef.current.previousElementSibling) {
-      (menuRef.current.previousElementSibling as HTMLElement).style.transform =
-        transform;
-    }
+    // Prevent swiping if at the edges
+    if (currentPosition === 1 && diff > 0) return; // First item, prevent right swipe
+    if (currentPosition === 5 && diff < 0) return; // Last item, prevent left swipe
+
+    menuRef.current.style.transform = `translateX(${diff * resistance}px)`;
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!isSwipingRef.current || !menuRef.current) return;
+    if (!menuRef.current) return;
 
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX.current;
-    const currentIndex = MENU_ITEMS.findIndex((item) => item.id === currentTab);
+    const currentPosition = getCurrentPosition();
 
-    // Reset transforms with transition
-    menuRef.current.style.transition = "transform 0.3s ease";
+    // Reset the inline style
     menuRef.current.style.transform = "";
-    if (menuRef.current.previousElementSibling) {
-      (menuRef.current.previousElementSibling as HTMLElement).style.transition =
-        "transform 0.3s ease";
-      (menuRef.current.previousElementSibling as HTMLElement).style.transform =
-        "";
-    }
 
-    // Reset transitions after animation
-    setTimeout(() => {
-      if (menuRef.current) {
-        menuRef.current.style.transition = "";
-        if (menuRef.current.previousElementSibling) {
-          (
-            menuRef.current.previousElementSibling as HTMLElement
-          ).style.transition = "";
-        }
-      }
-    }, 300);
-
-    // Only switch tabs if swipe is significant enough
+    // If the swipe was long enough, switch tabs
     if (Math.abs(diff) > 50) {
-      if (diff > 0 && currentIndex > 0) {
-        // Swipe right - go to previous tab
-        handleTabChange(MENU_ITEMS[currentIndex - 1].id);
-      } else if (diff < 0 && currentIndex < MENU_ITEMS.length - 1) {
-        // Swipe left - go to next tab
-        handleTabChange(MENU_ITEMS[currentIndex + 1].id);
+      const sortedItems = MENU_ITEMS.sort((a, b) => a.position - b.position);
+      const currentIndex = sortedItems.findIndex(
+        (item) => item.id === currentTab
+      );
+
+      if (diff < 0 && currentPosition < 5) {
+        // Swipe left
+        handleTabChange(sortedItems[currentIndex + 1].id);
+      } else if (diff > 0 && currentPosition > 1) {
+        // Swipe right
+        handleTabChange(sortedItems[currentIndex - 1].id);
       }
     }
-
-    isSwipingRef.current = false;
   };
 
   return (
     <div className={styles.bottomMenuContainer}>
-      <div className={styles.bottomMenuBorder} />
       <div
+        className={classNames(
+          styles.bottomMenuBorder,
+          getPositionClass(getCurrentPosition())
+        )}
+      />
+      <ul
         ref={menuRef}
-        className={classNames(styles.bottomMenu, getCurrentPosition())}
+        className={classNames(
+          styles.bottomMenu,
+          getPositionClass(getCurrentPosition())
+        )}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
-        {MENU_ITEMS.map((item) => (
-          <div
+        {MENU_ITEMS.sort((a, b) => a.position - b.position).map((item) => (
+          <li
             key={item.id}
-            className={classNames(styles.tab, getTabClass(item.id))}
+            className={getTabClass(item.id)}
             onClick={() => handleTabChange(item.id)}
           >
             {item.icon}
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
     </div>
   );
 };
