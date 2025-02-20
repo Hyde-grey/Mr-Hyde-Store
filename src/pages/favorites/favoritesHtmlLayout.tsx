@@ -21,24 +21,22 @@ const FavoritesHtmlLayout = memo(
   }) => {
     const scroll = useScroll();
     const { isMobile } = useScreenSize();
-    const [fontSize, setFontSize] = useState(0);
+    const [fontSize, setFontSize] = useState(isMobile ? 3 : 10);
     const { addToCart } = useContext(CartContext);
 
     useFrame(() => {
-      if (isMobile) {
-        const scrollY = scroll.offset;
-        setFontSize(3 - scrollY * 10);
-      } else {
-        const scrollY = scroll.offset;
-        setFontSize(10 - scrollY * 55);
-      }
+      const scrollY = scroll.offset;
+      const newSize = isMobile ? 3 - scrollY * 10 : 10 - scrollY * 55;
+      setFontSize(newSize);
     });
 
     return (
       <Scroll html>
         <div className={styles.favoritesContainer}>
           <div className={styles.favoritesHero}>
-            <h1 style={{ fontSize: `${fontSize}rem` }}>My Favorites</h1>
+            <h1 className={styles.title} style={{ fontSize: `${fontSize}rem` }}>
+              My Favorites
+            </h1>
           </div>
           {collections.length > 0 ? (
             <ShopCollectionSection

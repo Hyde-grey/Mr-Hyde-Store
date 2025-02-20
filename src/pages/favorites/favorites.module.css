@@ -15,6 +15,18 @@
   align-items: center;
 }
 
+.title {
+  transition: font-size 0.1s ease-out;
+}
+
+.titleMobile {
+  font-size: 3rem;
+}
+
+.titleDesktop {
+  font-size: 10rem;
+}
+
 .emptyState {
   width: 100%;
   text-align: center;
