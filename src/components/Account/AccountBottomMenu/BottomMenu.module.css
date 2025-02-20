@@ -1,8 +1,12 @@
 .bottomMenuContainer {
-  position: relative;
+  position: fixed;
   width: 100%;
   height: 1vh;
   padding-bottom: env(safe-area-inset-bottom);
+  z-index: 1000;
+  bottom: 0;
+  left: 0;
+  pointer-events: none;
 }
 
 .bottomMenu {
@@ -13,7 +17,7 @@
   z-index: 1000;
   transition:
     all 0.3s ease,
-    transform 0.1s ease;
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
   width: 63%;
   padding: 5px 10px;
@@ -24,6 +28,11 @@
   border-radius: 15px;
   will-change: transform;
   touch-action: pan-x;
+  pointer-events: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .bottomMenuBorder {
@@ -34,7 +43,7 @@
   z-index: 999;
   transition:
     all 0.3s ease,
-    transform 0.1s ease;
+    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
   width: 63.5%;
   height: 47px;
@@ -45,6 +54,7 @@
   border: 1px solid rgba(255, 255, 255, 0.1);
   box-shadow: 8px 8px 12px #17171a;
   will-change: transform;
+  pointer-events: none;
 }
 
 .bottomMenuBorder::before,
@@ -132,9 +142,12 @@
   align-items: center;
   font-size: 15px;
   color: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform-origin: center center;
   box-shadow: 4px 4px 8px #17171a;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .tab:active {

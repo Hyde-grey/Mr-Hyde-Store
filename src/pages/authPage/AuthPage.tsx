@@ -113,10 +113,12 @@ const AuthPage = () => {
 
     // If the swipe was long enough, switch tabs
     if (Math.abs(diff) > 50) {
-      if (diff < 0 && activeTab === "login") {
-        setActiveTab("signup");
-      } else if (diff > 0 && activeTab === "signup") {
+      if (diff < 0) {
+        // Swipe left -> go to login
         setActiveTab("login");
+      } else if (diff > 0) {
+        // Swipe right -> go to signup
+        setActiveTab("signup");
       }
     }
   };
