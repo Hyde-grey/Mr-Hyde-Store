@@ -33,7 +33,7 @@ const HomeLayout = ({ collections }: { collections: Collection[] }) => {
     const startAnimation = async () => {
       try {
         await controls.start({
-          y: [0, 20, 0],
+          y: [0, 20, 39],
           transition: {
             duration: 2,
             repeat: Infinity,
