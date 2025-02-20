@@ -135,31 +135,24 @@
 .iconsContainer {
   width: 40px;
   height: 40px;
-
   margin-right: 10px;
-
   border-radius: 50%;
   background: transparent;
   box-shadow:
     8px 8px 12px #17171a,
     -8px -8px 12px #25252a;
   position: relative;
+  transition: all 0.3s ease;
 }
 
 .iconsContainer:active {
-  border-radius: 181px;
-  background: transparent;
   box-shadow:
-    13px 13px 26px #141416,
-    -13px -13px 26px #29292e;
+    inset 4px 4px 8px #17171a,
+    inset -4px -4px 8px #25252a;
 }
 
 .iconsContainerActive {
-  border-radius: 181px;
-  background: transparent;
-  box-shadow:
-    13px 13px 26px #141416,
-    -13px -13px 26px #29292e;
+  display: none;
 }
 
 .icons {
