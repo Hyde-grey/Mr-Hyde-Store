@@ -21,19 +21,20 @@ const HomeLayout = ({ collections }: { collections: Collection[] }) => {
     if (isMobile) {
       const scrollY = scroll.offset;
       setFontSize(3 - scrollY * 10);
-      setOpacity(1 - scrollY * 10);
+      setOpacity(1 - scrollY * 10); // Fade out faster on mobile
     } else {
       const scrollY = scroll.offset;
       setFontSize(10 - scrollY * 55);
-      setOpacity(1 - scrollY * 55);
+      setOpacity(1 - scrollY * 55); // Fade out on scroll
     }
   });
 
   useEffect(() => {
+    // Start the animation immediately when component mounts
     const startAnimation = async () => {
       try {
         await controls.start({
-          y: [0, 20, 39],
+          y: [0, 20, 0],
           transition: {
             duration: 2,
             repeat: Infinity,
@@ -48,9 +49,7 @@ const HomeLayout = ({ collections }: { collections: Collection[] }) => {
 
     startAnimation();
 
-    return () => {
-      controls.stop();
-    };
+    return () => {};
   }, []);
 
   return (
