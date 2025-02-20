@@ -1,20 +1,14 @@
 import { Scroll } from "@react-three/drei";
+import { AccountProps } from "../../pages/account/account";
+import classNames from "classnames";
 import { IoIosSettings } from "react-icons/io";
 import { RiAccountCircleFill, RiLogoutBoxRLine } from "react-icons/ri";
-import styles from "./AccountDesktop.module.css";
-import classNames from "classnames";
-import { MdShoppingCartCheckout } from "react-icons/md";
-import { MdOutlineEditLocationAlt } from "react-icons/md";
+import {
+  MdShoppingCartCheckout,
+  MdOutlineEditLocationAlt,
+} from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
-
-type AccountDesktopProps = {
-  currentUserName: string;
-  currentTab: string;
-  handleTabChange: (tab: string) => void;
-  userProfileImage: string;
-  logout: () => void;
-  renderCurrentTab: () => React.ReactNode;
-};
+import styles from "./AccountDesktop.module.css";
 
 const AccountDesktop = ({
   currentUserName,
@@ -23,76 +17,54 @@ const AccountDesktop = ({
   userProfileImage,
   logout,
   renderCurrentTab,
-}: AccountDesktopProps) => {
+}: AccountProps) => {
+  const tabs = [
+    { id: "myDetails", label: "My Details", icon: <RiAccountCircleFill /> },
+    {
+      id: "myAddresses",
+      label: "My Addresses",
+      icon: <MdOutlineEditLocationAlt />,
+    },
+    { id: "myOrders", label: "My Orders", icon: <MdShoppingCartCheckout /> },
+    { id: "myFavorites", label: "My Favorites", icon: <FaHeart /> },
+    { id: "mySettings", label: "Settings", icon: <IoIosSettings /> },
+  ];
+
   return (
     <Scroll html>
-      <div className={styles.accountPageContainer}>
-        <div className={styles.sectionLayoutContainer}>
-          <div className={classNames(styles.leftColumn, styles.column)}>
-            <div className={styles.userProfileContainer}>
-              <img src={userProfileImage} alt="user profile" />
-              <p>{currentUserName}</p>
+      <div className={styles.accountDesktop}>
+        <div className={styles.accountDesktopContent}>
+          <div className={styles.sidebar}>
+            <div>
+              <div className={styles.userInfo}>
+                <div className={styles.userImage}>
+                  <img src={userProfileImage} alt={currentUserName} />
+                </div>
+                <h2 className={styles.userName}>{currentUserName}</h2>
+              </div>
+              <div className={styles.tabs}>
+                {tabs.map((tab) => (
+                  <div
+                    key={tab.id}
+                    className={classNames(styles.tab, {
+                      [styles.activeTab]: currentTab === tab.id,
+                    })}
+                    onClick={() => handleTabChange(tab.id)}
+                  >
+                    {tab.icon}
+                    <span>{tab.label}</span>
+                  </div>
+                ))}
+              </div>
             </div>
-
-            <ul>
-              <li
-                className={classNames(
-                  styles.tab,
-                  currentTab === "myDetails" && styles.activeTab
-                )}
-                onClick={() => handleTabChange("myDetails")}
-              >
-                <RiAccountCircleFill /> <p>My details</p>
-              </li>
-              <li
-                className={classNames(
-                  styles.tab,
-                  currentTab === "myOrders" && styles.activeTab
-                )}
-                onClick={() => handleTabChange("myOrders")}
-              >
-                <MdShoppingCartCheckout />
-                <p>My orders</p>
-              </li>
-              <li
-                className={classNames(
-                  styles.tab,
-                  currentTab === "myAddresses" && styles.activeTab
-                )}
-                onClick={() => handleTabChange("myAddresses")}
-              >
-                <MdOutlineEditLocationAlt />
-                <p>Addresses</p>
-              </li>
-              <li
-                className={classNames(
-                  styles.tab,
-                  currentTab === "myFavorites" && styles.activeTab
-                )}
-                onClick={() => handleTabChange("myFavorites")}
-              >
-                <FaHeart />
-                <p>Favorites</p>
-              </li>
-              <li
-                className={classNames(
-                  styles.tab,
-                  currentTab === "mySettings" && styles.activeTab
-                )}
-                onClick={() => handleTabChange("mySettings")}
-              >
-                <IoIosSettings /> <p>Settings</p>
-              </li>
-            </ul>
-            <div className={styles.logoutContainer} onClick={logout}>
-              <RiLogoutBoxRLine />
-              <span>Logout</span>
+            <div className={styles.logoutTab}>
+              <div className={styles.tab} onClick={logout}>
+                <RiLogoutBoxRLine className={styles.logoutIcon} />
+                <span>Logout</span>
+              </div>
             </div>
           </div>
-
-          <div className={styles.rightColumn}>
-            <div className={styles.section}>{renderCurrentTab()}</div>
-          </div>
+          <div className={styles.mainContent}>{renderCurrentTab()}</div>
         </div>
       </div>
     </Scroll>

@@ -1,31 +1,64 @@
 .accountMobile {
   position: relative;
-
-  height: 90vh;
+  height: 100vh;
   width: 100vw;
-
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-
-  padding-bottom: 20px;
+  padding: 1rem;
+  background: linear-gradient(to top, #1e1e22 5%, transparent);
 }
 
 .accountMobileContent {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
-
+  justify-content: flex-start;
   margin: 0 auto;
-
-  height: 70%;
-  width: 80%;
-
-  background-image: linear-gradient(to bottom, #2e2e34, #1e1e222d);
+  height: 80%;
+  width: 90%;
+  max-width: 500px;
+  background-image: linear-gradient(to bottom, #2e2e34, #1e1e22);
   backdrop-filter: blur(3px);
+  border-radius: 15px;
+  box-shadow: 8px 8px 12px #17171a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2rem 1rem;
+  overflow-y: auto;
+  margin-bottom: 5rem;
+}
+
+.accountMobileContent::-webkit-scrollbar {
+  width: 8px;
+}
+
+.accountMobileContent::-webkit-scrollbar-track {
+  background: transparent;
+  margin: 1rem;
+}
+
+.accountMobileContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 10px;
-  box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.39);
-  border: 1px solid rgba(255, 255, 255, 0.219);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+.accountMobileContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+
+@media (min-width: 768px) {
+  .accountMobile {
+    padding: 2rem;
+  }
+
+  .accountMobileContent {
+    width: 80%;
+    max-width: 800px;
+    padding: 3rem 2rem;
+  }
 }
