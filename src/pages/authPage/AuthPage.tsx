@@ -7,7 +7,7 @@ import SignUp from "../../components/authentication/signup/Signup";
 
 import styles from "./AuthStyles.module.css";
 import { KeyModel } from "../../components/models/Key";
-import { useContext, useState, useRef } from "react";
+import { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeyRotationContext } from "../../contexts/KeyRotationContext.tsx";
 import useWindowSize from "../../hooks/useScreenSize.tsx";
@@ -17,7 +17,11 @@ const AuthPage = () => {
   const [activeTab, setActiveTab] = useState("login");
   const { isMobile } = useWindowSize();
   const touchStartX = useRef<number>(0);
+  const touchStartY = useRef<number>(0);
   const sliderRef = useRef<HTMLDivElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const isSwipingRef = useRef(false);
+  const swipeDirectionRef = useRef<"horizontal" | "vertical" | null>(null);
 
   const { addRotation, triggerSpinAnimation, triggerFailAnimation } =
     useContext(KeyRotationContext)!;
@@ -30,40 +34,82 @@ const AuthPage = () => {
     setActiveTab(tab);
   };
 
+  useEffect(() => {
+    // Reset transform when tab changes
+    if (sliderRef.current) {
+      sliderRef.current.style.transform = "";
+    }
+  }, [activeTab]);
+
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    touchStartY.current = e.touches[0].clientY;
+    isSwipingRef.current = true;
+    swipeDirectionRef.current = null;
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
-    if (!sliderRef.current) return;
+    if (!sliderRef.current || !containerRef.current || !isSwipingRef.current)
+      return;
 
     const touchCurrentX = e.touches[0].clientX;
-    const diff = touchCurrentX - touchStartX.current;
-    const containerWidth = sliderRef.current.offsetWidth;
+    const touchCurrentY = e.touches[0].clientY;
+    const diffX = touchCurrentX - touchStartX.current;
+    const diffY = touchCurrentY - touchStartY.current;
+    const containerWidth = containerRef.current.offsetWidth;
 
-    // Calculate percentage moved
-    const percentMoved = (diff / containerWidth) * 100;
+    // Determine swipe direction if not already set
+    if (!swipeDirectionRef.current) {
+      const absX = Math.abs(diffX);
+      const absY = Math.abs(diffY);
+      if (absX > absY && absX > 10) {
+        swipeDirectionRef.current = "horizontal";
+      } else if (absY > absX && absY > 10) {
+        swipeDirectionRef.current = "vertical";
+        isSwipingRef.current = false;
+        return;
+      }
+    }
 
-    // Add a transform that follows the finger but with resistance
-    if (activeTab === "login" && diff > 0) return; // Prevent right swipe on login
-    if (activeTab === "signup" && diff < 0) return; // Prevent left swipe on signup
+    // Only handle horizontal swipes
+    if (swipeDirectionRef.current === "horizontal") {
+      e.preventDefault(); // Prevent scrolling when swiping horizontally
 
-    const resistance = Math.min(Math.abs(percentMoved) / 100, 1);
-    sliderRef.current.style.transform = `translateX(${
-      activeTab === "login"
-        ? diff * resistance
-        : containerWidth + diff * resistance
-    }px)`;
+      // Calculate percentage moved
+      const percentMoved = (diffX / containerWidth) * 100;
+
+      // Add resistance to the swipe
+      if (activeTab === "login" && diffX > 0) return; // Prevent right swipe on login
+      if (activeTab === "signup" && diffX < 0) return; // Prevent left swipe on signup
+
+      const resistance = Math.min(Math.abs(percentMoved) / 100, 1);
+      const baseTransform = activeTab === "signup" ? containerWidth / 2 : 0;
+      const newTransform = baseTransform + diffX * resistance;
+
+      sliderRef.current.style.transform = `translateX(${newTransform}px)`;
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!sliderRef.current) return;
+    if (!sliderRef.current || !isSwipingRef.current) return;
 
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX.current;
 
-    // Reset the inline style
+    // Reset states
+    isSwipingRef.current = false;
+    swipeDirectionRef.current = null;
+
+    // Reset the inline style with transition
+    sliderRef.current.style.transition = "transform 0.3s ease";
     sliderRef.current.style.transform = "";
+
+    // Reset the transition after it completes
+    setTimeout(() => {
+      if (sliderRef.current) {
+        sliderRef.current.style.transition = "";
+      }
+    }, 300);
 
     // If the swipe was long enough, switch tabs
     if (Math.abs(diff) > 50) {
@@ -83,6 +129,7 @@ const AuthPage = () => {
           <div className={styles.formWrapper}>
             <div className={styles.authComponentContainer}>
               <div
+                ref={containerRef}
                 className={styles.authSelectorsContainer}
                 onTouchStart={handleTouchStart}
                 onTouchMove={handleTouchMove}

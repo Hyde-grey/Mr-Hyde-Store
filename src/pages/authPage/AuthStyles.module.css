@@ -48,6 +48,8 @@
   display: flex;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.02);
+  touch-action: pan-y pinch-zoom;
+  overflow: hidden;
 }
 
 .authSelector {
@@ -60,6 +62,7 @@
   z-index: 2;
   transition: color 0.3s ease;
   user-select: none;
+  -webkit-tap-highlight-color: transparent;
 }
 
 .activeTab {
@@ -81,6 +84,7 @@
   border: 1px solid rgba(255, 255, 255, 0.02);
   will-change: transform;
   touch-action: none;
+  pointer-events: none;
 }
 
 .slider[data-active="signup"] {
