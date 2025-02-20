@@ -6,7 +6,7 @@ import { useGetCollections } from "../../hooks/useGetCollections";
 import useScreenSize from "../../hooks/useScreenSize";
 
 const Cart = () => {
-  const { cart, updateQuantity, removeFromCart, getCartTotal } =
+  const { cart, updateQuantity, removeFromCart, getCartTotal, updateSize } =
     useContext(CartContext);
   const collections = useGetCollections();
   const { isMobile } = useScreenSize();
@@ -44,6 +44,7 @@ const Cart = () => {
         total={total}
         updateQuantity={updateQuantity}
         removeFromCart={removeFromCart}
+        updateSize={updateSize}
       />
     </MainCanvas>
   );

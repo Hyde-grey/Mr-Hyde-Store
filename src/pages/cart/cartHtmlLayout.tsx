@@ -1,7 +1,8 @@
 import { memo } from "react";
 import { Scroll, useScroll } from "@react-three/drei";
 import { Product } from "../../hooks/useGetCollections";
-import Button from "../../components/button/Button";
+import StartBorder from "../../components/button/StartBorder";
+import buttonStyles from "../../components/button/Button.module.css";
 import styles from "./cart.module.css";
 import useScreenSize from "../../hooks/useScreenSize";
 import { useFrame } from "@react-three/fiber";
@@ -17,6 +18,7 @@ type CartHtmlLayoutProps = {
   cartItems: CartItem[];
   updateQuantity: (productId: number, quantity: number) => void;
   removeFromCart: (productId: number) => void;
+  updateSize: (productId: number, newSize: string) => void;
   total: number;
 };
 
@@ -25,6 +27,7 @@ const CartHtmlLayout = memo(
     cartItems,
     updateQuantity,
     removeFromCart,
+    updateSize,
     total,
   }: CartHtmlLayoutProps) => {
     const { isMobile } = useScreenSize();
@@ -40,6 +43,13 @@ const CartHtmlLayout = memo(
         setFontSize(10 - scrollY * 19);
       }
     });
+
+    const handleSizeChange = (
+      productId: number,
+      event: React.ChangeEvent<HTMLSelectElement>
+    ) => {
+      updateSize(productId, event.target.value);
+    };
 
     return (
       <Scroll html>
@@ -63,8 +73,28 @@ const CartHtmlLayout = memo(
                     />
                     <div className={styles.itemDetails}>
                       <h3>{item.product.name}</h3>
-                      <p>Size: {item.size}</p>
-                      <p>£{item.product.price}</p>
+                      <div className={styles.itemOptions}>
+                        <div className={styles.sizeSelector}>
+                          <p>Size:</p>
+                          <select
+                            value={item.size}
+                            onChange={(e) =>
+                              handleSizeChange(item.product.id, e)
+                            }
+                            className={styles.sizeSelect}
+                          >
+                            {item.product.sizes.map((sizeOption) => (
+                              <option
+                                key={sizeOption.size}
+                                value={sizeOption.size}
+                              >
+                                {sizeOption.size}
+                              </option>
+                            ))}
+                          </select>
+                        </div>
+                        <p className={styles.price}>£{item.product.price}</p>
+                      </div>
                     </div>
                     <div className={styles.itemActions}>
                       <div className={styles.quantity}>
@@ -114,7 +144,15 @@ const CartHtmlLayout = memo(
                     <span>£{total.toFixed(2)}</span>
                   </div>
                 </div>
-                <Button buttonType="submit">Checkout</Button>
+                <StartBorder
+                  className={buttonStyles.buttonLayout}
+                  as="button"
+                  type="submit"
+                  color="white"
+                  speed="5s"
+                >
+                  <p>Checkout</p>
+                </StartBorder>
               </div>
             </div>
           )}

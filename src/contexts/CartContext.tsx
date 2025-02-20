@@ -15,6 +15,7 @@ type CartContextType = {
   addToCart: (product: Product, size: string) => void;
   removeFromCart: (productId: number) => void;
   updateQuantity: (productId: number, quantity: number) => void;
+  updateSize: (productId: number, newSize: string) => void;
   getCart: () => CartItem[];
   getCartTotal: () => number;
   getCartItemCount: () => number;
@@ -31,6 +32,7 @@ const defaultCartContext: CartContextType = {
   addToCart: () => {},
   removeFromCart: () => {},
   updateQuantity: () => {},
+  updateSize: () => {},
   getCart: () => [],
   getCartTotal: () => 0,
   getCartItemCount: () => 0,
@@ -149,6 +151,13 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     setCart(updatedCart);
   };
 
+  const updateSize = (productId: number, newSize: string) => {
+    const updatedCart = cart.map((item) =>
+      item.product.id === productId ? { ...item, size: newSize } : item
+    );
+    setCart(updatedCart);
+  };
+
   return (
     <CartContext.Provider
       value={{
@@ -156,6 +165,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         addToCart,
         removeFromCart,
         updateQuantity,
+        updateSize,
         getCart,
         getCartTotal,
         getCartItemCount,
