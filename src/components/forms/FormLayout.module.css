@@ -74,4 +74,12 @@
     padding: 0px;
     min-height: 14.5rem;
   }
+
+  .formTitleContainer h2 {
+    font-size: 1.2rem;
+  }
+
+  .formTitleContainer p {
+    font-size: 0.8rem;
+  }
 }

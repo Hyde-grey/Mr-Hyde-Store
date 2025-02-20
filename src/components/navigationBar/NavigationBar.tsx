@@ -97,9 +97,7 @@ const NavigationBar = () => {
             <li>
               <div className={styles.cartIconContainer}>
                 <BsCart3 />
-                {cartItemCount === 0 ? (
-                  <p>Cart</p>
-                ) : (
+                {cartItemCount > 0 && (
                   <p
                     className={styles.cartBadge}
                     data-digits={cartItemCount.toString().length}
@@ -121,6 +119,24 @@ const NavigationBar = () => {
         </ul>
       </div>
       <Menu />
+
+      {isMobile && (
+        <div className={styles.mobileCartContainer}>
+          {cartItemCount > 0 && (
+            <Link to="/cart" className={styles.mobileCartLink}>
+              <div className={styles.mobileCartIcon}>
+                <BsCart3 />
+                <p
+                  className={styles.cartBadge}
+                  data-digits={cartItemCount.toString().length}
+                >
+                  {cartItemCount > 99 ? "99+" : cartItemCount}
+                </p>
+              </div>
+            </Link>
+          )}
+        </div>
+      )}
 
       {isMobile ? <MenuButton /> : null}
       <Outlet />

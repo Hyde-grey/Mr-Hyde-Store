@@ -1,6 +1,21 @@
+import { useEffect, useState } from "react";
 import styles from "./loading.module.css";
 
 const Loading = () => {
+  const [shouldRender, setShouldRender] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShouldRender(true);
+    }, 100); // Small delay before showing loading to prevent quick flashes
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!shouldRender) {
+    return null;
+  }
+
   return (
     <div className={styles.loading}>
       <div className={styles.loadingText}>

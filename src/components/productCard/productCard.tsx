@@ -89,7 +89,7 @@ const ProductCard = memo(
           </div>
           <div className={styles.productCardButton}>
             <Button buttonType="button" onClick={handleAddToCart}>
-              Add to cart
+              <p>Add to cart</p>
             </Button>
           </div>
         </div>

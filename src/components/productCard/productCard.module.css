@@ -7,7 +7,13 @@
   flex-direction: column;
   justify-content: space-between;
   padding: 1rem;
-  background: rgba(0, 0, 0, 0.116);
+  background: linear-gradient(
+    to top,
+    #2e2e34 0%,
+    #1e1e22 15%,
+    rgba(30, 30, 34, 0.5) 20%,
+    transparent 35%
+  );
   backdrop-filter: blur(3px);
   color: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.116);
@@ -129,6 +135,13 @@
     height: 300px;
     padding: 0.5rem;
     border: none;
+    background: linear-gradient(
+      to top,
+      #2e2e34 0%,
+      #1e1e22 15%,
+      rgba(30, 30, 34, 0.5) 20%,
+      transparent 25%
+    );
   }
 
   .productCardInfo {
@@ -140,7 +153,7 @@
   }
 
   .productCardInfo p {
-    font-size: 0.6rem;
+    font-size: 0.7rem;
   }
 
   .productCardPriceContainer {
@@ -148,7 +161,7 @@
   }
 
   .productCardInfo h4 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .productCardInfo select {

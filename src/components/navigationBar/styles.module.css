@@ -87,12 +87,16 @@
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
+  padding: 5px;
 }
 
 .cartBadge {
+  position: absolute;
+  top: 0;
+  right: 0;
   color: white;
   border-radius: 50%;
-  padding: 5px;
   min-width: 20px;
   min-height: 20px;
   height: 20px;
@@ -102,8 +106,9 @@
   align-items: center;
   justify-content: center;
   font-weight: bold;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: linear-gradient(to bottom, #2e2e34 5%, #1e1e22);
   overflow: hidden;
+  transform: translate(50%, -50%);
 }
 
 .cartBadge[data-digits="2"] {
@@ -111,6 +116,36 @@
   min-width: 24px;
   height: 24px;
   min-height: 24px;
+}
+
+.mobileCartContainer {
+  position: fixed;
+  top: 15px;
+  right: 15px;
+  z-index: 9999;
+}
+
+.mobileCartIcon {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  color: white;
+  padding: 5px;
+}
+
+.mobileCartIcon:active {
+  transform: scale(0.95);
+}
+
+.mobileCartIcon .cartBadge {
+  transform: translate(30%, -50%);
+  font-size: 13px;
 }
 
 @media only screen and (max-width: 767px) {

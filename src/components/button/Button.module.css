@@ -22,10 +22,14 @@
   -webkit-appearance: none;
   color: white;
   -webkit-text-fill-color: white;
+  transition: all 0.3s ease;
+  box-shadow:
+    4px 4px 8px #17171a,
+    -4px -4px 8px #25252a;
 }
 
 .buttonLayout p {
-  font-size: 1rem;
+  font-size: 0.8rem;
   width: 100%;
   text-align: center;
   margin: 0;
@@ -38,4 +42,11 @@
 .buttonLayout:hover {
   color: white;
   -webkit-text-fill-color: white;
+}
+
+.buttonLayout:active {
+  box-shadow:
+    inset 4px 4px 8px #17171a,
+    inset -4px -4px 8px #25252a;
+  transform: scale(0.98);
 }
