@@ -1,7 +1,6 @@
 .favoritesContainer {
   width: 100vw;
   min-height: 100vh;
-  padding: 2rem;
   color: white;
   display: flex;
   flex-direction: column;
