@@ -1,13 +1,28 @@
 .shopContainer {
   width: 100vw;
-  position: relative;
+  min-height: 100vh;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .shopHero {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 100%;
-  min-height: 100vh;
-  position: relative;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  transition: font-size 0.1s ease-out;
+}
+
+.titleMobile {
+  font-size: 3rem;
+}
+
+.titleDesktop {
+  font-size: 10rem;
 }
