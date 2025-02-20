@@ -1,6 +1,6 @@
 import { doc, setDoc } from "firebase/firestore";
 import { db, auth } from "../firebase/firebaseConfig";
-import { useEffect, useState, useContext } from "react";
+import { useState, useContext } from "react";
 import { getUserId } from "./useAuth";
 import { updateProfile } from "firebase/auth";
 import { UserContext } from "../contexts/UserContext";
@@ -11,16 +11,10 @@ export const useUpdateProfile = () => {
   const [isMessageVisible, setIsMessageVisible] = useState(false);
   const { setCurrentUser } = useContext(UserContext);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setIsMessageVisible(false);
-    }, 3000);
-  }, [isMessageVisible]);
-
   const postUserData = async (userData: any) => {
-    setIsMessageVisible(false);
     setLoading(true);
     setError(null);
+
     try {
       const userID = await getUserId();
       if (userID) {
@@ -31,6 +25,7 @@ export const useUpdateProfile = () => {
         await setDoc(docRef, userData, { merge: true });
         console.log("User data updated successfully");
         setIsMessageVisible(true);
+        setTimeout(() => setIsMessageVisible(false), 5000); // Show message for 5 seconds
 
         if (auth.currentUser) {
           setCurrentUser({ ...auth.currentUser, ...userData });

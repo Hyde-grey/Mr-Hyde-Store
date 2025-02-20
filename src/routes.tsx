@@ -14,41 +14,88 @@ const NavigationBar = lazy(
   () => import("./components/navigationBar/NavigationBar")
 );
 
+// Wrapper component to handle loading state with delay
+const DelayedSuspense = ({ children }: { children: React.ReactNode }) => {
+  return <Suspense fallback={<Loading />}>{children}</Suspense>;
+};
+
 const RoutesConfig = () => {
   const location = useLocation();
 
   return (
     <AnimatePresence mode="wait">
-      <Suspense fallback={<Loading />}>
-        <Routes location={location} key={location.pathname}>
-          <Route path="/" element={<NavigationBar />}>
-            <Route index element={<Home />} />
-            <Route path="/authentication" element={<AuthPage />} />
-            <Route path="/account" element={<AccountPage />} />
-            <Route path="/shop" element={<Shop />} />
-            <Route path="/favorites" element={<Favorites />} />
-            <Route path="/cart" element={<Cart />} />
-            {/* Add error boundary for collection routes */}
-            <Route path="/collections">
-              <Route
-                path="chrome-heart"
-                element={<div>Chrome Heart Collection</div>}
-              />
-              <Route
-                path="darker-than-black"
-                element={<div>Darker Than Black Collection</div>}
-              />
-              <Route
-                path="faithless"
-                element={<div>Faithless Collection</div>}
-              />
-            </Route>
-            <Route path="/contact" element={<div>Contact Page</div>} />
-            {/* Add a catch-all route for 404 */}
-            <Route path="*" element={<div>Page Not Found</div>} />
+      <Routes location={location} key={location.pathname}>
+        <Route
+          path="/"
+          element={
+            <DelayedSuspense>
+              <NavigationBar />
+            </DelayedSuspense>
+          }
+        >
+          <Route
+            index
+            element={
+              <DelayedSuspense>
+                <Home />
+              </DelayedSuspense>
+            }
+          />
+          <Route
+            path="/authentication"
+            element={
+              <DelayedSuspense>
+                <AuthPage />
+              </DelayedSuspense>
+            }
+          />
+          <Route
+            path="/account"
+            element={
+              <DelayedSuspense>
+                <AccountPage />
+              </DelayedSuspense>
+            }
+          />
+          <Route
+            path="/shop"
+            element={
+              <DelayedSuspense>
+                <Shop />
+              </DelayedSuspense>
+            }
+          />
+          <Route
+            path="/favorites"
+            element={
+              <DelayedSuspense>
+                <Favorites />
+              </DelayedSuspense>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <DelayedSuspense>
+                <Cart />
+              </DelayedSuspense>
+            }
+          />
+          <Route path="/collections">
+            <Route
+              path="chrome-heart"
+              element={<div>Chrome Heart Collection</div>}
+            />
+            <Route
+              path="darker-than-black"
+              element={<div>Darker Than Black Collection</div>}
+            />
+            <Route path="faithless" element={<div>Faithless Collection</div>} />
           </Route>
-        </Routes>
-      </Suspense>
+          <Route path="/contact" element={<div>Contact Page</div>} />
+          <Route path="*" element={<div>Page Not Found</div>} />
+        </Route>
+      </Routes>
     </AnimatePresence>
   );
 };

@@ -140,6 +140,10 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
   };
 
   const updateQuantity = (productId: number, quantity: number) => {
+    if (quantity <= 0) {
+      removeFromCart(productId);
+      return;
+    }
     const updatedCart = cart.map((item) =>
       item.product.id === productId ? { ...item, quantity } : item
     );
