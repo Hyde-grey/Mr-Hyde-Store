@@ -17,19 +17,21 @@ const MenuButton = () => {
       onClick={() => {
         burgerClickHandler();
       }}
-      className={classNames(styles.scrollProgress)}
+      className={classNames(styles.scrollProgress, {
+        [styles.menuOpen]: isMenuOpen,
+      })}
       style={{
         background: `conic-gradient(from 0deg, rgb(206, 206, 206) ${
           scrollOffset * 360
         }deg, rgba(255, 255, 255, 0.11) 0deg)`,
       }}
     >
-      <div className={classNames(styles.bottomNavContainer)}>
-        <div
-          className={classNames(styles.burgerContainer, {
-            [styles.burgerClicked]: isMenuOpen,
-          })}
-        >
+      <div
+        className={classNames(styles.bottomNavContainer, {
+          [styles.burgerClicked]: isMenuOpen,
+        })}
+      >
+        <div className={classNames(styles.burgerContainer)}>
           <div
             className={classNames(styles.burgerLines, styles.topLine, {
               [styles.topLineClicked]: isMenuOpen,

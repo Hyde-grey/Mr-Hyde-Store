@@ -12,14 +12,30 @@
   z-index: 9999;
 }
 
+.scrollProgress.menuOpen {
+  box-shadow:
+    8px 8px 12px #17171a,
+    -8px -8px 12px #25252a;
+}
+
+.scrollProgress.menuOpen:active {
+  box-shadow:
+    inset 4px 4px 8px #17171a,
+    inset -4px -4px 8px #25252a;
+}
+
 .bottomNavContainer {
   width: 40px;
   height: 40px;
-  background-color: #0d0d0d;
+  background: #0d0d0d;
   border-radius: 50%;
   display: grid;
   place-content: center;
-  transition: all ease 0.5s;
+  transition: all 0.3s ease;
+}
+
+.bottomNavContainer.burgerClicked {
+  background: linear-gradient(to bottom, #2e2e34 5%, #1e1e22);
 }
 
 .bottomNavBar {
@@ -45,8 +61,9 @@
 .burgerLines {
   width: 70%;
   height: 2px;
-  background-color: #bbb;
+  background-color: rgba(255, 255, 255, 0.8);
   position: absolute;
+  transition: all 0.3s ease;
 }
 
 .topLine {
@@ -83,7 +100,7 @@
 }
 
 .burgerClicked {
-  background-color: #0d0d0d;
+  background: none;
 }
 
 @media (min-width: 1024px) {
@@ -99,16 +116,24 @@
     place-items: center;
   }
 
+  .scrollProgress.menuOpen {
+    box-shadow:
+      4px 4px 8px #17171a,
+      -4px -4px 8px #25252a;
+  }
+
   .bottomNavContainer {
-    width: 25px;
-    height: 25px;
-    background-color: black;
-    border-radius: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: #0d0d0d;
+  }
+
+  .bottomNavContainer.burgerClicked {
+    background: linear-gradient(to bottom, #2e2e34 5%, #1e1e22);
   }
 
   .burgerContainer {
-    display: grid;
-    place-items: center;
     height: 18px;
     width: 18px;
     padding: 3px;
@@ -116,7 +141,7 @@
 
   .burgerLines {
     height: 2px;
-    background-color: rgb(146, 146, 146);
+    background-color: rgba(255, 255, 255, 0.8);
     border-radius: 2px;
     transition: all ease-in-out 0.5s;
     width: 80%;
