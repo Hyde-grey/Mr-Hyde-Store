@@ -11,6 +11,9 @@
 
 .bottomMenu {
   position: relative;
+  bottom: 15%;
+  left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: 500px;
   height: 60px;
@@ -31,6 +34,7 @@
 
 .bottomMenuBorder {
   position: absolute;
+  bottom: 15%;
   width: 100%;
   max-width: 500px;
   height: 60px;
