@@ -5,7 +5,7 @@ import { MdShoppingCartCheckout } from "react-icons/md";
 import { MdOutlineEditLocationAlt } from "react-icons/md";
 import classNames from "classnames";
 import styles from "./BottomMenu.module.css";
-import { ReactNode } from "react";
+import { ReactNode, useRef } from "react";
 
 type BottomMenuProps = {
   currentTab: string;
@@ -48,6 +48,9 @@ const MENU_ITEMS: MenuItem[] = [
 ];
 
 const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
+  const touchStartX = useRef<number>(0);
+  const menuRef = useRef<HTMLUListElement>(null);
+
   const getPositionClass = (position: number) => {
     const positionClasses = {
       1: styles.firstItemActive,
@@ -77,6 +80,58 @@ const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
     });
   };
 
+  const handleTouchStart = (e: React.TouchEvent) => {
+    touchStartX.current = e.touches[0].clientX;
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!menuRef.current) return;
+
+    const touchCurrentX = e.touches[0].clientX;
+    const diff = touchCurrentX - touchStartX.current;
+    const containerWidth = menuRef.current.offsetWidth;
+
+    // Calculate percentage moved
+    const percentMoved = (diff / containerWidth) * 100;
+
+    // Add resistance to the swipe
+    const resistance = Math.min(Math.abs(percentMoved) / 100, 1);
+    const currentPosition = getCurrentPosition();
+
+    // Prevent swiping if at the edges
+    if (currentPosition === 1 && diff > 0) return; // First item, prevent right swipe
+    if (currentPosition === 5 && diff < 0) return; // Last item, prevent left swipe
+
+    menuRef.current.style.transform = `translateX(${diff * resistance}px)`;
+  };
+
+  const handleTouchEnd = (e: React.TouchEvent) => {
+    if (!menuRef.current) return;
+
+    const touchEndX = e.changedTouches[0].clientX;
+    const diff = touchEndX - touchStartX.current;
+    const currentPosition = getCurrentPosition();
+
+    // Reset the inline style
+    menuRef.current.style.transform = "";
+
+    // If the swipe was long enough, switch tabs
+    if (Math.abs(diff) > 50) {
+      const sortedItems = MENU_ITEMS.sort((a, b) => a.position - b.position);
+      const currentIndex = sortedItems.findIndex(
+        (item) => item.id === currentTab
+      );
+
+      if (diff < 0 && currentPosition < 5) {
+        // Swipe left
+        handleTabChange(sortedItems[currentIndex + 1].id);
+      } else if (diff > 0 && currentPosition > 1) {
+        // Swipe right
+        handleTabChange(sortedItems[currentIndex - 1].id);
+      }
+    }
+  };
+
   return (
     <div className={styles.bottomMenuContainer}>
       <div
@@ -86,10 +141,14 @@ const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
         )}
       />
       <ul
+        ref={menuRef}
         className={classNames(
           styles.bottomMenu,
           getPositionClass(getCurrentPosition())
         )}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
       >
         {MENU_ITEMS.sort((a, b) => a.position - b.position).map((item) => (
           <li
