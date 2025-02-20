@@ -10,163 +10,124 @@
 }
 
 .bottomMenu {
-  position: fixed;
-  bottom: calc(5.6% + env(safe-area-inset-bottom));
-  left: 50%;
-  right: 50%;
-  z-index: 1000;
-  transition:
-    all 0.3s ease,
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateX(-50%);
-  width: 63%;
-  padding: 5px 10px;
+  position: relative;
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
+  margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
-  background-image: linear-gradient(to bottom, #2e2e34, #1e1e22);
+  padding: 0 1rem;
+  background: linear-gradient(to bottom, #2e2e34 5%, #1e1e22);
   border-radius: 15px;
+  box-shadow: 8px 8px 12px #17171a;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transform-origin: center;
   will-change: transform;
   touch-action: pan-x;
   pointer-events: auto;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-touch-callout: none;
-  -webkit-tap-highlight-color: transparent;
 }
 
 .bottomMenuBorder {
-  position: fixed;
-  bottom: calc(5.4% + env(safe-area-inset-bottom));
+  position: absolute;
+  width: 100%;
+  max-width: 500px;
+  height: 60px;
   left: 50%;
-  right: 50%;
-  z-index: 999;
-  transition:
-    all 0.3s ease,
-    transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateX(-50%);
-  width: 63.5%;
-  height: 47px;
-  padding: 5px 10px;
   border-radius: 15px;
   overflow: hidden;
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow: 8px 8px 12px #17171a;
-  will-change: transform;
   pointer-events: none;
+  z-index: -1;
 }
 
 .bottomMenuBorder::before,
 .bottomMenuBorder::after {
   content: "";
   position: absolute;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 0%,
-    rgba(255, 255, 255, 0.878) 40%,
-    rgba(255, 255, 255, 0.878) 60%,
-    rgba(255, 255, 255, 0) 100%
+  inset: -0.2rem;
+  background: conic-gradient(
+    from var(--angle),
+    #333333 0%,
+    transparent 20%,
+    transparent 80%,
+    #333333 100%
   );
+  animation: rotate var(--animation-speed) linear infinite;
+  z-index: -1;
 }
 
 .bottomMenuBorder::before {
-  top: -50%;
-  left: -80%;
-  filter: blur(5px);
-  animation: moveTopLine 15s ease-in-out infinite;
+  --angle: 0deg;
+  --animation-speed: 3s;
+  filter: blur(4px);
 }
 
 .bottomMenuBorder::after {
-  bottom: -50%;
-  right: -80%;
-  filter: blur(5px);
-  animation: moveBottomLine 15s ease-in-out infinite;
+  --angle: 90deg;
+  --animation-speed: 3s;
+  filter: blur(8px);
 }
 
-@keyframes moveTopLine {
-  0% {
-    left: -100%;
-  }
-  50% {
-    left: 100%;
-  }
-  100% {
-    left: -100%;
+@keyframes rotate {
+  to {
+    --angle: 360deg;
   }
 }
 
-@keyframes moveBottomLine {
-  0% {
-    right: -100%;
-  }
-  50% {
-    right: 100%;
-  }
-  100% {
-    right: -100%;
-  }
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
 }
 
 .firstItemActive {
-  transform: translateX(-14%);
+  transform: translateX(0%);
 }
 
 .secondItemActive {
-  transform: translateX(-32%);
+  transform: translateX(-20%);
 }
 
 .thirdItemActive {
-  transform: translateX(-50%);
+  transform: translateX(-40%);
 }
 
 .fourthItemActive {
-  transform: translateX(-68%);
+  transform: translateX(-60%);
 }
 
 .fifthItemActive {
-  transform: translateX(-87%);
+  transform: translateX(-80%);
 }
 
 .tab {
-  width: 35px;
-  height: 35px;
-  background-image: linear-gradient(145deg, #2e2e34, #1e1e22);
-  border-radius: 10px;
-  margin: 0 6px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 15px;
-  color: rgba(255, 255, 255, 0.7);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  transform-origin: center center;
-  box-shadow: 4px 4px 8px #17171a;
-  user-select: none;
-  -webkit-user-select: none;
-  -webkit-tap-highlight-color: transparent;
+  width: 100%;
+  height: 100%;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  z-index: 1;
 }
 
 .tab:active {
-  box-shadow:
-    inset 4px 4px 8px #17171a,
-    inset -4px -4px 8px #25252a;
   transform: scale(0.95);
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .activeTab {
-  transform: scale(1.3) translateY(-15px);
-  color: white;
-  background-image: linear-gradient(145deg, #1e1e22, #2e2e34);
-  box-shadow:
-    inset 4px 4px 8px #17171a,
-    inset -4px -4px 8px #25252a;
+  color: rgba(255, 255, 255, 1);
+  transform: scale(1.1);
+  transition: all 0.3s ease;
 }
 
 .secondaryTab {
-  transform: scale(1.1) translateY(-9px);
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(255, 255, 255, 0.7);
+  transform: scale(1.05);
 }

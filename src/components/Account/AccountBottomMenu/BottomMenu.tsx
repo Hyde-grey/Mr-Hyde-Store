@@ -99,14 +99,53 @@ const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
     if (Math.abs(diffX) > 10) {
       e.preventDefault();
     }
+
+    // Get current index and prevent swiping if at the edges
+    const currentIndex = MENU_ITEMS.findIndex((item) => item.id === currentTab);
+    if (
+      (currentIndex === 0 && diffX > 0) ||
+      (currentIndex === MENU_ITEMS.length - 1 && diffX < 0)
+    ) {
+      return;
+    }
+
+    // Apply transform to both menu and border
+    const transform = `translateX(${diffX}px)`;
+    menuRef.current.style.transform = transform;
+    if (menuRef.current.previousElementSibling) {
+      (menuRef.current.previousElementSibling as HTMLElement).style.transform =
+        transform;
+    }
   };
 
   const handleTouchEnd = (e: React.TouchEvent) => {
-    if (!isSwipingRef.current) return;
+    if (!isSwipingRef.current || !menuRef.current) return;
 
     const touchEndX = e.changedTouches[0].clientX;
     const diff = touchEndX - touchStartX.current;
     const currentIndex = MENU_ITEMS.findIndex((item) => item.id === currentTab);
+
+    // Reset transforms with transition
+    menuRef.current.style.transition = "transform 0.3s ease";
+    menuRef.current.style.transform = "";
+    if (menuRef.current.previousElementSibling) {
+      (menuRef.current.previousElementSibling as HTMLElement).style.transition =
+        "transform 0.3s ease";
+      (menuRef.current.previousElementSibling as HTMLElement).style.transform =
+        "";
+    }
+
+    // Reset transitions after animation
+    setTimeout(() => {
+      if (menuRef.current) {
+        menuRef.current.style.transition = "";
+        if (menuRef.current.previousElementSibling) {
+          (
+            menuRef.current.previousElementSibling as HTMLElement
+          ).style.transition = "";
+        }
+      }
+    }, 300);
 
     // Only switch tabs if swipe is significant enough
     if (Math.abs(diff) > 50) {
