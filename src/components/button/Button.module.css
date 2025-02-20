@@ -19,6 +19,9 @@
   align-items: center;
   border-radius: 20px;
   border: 1px solid #1f1f1f;
+  -webkit-appearance: none;
+  color: white;
+  -webkit-text-fill-color: white;
 }
 
 .buttonLayout p {
@@ -28,8 +31,11 @@
   margin: 0;
   padding: 5px 10px;
   line-height: 1.5;
+  color: white;
+  -webkit-text-fill-color: white;
 }
 
 .buttonLayout:hover {
   color: white;
+  -webkit-text-fill-color: white;
 }
