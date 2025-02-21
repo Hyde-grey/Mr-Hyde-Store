@@ -17,7 +17,7 @@ const MainCanvas = ({
   cameraPosition,
   cameraRotation,
 }: MainCanvasProps) => {
-  const { isMobile } = useScreenSize();
+  const { isTouch } = useScreenSize();
 
   return (
     <Canvas
@@ -29,9 +29,14 @@ const MainCanvas = ({
       <directionalLight position={[2, 1, 4]} intensity={2.6} />
       {/* @ts-expect-error mismatch library types */}
       <pointLight position={[1, 4, -2]} intensity={54} />
-      {!isMobile && <OrbitControls enableZoom={false} />}
+      {!isTouch && <OrbitControls enableZoom={false} />}
 
-      <ScrollControls pages={numberOfPages} damping={0.1}>
+      <ScrollControls
+        pages={numberOfPages}
+        damping={0.1}
+        // Ensure touch events work properly
+        eps={0.00001}
+      >
         <Stars />
         {/* TODO: Find a better way to implement scroll event listener as useFrame cannot be used outside of Canvas */}
         <ScrollUpdater />

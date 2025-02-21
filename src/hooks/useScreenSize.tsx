@@ -11,6 +11,7 @@ const useScreenSize = () => {
   const [isTablet, setIsTablet] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [isFullScreen, setIsFullScreen] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
 
   const updateScreenSize = () => {
     const width = window.innerWidth;
@@ -21,12 +22,27 @@ const useScreenSize = () => {
   };
 
   useEffect(() => {
+    // Check if device has touch capabilities
+    setIsTouchDevice(
+      "ontouchstart" in window ||
+        navigator.maxTouchPoints > 0 ||
+        (navigator as any).msMaxTouchPoints > 0
+    );
+
     updateScreenSize();
     window.addEventListener("resize", updateScreenSize);
     return () => window.removeEventListener("resize", updateScreenSize);
   }, []);
 
-  return { isMobile, isTablet, isDesktop, isFullScreen };
+  return {
+    isMobile,
+    isTablet,
+    isDesktop,
+    isFullScreen,
+    isTouchDevice,
+    // Helper for touch-enabled mobile/tablet devices
+    isTouch: isTouchDevice && (isMobile || isTablet),
+  };
 };
 
 export default useScreenSize;
