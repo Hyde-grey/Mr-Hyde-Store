@@ -4,7 +4,6 @@ import { useFrame } from "@react-three/fiber";
 
 import ShopCollectionSection from "../../components/shopCollectionSection/shopCollectionsection";
 import { Collection } from "../../hooks/useGetCollections";
-import useScreenSize from "../../hooks/useScreenSize";
 import { useDynamicFontSize } from "../../hooks/useDynamicFontSize";
 
 import styles from "./favorites.module.css";
@@ -21,7 +20,6 @@ const FavoritesHtmlLayout = memo(
     setFavorites: (favorites: number[]) => void;
   }) => {
     const scroll = useScroll();
-    const { isMobile } = useScreenSize();
     const { fontSize, hasInitialized, updateFontSize } = useDynamicFontSize();
     const { addToCart } = useContext(CartContext);
 

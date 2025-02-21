@@ -16,13 +16,16 @@
 }
 
 .title {
-  transition: font-size 0.1s ease-out;
+  font-family: "Zaslia";
+  user-select: none;
 }
 
-.titleMobile {
-  font-size: 3rem;
-}
-
-.titleDesktop {
+.title h1 {
   font-size: 10rem;
+}
+
+@media (max-width: 768px) {
+  .title h1 {
+    font-size: 3rem;
+  }
 }
