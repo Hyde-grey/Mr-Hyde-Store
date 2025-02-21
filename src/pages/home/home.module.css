@@ -16,19 +16,20 @@
   position: relative;
 }
 
-h1 {
+.hero h1 {
   font-family: "Zaslia";
+  color: white;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
   font-size: 10rem;
-  user-select: none;
-  margin-bottom: 2rem;
 }
 
 /* Mobile only (max-width: 767px) */
 @media only screen and (max-width: 767px) {
   /* styles for mobile devices */
-  h1 {
-    font-size: 3em;
-    margin-bottom: 1.5rem;
+  .hero h1 {
+    font-size: 3rem;
   }
 
   .container {

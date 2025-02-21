@@ -1,21 +1,34 @@
 /* Layout */
 .cartContainer {
   width: 100vw;
-  min-height: 150vh;
-  padding: 1rem;
+  min-height: 100vh;
   color: white;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: linear-gradient(to top, #1e1e22 50%, transparent);
 }
 
 .cartHero {
-  width: 100vw;
+  width: 100%;
   height: 100vh;
   display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: "Zaslia";
+  color: white;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 10rem;
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 3rem;
+  }
 }
 
 .cartContent {
@@ -24,8 +37,8 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin: 2rem auto;
-  padding: 0 1rem 2rem;
+  margin: 0 auto;
+  padding: 4rem 1rem;
 }
 
 /* Cart Items */
@@ -187,7 +200,7 @@
   box-shadow:
     4px 4px 8px #17171a,
     -4px -4px 8px #25252a;
-  -webkit-appearance: none;
+
   -webkit-text-fill-color: white;
 }
 
@@ -209,7 +222,7 @@
   box-shadow:
     4px 4px 8px #17171a,
     -4px -4px 8px #25252a;
-  -webkit-appearance: none;
+
   -webkit-text-fill-color: rgb(184, 35, 35);
 }
 
@@ -291,7 +304,7 @@
   font-size: 1.1rem;
   letter-spacing: 0.5px;
   padding: 0.5rem;
-  -webkit-appearance: none;
+
   -webkit-text-fill-color: white;
 }
 

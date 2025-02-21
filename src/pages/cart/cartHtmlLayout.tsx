@@ -1,12 +1,11 @@
-import { memo } from "react";
+import { memo, useState, useEffect } from "react";
 import { Scroll, useScroll } from "@react-three/drei";
+import { useFrame } from "@react-three/fiber";
 import { Product } from "../../hooks/useGetCollections";
 import StartBorder from "../../components/button/StartBorder";
 import buttonStyles from "../../components/button/Button.module.css";
 import styles from "./cart.module.css";
 import useScreenSize from "../../hooks/useScreenSize";
-import { useFrame } from "@react-three/fiber";
-import { useState } from "react";
 
 type CartItem = {
   product: Product;
@@ -31,17 +30,21 @@ const CartHtmlLayout = memo(
     total,
   }: CartHtmlLayoutProps) => {
     const { isMobile } = useScreenSize();
-    const [fontSize, setFontSize] = useState(0);
     const scroll = useScroll();
+    const [fontSize, setFontSize] = useState(isMobile ? 3 : 10);
+
+    useEffect(() => {
+      if (isMobile) {
+        setFontSize(3);
+      } else {
+        setFontSize(10);
+      }
+    }, [isMobile]);
 
     useFrame(() => {
-      if (isMobile) {
-        const scrollY = scroll.offset;
-        setFontSize(3 - scrollY * 8);
-      } else {
-        const scrollY = scroll.offset;
-        setFontSize(10 - scrollY * 19);
-      }
+      const baseSize = isMobile ? 3 : 10;
+      const scrollMultiplier = isMobile ? 10 : 55;
+      setFontSize(Math.max(baseSize - scroll.offset * scrollMultiplier, 1));
     });
 
     const handleSizeChange = (
@@ -53,14 +56,16 @@ const CartHtmlLayout = memo(
 
     return (
       <Scroll html>
-        <div className={styles.cartHero}>
-          <h1 style={{ fontSize: `${fontSize}rem` }}>Shopping Cart</h1>
-        </div>
         <div className={styles.cartContainer}>
+          <div className={styles.cartHero}>
+            <h1 className={styles.title} style={{ fontSize: `${fontSize}rem` }}>
+              Your Cart
+            </h1>
+          </div>
           {cartItems.length === 0 ? (
             <div className={styles.emptyState}>
               <h2>Your cart is empty</h2>
-              <p>Add items to your cart to see them here</p>
+              <p>Add some items to your cart to get started!</p>
             </div>
           ) : (
             <div className={styles.cartContent}>

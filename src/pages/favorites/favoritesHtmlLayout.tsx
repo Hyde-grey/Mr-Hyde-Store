@@ -1,13 +1,11 @@
-import { memo, useContext } from "react";
+import { memo, useContext, useState } from "react";
 import { Scroll, useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
-
 import ShopCollectionSection from "../../components/shopCollectionSection/shopCollectionsection";
 import { Collection } from "../../hooks/useGetCollections";
-import { useDynamicFontSize } from "../../hooks/useDynamicFontSize";
-
 import styles from "./favorites.module.css";
 import { CartContext } from "../../contexts/CartContext";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const FavoritesHtmlLayout = memo(
   ({
@@ -19,25 +17,22 @@ const FavoritesHtmlLayout = memo(
     favorites: number[];
     setFavorites: (favorites: number[]) => void;
   }) => {
+    const { isMobile } = useScreenSize();
     const scroll = useScroll();
-    const { fontSize, hasInitialized, updateFontSize } = useDynamicFontSize();
+    const [fontSize, setFontSize] = useState(isMobile ? 3 : 10);
     const { addToCart } = useContext(CartContext);
 
     useFrame(() => {
-      const scrollY = scroll.offset;
-      updateFontSize(scrollY);
+      const baseSize = isMobile ? 3 : 10;
+      const scrollMultiplier = isMobile ? 10 : 55;
+      setFontSize(baseSize - scroll.offset * scrollMultiplier);
     });
 
     return (
       <Scroll html>
         <div className={styles.favoritesContainer}>
           <div className={styles.favoritesHero}>
-            <h1
-              className={styles.title}
-              style={
-                hasInitialized ? { fontSize: `${fontSize}rem` } : undefined
-              }
-            >
+            <h1 className={styles.title} style={{ fontSize: `${fontSize}rem` }}>
               My Favorites
             </h1>
           </div>
