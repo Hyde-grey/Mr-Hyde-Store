@@ -38,7 +38,6 @@
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   padding: 0;
   background-image: linear-gradient(to bottom, #2e2e34 5%, #1e1e22);
   color: rgb(255, 255, 255);
@@ -47,6 +46,17 @@
   border-radius: 31px;
   transition: all 0.5s ease-in;
   z-index: 999;
+}
+
+.menuContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.logoutContainer {
+  margin-top: auto;
+  padding-top: 20px;
 }
 
 .menuLogo {
@@ -78,86 +88,99 @@
 }
 
 .menuContainer ul {
+  width: 100%;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.menuContainer ul li span {
-  font-size: 0.8rem;
-}
-
 .menuContainer ul li {
-  padding: 10px 0;
+  position: relative;
   display: flex;
   align-items: center;
-
+  padding: 10px 15px;
+  margin: 5px 0;
   cursor: pointer;
-  transition: all ease 0.5s;
-}
-
-.menuContainer ul a li svg {
-  margin-right: 10px;
-}
-
-.menuContainer ul a {
-  color: rgba(255, 255, 255, 0.628);
-  text-decoration: none;
-}
-
-/* .menuContainer ul li:hover {
-  transform: translateY(-5px);
-} */
-
-.collectionMenu {
-  opacity: 0;
-  transition:
-    height 1s ease,
-    opacity 1s ease,
-    padding 1s ease;
-  font-size: 0.8rem;
-  font-weight: 400;
-  padding-left: 20px;
-}
-
-.collectionDisplay {
-  opacity: 1;
-  min-height: fit-content;
-}
-
-.iconsContainer {
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
-  border-radius: 50%;
-  background: transparent;
-  box-shadow:
-    8px 8px 12px #17171a,
-    -8px -8px 12px #25252a;
-  position: relative;
+  border-radius: 10px;
+  color: rgba(255, 255, 255, 0.7);
+  background: linear-gradient(145deg, #2e2e34, #1e1e22);
   transition: all 0.3s ease;
+  box-shadow: 4px 4px 8px #17171a;
 }
 
-.iconsContainer:active {
+.menuContainer ul li::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 15px;
+  transform: translateY(-50%);
+  width: 8px;
+  height: 8px;
+  background: #2a2a2e;
+  border-radius: 2px;
+  transition: all 0.3s ease;
+  box-shadow:
+    inset 2px 2px 4px #17171a,
+    inset -2px -2px 4px #25252a;
+}
+
+.menuContainer ul li:hover {
+  color: white;
+  transform: translateX(5px);
+}
+
+.menuContainer ul li:active {
+  box-shadow:
+    inset 4px 4px 8px #17171a,
+    inset -4px -4px 8px #25252a;
+  transform: scale(0.98) translateX(5px);
+}
+
+.menuContainer ul li.active {
+  color: white;
+  transform: translateX(5px);
   box-shadow:
     inset 4px 4px 8px #17171a,
     inset -4px -4px 8px #25252a;
 }
 
-.iconsContainerActive {
-  display: none;
+/* Main menu items - green lights when active */
+.menuContent ul li.active::after {
+  background: #4caf50;
+  box-shadow: 0 0 10px #4caf50;
+}
+
+/* Logout container - red light when active */
+.logoutContainer ul li::after {
+  background: #2a2a2e;
+}
+
+.logoutContainer ul li:hover::after,
+.logoutContainer ul li.active::after {
+  background: rgb(211, 66, 66);
+  box-shadow: 0 0 10px rgb(211, 66, 66);
+}
+
+.menuContainer ul li span {
+  font-size: 0.9rem;
+  margin-left: 15px;
 }
 
 .icons {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  font-size: 1.2rem;
+  color: rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
 }
 
 .logout {
-  color: rgb(184, 35, 35);
+  color: rgb(211, 66, 66);
+}
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
 }
 
 @media (min-width: 1024px) {

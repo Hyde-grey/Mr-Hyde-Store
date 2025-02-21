@@ -9,8 +9,7 @@ import { AiOutlinePlusCircle } from "react-icons/ai";
 import styles from "./styles.module.css";
 
 import { useLogout } from "../../hooks/useLogOut";
-
-import { Link, useLocation } from "react-router-dom"; // Import useLocation
+import { Link, useLocation } from "react-router-dom";
 import { RiAccountCircle2Fill } from "react-icons/ri";
 import { useContext, useEffect } from "react";
 import { UserContext } from "../../contexts/UserContext";
@@ -20,9 +19,8 @@ const Menu = () => {
   const { isMenuOpen, setIsMenuOpen } = useMenuContext();
   const { logout, error } = useLogout();
   const { currentUser } = useContext(UserContext);
-  const location = useLocation(); // Use useLocation hook
+  const location = useLocation();
 
-  // Close menu on path change
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
@@ -35,101 +33,79 @@ const Menu = () => {
     e.stopPropagation();
   };
 
+  const menuItems = [
+    { path: "/", icon: HiHome, label: "Home" },
+    { path: "/shop", icon: AiOutlinePlusCircle, label: "Shop" },
+    {
+      path: currentUser ? "/account" : "/authentication",
+      icon: currentUser ? MdAccountCircle : RiAccountCircle2Fill,
+      label: currentUser ? "Account" : "Login | Register",
+      requiresAuth: false,
+    },
+    {
+      path: "/favorites",
+      icon: MdFavorite,
+      label: "Favorites",
+      requiresAuth: true,
+    },
+    { path: "/cart", icon: FaShoppingCart, label: "Cart" },
+  ];
+
   return (
     <>
       <div
         className={classNames(styles.overlay, {
           [styles.overlayIsOpened]: isMenuOpen,
         })}
+        onClick={overlayClickHandler}
       >
-        <button
-          onClick={overlayClickHandler}
-          className={classNames(styles.overlayButton)}
-          aria-label="Close Menu"
-        >
-          {/* Hidden button for accessibility */}
-        </button>
+        <button className={styles.overlayButton} aria-label="Close Menu" />
         <div
           onClick={menuClickHandler}
           className={classNames(styles.menuContainer, {
             [styles.menuIsOpened]: isMenuOpen,
           })}
         >
-          <div className={classNames(styles.menuLogo)}>
-            <span>Mr. Hyde Store</span>
+          <div className={styles.menuContent}>
+            <div className={styles.menuLogo}>
+              <span>Mr. Hyde Store</span>
+            </div>
+            <div className={styles.divider} />
+            <ul>
+              {menuItems.map(
+                (item) =>
+                  (!item.requiresAuth || currentUser) && (
+                    <Link
+                      key={item.path}
+                      to={item.path}
+                      className={styles.navLink}
+                    >
+                      <li
+                        className={classNames({
+                          [styles.active]: location.pathname === item.path,
+                        })}
+                      >
+                        <item.icon className={styles.icons} />
+                        <span>{item.label}</span>
+                      </li>
+                    </Link>
+                  )
+              )}
+            </ul>
           </div>
-          <div className={styles.divider}></div>
-          <ul>
-            <Link to="/" className={styles.navLink}>
-              <li>
-                <div className={classNames(styles.iconsContainer)}>
-                  <HiHome className={classNames(styles.icons)} />
-                </div>
-                <span>Home</span>
-              </li>
-            </Link>
-            {currentUser ? (
-              <Link to="/account" className={styles.navLink}>
-                <li>
-                  <div className={classNames(styles.iconsContainer)}>
-                    <MdAccountCircle className={classNames(styles.icons)} />
-                  </div>
-                  <span>Account</span>
-                </li>
-              </Link>
-            ) : (
-              <Link to="/authentication" className={styles.navLink}>
-                <li>
-                  <div className={classNames(styles.iconsContainer)}>
-                    <RiAccountCircle2Fill
-                      className={classNames(styles.icons)}
-                    />
-                  </div>
-                  <span>Login | Register</span>
-                  <div className={classNames(styles.linkBorder)}></div>
-                </li>
-              </Link>
-            )}
-            {currentUser ? (
-              <Link to="/favorites" className={styles.navLink}>
-                <li>
-                  <div className={classNames(styles.iconsContainer)}>
-                    <MdFavorite className={classNames(styles.icons)} />
-                  </div>
-                  <span>Favorites</span>
-                </li>
-              </Link>
-            ) : null}
-            <Link to="/cart" className={styles.navLink}>
-              <li>
-                <div className={classNames(styles.iconsContainer)}>
-                  <FaShoppingCart className={classNames(styles.icons)} />
-                </div>
-                <span>Cart</span>
-              </li>
-            </Link>
-            <Link to="/shop" className={styles.navLink}>
-              <li>
-                <div className={classNames(styles.iconsContainer)}>
-                  <AiOutlinePlusCircle className={classNames(styles.icons)} />
-                </div>
-                <span>Shop</span>
-              </li>
-            </Link>
-          </ul>
-          <ul>
-            {currentUser ? (
-              <li onClick={logout}>
-                <div className={classNames(styles.iconsContainer)}>
+          {currentUser && (
+            <div className={styles.logoutContainer}>
+              <ul>
+                <li onClick={logout} className={classNames(styles.navLink)}>
                   <FiLogOut
                     className={classNames(styles.icons, styles.logout)}
                   />
-                </div>
-                <span>Logout</span>
-              </li>
-            ) : null}
-            {error && <p>{error}</p>}
-          </ul>
+                  <span>Logout</span>
+                </li>
+              </ul>
+            </div>
+          )}
+          {error && <p className={styles.error}>{error}</p>}
         </div>
       </div>
     </>
