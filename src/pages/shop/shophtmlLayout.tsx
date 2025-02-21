@@ -4,9 +4,9 @@ import classNames from "classnames";
 import ShopCollectionSection from "../../components/shopCollectionSection/shopCollectionsection";
 import { Collection, Product } from "../../hooks/useGetCollections";
 import useScreenSize from "../../hooks/useScreenSize";
+import { useDynamicFontSize } from "../../hooks/useDynamicFontSize";
 
 import styles from "./shop.module.css";
-import { useState, useRef } from "react";
 import { memo } from "react";
 
 const ShopHtmlLayout = memo(
@@ -23,14 +23,11 @@ const ShopHtmlLayout = memo(
   }) => {
     const scroll = useScroll();
     const { isMobile } = useScreenSize();
-    const [fontSize, setFontSize] = useState<number | null>(null);
-    const hasRendered = useRef(false);
+    const { fontSize, hasInitialized, updateFontSize } = useDynamicFontSize();
 
     useFrame(() => {
       const scrollY = scroll.offset;
-      const newSize = isMobile ? 3 - scrollY * 10 : 10 - scrollY * 55;
-      setFontSize(newSize);
-      hasRendered.current = true;
+      updateFontSize(scrollY);
     });
 
     return (
@@ -43,7 +40,7 @@ const ShopHtmlLayout = memo(
                 [styles.titleDesktop]: !isMobile,
               })}
               style={
-                hasRendered.current ? { fontSize: `${fontSize}rem` } : undefined
+                hasInitialized ? { fontSize: `${fontSize}rem` } : undefined
               }
             >
               Collections
