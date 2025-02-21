@@ -43,8 +43,8 @@ const CartHtmlLayout = memo(
 
     useFrame(() => {
       const baseSize = isMobile ? 3 : 10;
-      const scrollMultiplier = isMobile ? 10 : 55;
-      setFontSize(Math.max(baseSize - scroll.offset * scrollMultiplier, 1));
+      const scrollMultiplier = isMobile ? 10 : 19;
+      setFontSize(baseSize - scroll.offset * scrollMultiplier);
     });
 
     const handleSizeChange = (
@@ -59,7 +59,7 @@ const CartHtmlLayout = memo(
         <div className={styles.cartContainer}>
           <div className={styles.cartHero}>
             <h1 className={styles.title} style={{ fontSize: `${fontSize}rem` }}>
-              Your Cart
+              Shopping Cart
             </h1>
           </div>
           {cartItems.length === 0 ? (
