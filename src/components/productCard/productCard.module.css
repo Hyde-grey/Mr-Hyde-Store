@@ -127,12 +127,12 @@
 
 @media (max-width: 768px) {
   .productsContainer {
-    gap: 1.5rem;
+    gap: 1rem;
   }
 
   .productCardContainer {
     width: 43%;
-    height: 300px;
+
     padding: 0.5rem;
     border: none;
     background: linear-gradient(
@@ -148,6 +148,16 @@
     margin-top: 0;
   }
 
+  .favoriteButton {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .productCardContainer {
+    width: 45%;
+    height: 320px;
+  }
   .productCardInfo h3 {
     font-size: 0.7rem;
   }
@@ -173,8 +183,5 @@
   .productCardInfo input {
     width: 30px;
     height: 20px;
-  }
-  .favoriteButton {
-    font-size: 1rem;
   }
 }

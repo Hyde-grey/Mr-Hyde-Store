@@ -16,6 +16,7 @@
   font-weight: 600;
   margin-bottom: 1rem;
   width: fit-content;
+  margin-left: 10px;
 }
 
 .collectionDivider {
@@ -35,6 +36,14 @@
   gap: 2rem;
 }
 
+@media (max-width: 440px) {
+  .productsContainer {
+    width: 100%;
+    grid-template-columns: repeat(2, 50%);
+    justify-content: center;
+  }
+}
+
 @media (max-width: 768px) {
   .productsContainer {
     width: 100%;
@@ -44,5 +53,16 @@
   .collectionSection {
     height: auto;
     width: 100%;
+  }
+  .collectionTitle h2 {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .productsContainer {
+    width: 90%;
+    grid-template-columns: repeat(2, 50%);
+    justify-content: center;
   }
 }
