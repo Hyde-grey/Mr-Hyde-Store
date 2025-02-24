@@ -121,8 +121,6 @@ const BottomMenu = ({ currentTab, handleTabChange }: BottomMenuProps) => {
 
     // Only handle horizontal swipes
     if (swipeDirectionRef.current === "horizontal") {
-      e.preventDefault(); // Prevent scrolling
-
       const currentIndex = MENU_ITEMS.findIndex(
         (item) => item.id === currentTab
       );

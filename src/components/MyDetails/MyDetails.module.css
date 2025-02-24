@@ -10,8 +10,9 @@
 
 .personalInfoForm {
   width: 100%;
-  max-width: 400px;
-  padding: 1rem;
+  max-width: 25rem;
+  margin: 0 auto;
+  padding: 0.5rem;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -20,10 +21,10 @@
 
 .formInputContainer {
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 1.5rem;
-  position: relative;
+  display: grid;
+  grid-template-rows: 1fr auto;
+  gap: 1rem;
+  min-height: 14.5rem;
 }
 
 .inputContainer {
@@ -88,20 +89,14 @@
   }
 }
 
-@media (min-width: 768px) {
-  .personalInfoForm {
-    padding: 2rem;
-  }
-
-  .inputContainer input {
-    font-size: 1rem;
-  }
-}
-
 @media (max-width: 768px) {
   .personalInfoContainer {
-    width: 80%;
+    width: 100%;
     height: 100%;
+  }
+
+  .personalInfoForm {
+    padding: 0;
   }
 
   .personalInfoForm p {
@@ -109,7 +104,7 @@
   }
 
   .personalInfoForm h2 {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
   }
 
   .message {

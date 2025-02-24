@@ -1,31 +1,33 @@
 .accountMobile {
-  position: relative;
-  height: 100vh;
   width: 100vw;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column;
+  justify-content: flex-start;
   align-items: center;
-  justify-content: center;
+  background: linear-gradient(to top, #1e1e22 50%, transparent);
+  position: relative;
+  overflow: hidden;
   padding: 1rem;
-  background: linear-gradient(to top, #1e1e22 5%, transparent);
 }
 
 .accountMobileContent {
+  width: 90%;
+  margin: 0 auto;
+  padding: 1.5rem;
+  border-radius: 15px;
+  background: linear-gradient(
+    145deg,
+    rgba(30, 30, 34, 0.25),
+    rgba(20, 20, 24, 0.35)
+  );
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  margin: 0 auto;
-  height: 80%;
-  width: 90%;
-  max-width: 500px;
-  background-image: linear-gradient(to bottom, #2e2e34, #1e1e22);
-  backdrop-filter: blur(3px);
-  border-radius: 15px;
-  box-shadow: 8px 8px 12px #17171a;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 2rem 1rem;
-  overflow-y: auto;
+  gap: 2rem;
+  position: relative;
+  z-index: 1;
   margin-bottom: 5rem;
 }
 
@@ -53,12 +55,6 @@
 
 @media (min-width: 768px) {
   .accountMobile {
-    padding: 2rem;
-  }
-
-  .accountMobileContent {
-    width: 80%;
-    max-width: 800px;
-    padding: 3rem 2rem;
+    display: none;
   }
 }
