@@ -1,38 +1,31 @@
-import classNames from "classnames";
+import { FormEvent, ReactNode } from "react";
 import styles from "./FormLayout.module.css";
-import React from "react";
 
 type FormLayoutProps = {
   title: string;
   text: string;
-  children: React.ReactNode;
-  formSubmitHandler: (event: React.FormEvent<HTMLFormElement>) => void;
-  ActionButton: React.ReactNode;
+  formSubmitHandler: (event: FormEvent<HTMLFormElement>) => void;
+  children: ReactNode;
+  ActionButton: ReactNode;
 };
 
 const FormLayout = ({
   title,
   text,
-  children,
   formSubmitHandler,
+  children,
   ActionButton,
 }: FormLayoutProps) => {
   return (
-    <div className={classNames(styles.formContainer)}>
-      <div className={classNames(styles.formTitleContainer)}>
+    <div className={styles.formContainer}>
+      <div className={styles.formTitleContainer}>
         <h2>{title}</h2>
         <p>{text}</p>
       </div>
-      <div className={classNames(styles.formDivider)}></div>
-      <form
-        className={classNames(styles.formField)}
-        onSubmit={formSubmitHandler}
-      >
-        <div className={classNames(styles.formInputContainer)}>
-          <div className={classNames(styles.inputContainer)}>{children}</div>
-
-          <div className={styles.buttonContainer}>{ActionButton}</div>
-        </div>
+      <div className={styles.formDivider} />
+      <form onSubmit={formSubmitHandler}>
+        {children}
+        <div className={styles.buttonContainer}>{ActionButton}</div>
       </form>
     </div>
   );

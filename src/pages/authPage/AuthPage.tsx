@@ -11,8 +11,9 @@ import { useContext, useState, useRef, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { KeyRotationContext } from "../../contexts/KeyRotationContext.tsx";
 import useWindowSize from "../../hooks/useScreenSize.tsx";
-
+import { UserContext } from "../../contexts/UserContext.tsx";
 const AuthPage = () => {
+  const { currentUser } = useContext(UserContext)!;
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("login");
   const { isMobile } = useWindowSize();
@@ -127,7 +128,11 @@ const AuthPage = () => {
     <MainCanvas numberOfPages={1}>
       <KeyModel position={isMobile ? [0, 0, 0] : [0.6, 0, 0]} />
       <Scroll html>
-        <div className={styles.authPageContainer}>
+        <div
+          className={classNames(styles.authPageContainer, {
+            [styles.authPageContainerSlideOut]: currentUser,
+          })}
+        >
           <div className={styles.formWrapper}>
             <div className={styles.authComponentContainer}>
               <div
