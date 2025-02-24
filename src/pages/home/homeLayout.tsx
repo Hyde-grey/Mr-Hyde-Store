@@ -4,10 +4,9 @@ import { useFrame } from "@react-three/fiber";
 import Section from "../../components/section/Section";
 import useScreenSize from "../../hooks/useScreenSize";
 import { Collection } from "../../hooks/useGetCollections";
-import { BsChevronDown } from "react-icons/bs";
 import styles from "./home.module.css";
-import stylesScroll from "../../components/ScrollIndicator/ScrollIndicator.module.css";
 import { useState } from "react";
+import ScrollIndicator from "../../components/ScrollIndicator/ScrollIndicator";
 
 const HomeLayout = ({ collections }: { collections: Collection[] }) => {
   const { isMobile } = useScreenSize();
@@ -24,14 +23,7 @@ const HomeLayout = ({ collections }: { collections: Collection[] }) => {
     <Scroll style={{ width: "100%" }} html>
       <div className={styles.hero}>
         <h1 style={{ fontSize: `${fontSize}rem` }}>Mr. Hyde Store</h1>
-        <div className={stylesScroll.scrollIndicatorContainer}>
-          <div className={stylesScroll.indicator}>
-            <p className={stylesScroll.text}>
-              {isMobile ? "Swipe up to explore" : "Scroll down to explore"}
-            </p>
-            <BsChevronDown className={stylesScroll.arrow} />
-          </div>
-        </div>
+        <ScrollIndicator />
       </div>
       <div className={styles.container}>
         {collections.map(({ imageUrl, name, description }, index) => (
