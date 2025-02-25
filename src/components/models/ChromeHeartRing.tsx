@@ -11,6 +11,7 @@ import { useFrame } from "@react-three/fiber";
 
 type GLTFResult = GLTF & {
   nodes: {
+    Ring: THREE.Mesh;
     _gltfNode_0: THREE.Mesh;
     _gltfNode_1: THREE.Mesh;
     _gltfNode_10: THREE.Mesh;
@@ -25,6 +26,7 @@ type GLTFResult = GLTF & {
     _gltfNode_9: THREE.Mesh;
   };
   materials: {
+    Ring: THREE.MeshStandardMaterial;
     ["Material.001"]: THREE.MeshStandardMaterial;
     ["Material.003"]: THREE.MeshStandardMaterial;
     ["Material.009"]: THREE.MeshStandardMaterial;
