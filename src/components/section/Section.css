@@ -67,7 +67,10 @@
 
 .card p {
   font-size: 1rem;
-  margin-bottom: 1.5rem;
+}
+
+.card-description {
+  margin-bottom: 2.5rem;
 }
 
 /* Mobile only (max-width: 767px) */
