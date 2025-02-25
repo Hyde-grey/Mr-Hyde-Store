@@ -12,8 +12,8 @@
   "dependencies": {
     "@firebase/util": "^1.9.3",
     "@react-icons/all-files": "^4.1.0",
-    "@react-three/drei": "^9.88.7",
-    "@react-three/fiber": "^8.13.5",
+    "@react-three/drei": "^9.99.5",
+    "@react-three/fiber": "^8.15.16",
     "@react-three/postprocessing": "^2.15.1",
     "@types/history": "^4.7.11",
     "babel-runtime": "^5.3.3",
