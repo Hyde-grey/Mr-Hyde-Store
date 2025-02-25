@@ -7,7 +7,7 @@ import BackfaceMaterial from "./BackfaceMaterial";
 import RefractionMaterial from "./RefractionMaterial";
 import { useScroll } from "@react-three/drei";
 
-export default function Diamond({ position }) {
+export default function Diamond({ position, scale }) {
   const { nodes } = useLoader(GLTFLoader, "/DiamondModel/diamond.glb") as any;
 
   useLayoutEffect(() => {
@@ -40,7 +40,7 @@ export default function Diamond({ position }) {
 
   // Adjust the camera position and look-at direction
   useLayoutEffect(() => {
-    camera.position.set(15, 10, 105);
+    camera.position.set(50, 15, 105);
     camera.lookAt(0, 0, 0);
 
     gl.autoClear = false;
@@ -90,7 +90,7 @@ export default function Diamond({ position }) {
       ref={ref}
       geometry={nodes.pCone1_lambert1_0.geometry}
       position={position} // Use the position prop
-      scale={1}
+      scale={scale}
     />
   );
 }

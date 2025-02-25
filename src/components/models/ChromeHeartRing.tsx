@@ -51,7 +51,7 @@ export function ChromeHeartRingModel(props: JSX.IntrinsicElements["group"]) {
   useFrame(() => {
     if (ref.current) {
       ref.current.rotation.y += 0.001;
-      ref.current.rotation.x = initialRotation.x + scroll.offset * Math.PI * 4;
+      ref.current.rotation.x = initialRotation.x + scroll.offset * Math.PI * 1;
     }
   });
 
@@ -62,10 +62,12 @@ export function ChromeHeartRingModel(props: JSX.IntrinsicElements["group"]) {
       {...props}
       dispose={null}
       ref={ref}
-      scale={0.18}
-      position={[0, 0, -7]}
+      scale={props.scale}
+      position={props.position}
     >
       <group
+        scale={0.13}
+        position={[0, 0, 0]}
         rotation={[initialRotation.x, initialRotation.y, initialRotation.z]}
       >
         <mesh

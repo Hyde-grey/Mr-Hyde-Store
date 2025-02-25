@@ -50,11 +50,19 @@ const Spiral: React.FC<SpiralProps> = ({
     // @ts-expect-error mismatch between types
     <group ref={groupRef}>
       {models.map((Model, index) => {
+        const xOffset = index === 0 ? -10 : 0; // 20 units to the right for first model
+        const yOffset = index === 0 ? 0 : 0; // 20 units to the right for first model
+        const zOffset = index === 0 ? -7 : 0; // 20 units to the right for first model
+
         const angle = index * (Math.PI / 2); // Adjust this for spiral tightness
         const x = radius * Math.cos(angle);
         const z = radius * Math.sin(angle);
         const y = index * height;
-        const position = new THREE.Vector3(x, y, z); // Convert to Vector3
+        const position = new THREE.Vector3(
+          x + xOffset,
+          y + yOffset,
+          z + zOffset
+        ); // Convert to Vector3
         return <Model key={index} position={position} />;
       })}
       {/* @ts-expect-error mismatch between types */}

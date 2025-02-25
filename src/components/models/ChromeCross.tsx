@@ -9,6 +9,11 @@ import { GLTF } from "three-stdlib";
 import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 
+type ChromeCrossProps = {
+  position?: THREE.Vector3 | [number, number, number];
+  scale?: number;
+};
+
 type GLTFResult = GLTF & {
   nodes: {
     Plane__0: THREE.Mesh;
@@ -29,7 +34,11 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[];
 };
 
-export function ChromeCrossModel(props: JSX.IntrinsicElements["group"]) {
+export function ChromeCrossModel({
+  position,
+  scale,
+  ...props
+}: ChromeCrossProps & JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF(
     "/ChromeCrossModel/chromeCross.gltf"
   ) as GLTFResult;
@@ -40,17 +49,18 @@ export function ChromeCrossModel(props: JSX.IntrinsicElements["group"]) {
   useFrame(() => {
     if (ref.current) {
       ref.current.rotation.y += 0.001;
-      ref.current.rotation.x = 0 + scroll.offset * Math.PI * 4;
     }
   });
 
   return (
-    <group {...props} dispose={null} ref={ref} scale={1}>
-      <group
-        position={[2.5, -0.56, 0]}
-        rotation={[0, -Math.PI / 2, 0]}
-        scale={0.01}
-      >
+    <group
+      {...props}
+      dispose={null}
+      ref={ref}
+      scale={scale}
+      position={position}
+    >
+      <group position={[0, 0, 0]} rotation={[0, 0, 0]} scale={0.01}>
         <mesh
           geometry={nodes.Plane__0.geometry}
           material={materials["Material.006"]}
