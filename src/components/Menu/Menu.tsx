@@ -35,7 +35,16 @@ const Menu = () => {
 
   const menuItems = [
     { path: "/", icon: HiHome, label: "Home" },
-    { path: "/shop", icon: AiOutlinePlusCircle, label: "Shop" },
+    {
+      path: "/shop",
+      icon: AiOutlinePlusCircle,
+      label: "Shop",
+      subItems: [
+        { path: "/collections/chrome-heart", label: "Chrome Heart" },
+        { path: "/collections/darker-than-black", label: "Darker Than Black" },
+        { path: "/collections/faithless", label: "Faithless" },
+      ],
+    },
     {
       path: currentUser ? "/account" : "/authentication",
       icon: currentUser ? MdAccountCircle : RiAccountCircle2Fill,
@@ -72,14 +81,10 @@ const Menu = () => {
             </div>
             <div className={styles.divider} />
             <ul>
-              {menuItems.map(
-                (item) =>
-                  (!item.requiresAuth || currentUser) && (
-                    <Link
-                      key={item.path}
-                      to={item.path}
-                      className={styles.navLink}
-                    >
+              {menuItems.map((item) =>
+                !item.requiresAuth || currentUser ? (
+                  <div key={item.path}>
+                    <Link to={item.path} className={styles.navLink}>
                       <li
                         className={classNames({
                           [styles.active]: location.pathname === item.path,
@@ -89,7 +94,28 @@ const Menu = () => {
                         <span>{item.label}</span>
                       </li>
                     </Link>
-                  )
+                    {item.subItems && (
+                      <ul className={styles.subMenu}>
+                        {item.subItems.map((subItem) => (
+                          <Link
+                            key={subItem.path}
+                            to={subItem.path}
+                            className={styles.navLink}
+                          >
+                            <li
+                              className={classNames({
+                                [styles.active]:
+                                  location.pathname === subItem.path,
+                              })}
+                            >
+                              <span>{subItem.label}</span>
+                            </li>
+                          </Link>
+                        ))}
+                      </ul>
+                    )}
+                  </div>
+                ) : null
               )}
             </ul>
           </div>

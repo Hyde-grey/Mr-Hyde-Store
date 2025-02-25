@@ -1,0 +1,22 @@
+.shopSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.collectionLinks {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding-left: 1rem;
+}
+
+.collectionLinks a {
+  font-size: 0.9em;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.collectionLinks a:hover {
+  opacity: 1;
+}
