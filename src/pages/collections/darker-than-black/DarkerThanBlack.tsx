@@ -34,7 +34,7 @@ const DarkerThanBlack = () => {
       <Float>
         <Diamond
           position={isMobile ? [4, 9, 0] : [20, 4, 10]}
-          scale={isMobile ? 1.3 : 1.5}
+          scale={isMobile ? [1.3, 1.3, 1.3] : [1.5, 1.5, 1.5]}
         />
       </Float>
       <AstroModel scale={0.35} position={[20, -30, 0]} rotation={[0, 3, 0]} />
