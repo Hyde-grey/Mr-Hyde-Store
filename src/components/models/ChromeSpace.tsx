@@ -37,7 +37,15 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[];
 };
 
-export function ChromeSpaceModel() {
+export function ChromeSpaceModel({
+  position,
+  scale,
+  rotation,
+}: {
+  position: [number, number, number];
+  scale: [number, number, number];
+  rotation: [number, number, number];
+}) {
   const { isAnimating, setIsAnimating, setFadeOpacity } = useAnimation();
   const group = useRef<THREE.Group>(null);
   const cameraRef = useRef<THREE.PerspectiveCamera>(null);

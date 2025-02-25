@@ -37,7 +37,11 @@ const Home = () => {
 
   return (
     <MainCanvas numberOfPages={4}>
-      <ChromeSpaceModel />
+      <ChromeSpaceModel
+        position={[0, 0, 0]}
+        scale={[0.001, 0.001, 0.001]}
+        rotation={[0, 0, 0]}
+      />
       <Spiral models={models} radius={10} />
       <HomeLayout
         collections={collections}
