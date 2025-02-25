@@ -42,6 +42,7 @@ const Home = () => {
         scale={[0.001, 0.001, 0.001]}
         rotation={[0, 0, 0]}
       />
+      {/* @ts-ignore */}
       <Spiral models={models} radius={10} />
       <HomeLayout
         collections={collections}

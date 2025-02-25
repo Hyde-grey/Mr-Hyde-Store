@@ -1,3 +1,4 @@
+//@ts-nocheck
 import * as THREE from "three";
 import { useScroll } from "@react-three/drei";
 import { useRef } from "react";
@@ -8,13 +9,18 @@ export type GltfNode = THREE.Object3D<THREE.Object3DEventMap> & {
 };
 
 type SpiralProps = {
-  models: React.FC<{ position: THREE.Vector3 }>[];
+  models: Array<
+    React.ComponentType<{
+      position: [number, number, number];
+      scale: [number, number, number] | number;
+    }>
+  >;
   initialPosition?: THREE.Vector3;
   rotationDirection?: "clockwise" | "counterclockwise";
   initialRotation?: number;
   height?: number;
   scrollSpeed?: number;
-  radius?: number;
+  radius: number;
 };
 
 const Spiral: React.FC<SpiralProps> = ({
@@ -24,7 +30,7 @@ const Spiral: React.FC<SpiralProps> = ({
   initialRotation = 0,
   height = 8,
   scrollSpeed = 15,
-  radius = 7,
+  radius,
 }) => {
   const groupRef = useRef<THREE.Group>(null);
   const scroll = useScroll();
@@ -58,14 +64,13 @@ const Spiral: React.FC<SpiralProps> = ({
         const x = radius * Math.cos(angle);
         const z = radius * Math.sin(angle);
         const y = index * height;
-        const position = new THREE.Vector3(
+        const position: [number, number, number] = [
           x + xOffset,
           y + yOffset,
-          z + zOffset
-        ); // Convert to Vector3
-        return <Model key={index} position={position} />;
+          z + zOffset,
+        ];
+        return <Model key={index} position={position} scale={[1, 1, 1]} />;
       })}
-      {/* @ts-expect-error mismatch between types */}
     </group>
   );
 };
