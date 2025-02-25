@@ -8,7 +8,12 @@ import styles from "./home.module.css";
 import { useState } from "react";
 import ScrollIndicator from "../../components/ScrollIndicator/ScrollIndicator";
 
-const HomeLayout = ({ collections }: { collections: Collection[] }) => {
+type HomeLayoutProps = {
+  collections: Collection[];
+  onCollectionClick: (collectionPath: string) => void;
+};
+
+const HomeLayout = ({ collections, onCollectionClick }: HomeLayoutProps) => {
   const { isMobile } = useScreenSize();
   const scroll = useScroll();
   const [fontSize, setFontSize] = useState(isMobile ? 3 : 10);
@@ -26,13 +31,14 @@ const HomeLayout = ({ collections }: { collections: Collection[] }) => {
         <ScrollIndicator />
       </div>
       <div className={styles.container}>
-        {collections.map(({ imageUrl, name, description }, index) => (
+        {collections.map(({ imageUrl, name, description, path }, index) => (
           <Section
             key={index}
             img={imageUrl}
             title={name}
             description={description}
             current={index}
+            onClick={() => onCollectionClick(path)}
           />
         ))}
       </div>

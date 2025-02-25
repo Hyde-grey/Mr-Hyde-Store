@@ -13,6 +13,13 @@ const Cart = lazy(() => import("./pages/cart/cart"));
 const NavigationBar = lazy(
   () => import("./components/navigationBar/NavigationBar")
 );
+const ChromeHeart = lazy(
+  () => import("./pages/collections/chrome-heart/ChromeHeart")
+);
+const DarkerThanBlack = lazy(
+  () => import("./pages/collections/darker-than-black/DarkerThanBlack")
+);
+const Faithless = lazy(() => import("./pages/collections/faithless/Faithless"));
 
 // Wrapper component to handle loading state with delay
 const DelayedSuspense = ({ children }: { children: React.ReactNode }) => {
@@ -84,13 +91,28 @@ const RoutesConfig = () => {
           <Route path="/collections">
             <Route
               path="chrome-heart"
-              element={<div>Chrome Heart Collection</div>}
+              element={
+                <DelayedSuspense>
+                  <ChromeHeart />
+                </DelayedSuspense>
+              }
             />
             <Route
               path="darker-than-black"
-              element={<div>Darker Than Black Collection</div>}
+              element={
+                <DelayedSuspense>
+                  <DarkerThanBlack />
+                </DelayedSuspense>
+              }
             />
-            <Route path="faithless" element={<div>Faithless Collection</div>} />
+            <Route
+              path="faithless"
+              element={
+                <DelayedSuspense>
+                  <Faithless />
+                </DelayedSuspense>
+              }
+            />
           </Route>
           <Route path="/contact" element={<div>Contact Page</div>} />
           <Route path="*" element={<div>Page Not Found</div>} />
