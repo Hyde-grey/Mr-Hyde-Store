@@ -1,0 +1,63 @@
+.collectionContainer {
+  width: 40vw;
+  min-height: 100vh;
+  height: 100%;
+  color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  background: linear-gradient(
+    135deg,
+    rgba(0, 0, 0, 0.397) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+  backdrop-filter: blur(3px);
+
+  border-radius: 70px;
+}
+
+.collectionHero {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.title {
+  font-family: "Zaslia";
+  color: white;
+  margin: 0;
+  padding: 0 0.3rem;
+  line-height: 1;
+  font-size: 10rem;
+}
+
+@media (max-width: 768px) {
+  .collectionContainer {
+    width: 100vw;
+    min-height: 290vh;
+    margin-bottom: 20px;
+    padding-bottom: 100px;
+    background: linear-gradient(
+      to top,
+      rgb(0, 0, 0) 10%,
+      rgba(0, 0, 0, 0.356) 50%,
+      transparent 100%
+    );
+    backdrop-filter: none;
+    border-radius: 0;
+  }
+
+  .collectionHero {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+  }
+
+  .title {
+    font-size: 3rem;
+    text-align: left;
+  }
+}
