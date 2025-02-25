@@ -3,26 +3,22 @@ import * as THREE from "three";
 import { useRef, useMemo, useLayoutEffect } from "react";
 import { useLoader, useThree, useFrame } from "@react-three/fiber";
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import { GLTF } from "three-stdlib";
 import BackfaceMaterial from "./BackfaceMaterial";
 import RefractionMaterial from "./RefractionMaterial";
+import { useScroll } from "@react-three/drei";
 
 type GLTFResult = GLTF & {
   nodes: {
-    pCone1_lambert1_0: THREE.Mesh;
+    Diamond: THREE.Mesh;
+    // Add any other node names from your model
   };
   materials: {
-    lambert1: THREE.MeshStandardMaterial;
+    Diamond: THREE.MeshStandardMaterial;
+    // Add any other material names from your model
   };
 };
 
-export default function Diamond({
-  position,
-  scale,
-}: {
-  position: [number, number, number];
-  scale: [number, number, number];
-}) {
+export default function Diamond({ position, scale }) {
   const { nodes } = useLoader(
     GLTFLoader,
     "/DiamondModel/diamond.glb"
@@ -35,6 +31,7 @@ export default function Diamond({
   const { size, gl, scene, camera } = useThree();
   const ref = useRef<THREE.Mesh>(null!);
   const ratio = gl.getPixelRatio();
+  const scroll = useScroll();
 
   const [envFbo, backfaceFbo, backfaceMaterial, refractionMaterial] =
     useMemo(() => {
