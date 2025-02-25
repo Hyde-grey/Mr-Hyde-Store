@@ -5,9 +5,8 @@ import { useContext } from "react";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
 import { CartContext } from "../../contexts/CartContext";
 import useScreenSize from "../../hooks/useScreenSize";
-import Diamond from "../../components/models/Diamond/BlackDiamond";
-import Spiral from "../../components/Spiral";
-import { Vector3 } from "three";
+
+import { ChromeSpaceModel } from "../../components/models/ChromeSpace";
 
 const Shop = () => {
   const collections = useGetCollections();
@@ -15,8 +14,6 @@ const Shop = () => {
   const { favorites, addToFavorites, removeFromFavorites } =
     useContext(FavoritesContext);
   const { isMobile } = useScreenSize();
-
-  const models = [Diamond];
 
   const handleSetFavorites = (newFavorites: number[]) => {
     const added = newFavorites.filter((id) => !favorites.includes(id));
@@ -28,11 +25,10 @@ const Shop = () => {
 
   return (
     <MainCanvas numberOfPages={isMobile ? 7 : 5} cameraPosition={[0, 0, 16]}>
-      <Spiral
-        models={models}
-        initialPosition={new Vector3(0, 0, 0)}
-        initialRotation={Math.PI / 0.394}
-        rotationDirection="counterclockwise"
+      <ChromeSpaceModel
+        position={[0, 0, 0]}
+        scale={[0.001, 0.001, 0.001]}
+        rotation={[0, 0, 0]}
       />
       <ShopHtmlLayout
         collections={collections}
