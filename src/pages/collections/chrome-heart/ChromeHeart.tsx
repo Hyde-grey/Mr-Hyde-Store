@@ -33,7 +33,7 @@ const ChromeHeart = () => {
     <MainCanvas numberOfPages={isMobile ? 2.8 : 2} cameraPosition={[0, 5, 20]}>
       <Float>
         <ChromeHeartRingModel
-          scale={0.9}
+          scale={[0.9, 0.9, 0.9]}
           position={isMobile ? [0.5, 1.8, 0] : [3, 1.3, 0]}
         />
       </Float>

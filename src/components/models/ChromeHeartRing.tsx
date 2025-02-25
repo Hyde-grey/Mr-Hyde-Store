@@ -4,10 +4,11 @@ Command: npx gltfjsx@6.5.3 --types ./public/ChromeHeartRingModel/chrome_heart_ri
 */
 //@ts-nocheck
 import * as THREE from "three";
-import React, { useRef } from "react";
+import { useRef } from "react";
 import { useGLTF, useScroll } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
+import { ThreeElements } from "@react-three/fiber";
 
 type GLTFAction = THREE.AnimationClip;
 
