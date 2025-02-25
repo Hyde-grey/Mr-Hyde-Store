@@ -7,8 +7,22 @@ import BackfaceMaterial from "./BackfaceMaterial";
 import RefractionMaterial from "./RefractionMaterial";
 import { useScroll } from "@react-three/drei";
 
+type GLTFResult = GLTF & {
+  nodes: {
+    Diamond: THREE.Mesh;
+    // Add any other node names from your model
+  };
+  materials: {
+    Diamond: THREE.MeshStandardMaterial;
+    // Add any other material names from your model
+  };
+};
+
 export default function Diamond({ position, scale }) {
-  const { nodes } = useLoader(GLTFLoader, "/DiamondModel/diamond.glb") as any;
+  const { nodes } = useLoader(
+    GLTFLoader,
+    "/DiamondModel/diamond.glb"
+  ) as GLTFResult;
 
   useLayoutEffect(() => {
     nodes.pCone1_lambert1_0.geometry.center();
