@@ -42,6 +42,7 @@ body {
 
 h1 {
   font-family: "Zaslia";
+  user-select: none;
 }
 
 option {

@@ -18,6 +18,7 @@ export type Collection = {
   name: string;
   description: string;
   imageUrl: string;
+  path: string;
   products: Product[];
 };
 
