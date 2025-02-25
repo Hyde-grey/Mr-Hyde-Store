@@ -2,6 +2,8 @@ import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import "./Section.css";
 import classNames from "classnames";
+import buttonStyles from "../button/button.module.css";
+import StartBorder from "../button/StartBorder";
 
 type SectionProps = {
   img: string;
@@ -87,6 +89,16 @@ const Section = ({
         <div className="card">
           <h3>{title}</h3>
           <p>{description}</p>
+
+          <StartBorder
+            className={buttonStyles.buttonLayout}
+            as="button"
+            type="submit"
+            color="white"
+            speed="5s"
+          >
+            <p>Click to Explore</p>
+          </StartBorder>
         </div>
       </div>
       {children}

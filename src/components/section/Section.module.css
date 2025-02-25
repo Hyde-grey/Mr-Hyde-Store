@@ -1,0 +1,12 @@
+.cta {
+  display: block;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #4caf50;
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
+.content:hover .cta {
+  opacity: 1;
+}
