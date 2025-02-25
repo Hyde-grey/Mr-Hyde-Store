@@ -8,6 +8,7 @@ type SectionProps = {
   title: string;
   description: string;
   current: number;
+  onClick: () => void;
   children?: React.ReactNode;
 };
 
@@ -16,11 +17,12 @@ const Section = ({
   title,
   description,
   current,
+  onClick,
   children,
 }: SectionProps) => {
   const cardContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [isShop, setIsShop] = useState(false);
-
+  const [isClicked, setIsClicked] = useState(false);
   useEffect(() => {
     if (location.pathname === "/shop") {
       setIsShop(true);
@@ -31,7 +33,7 @@ const Section = ({
     const viewportHeight = window.innerHeight;
 
     cardContainerRefs.current.forEach((ref) => {
-      if (!ref) return;
+      if (!ref || isClicked) return; // Skip opacity calculation if clicked
 
       const rect = ref.getBoundingClientRect();
       const elementCenterY = rect.top + rect.height / 2;
@@ -50,14 +52,31 @@ const Section = ({
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     event.preventDefault();
-    window.history.pushState({}, "", "/shop");
-    window.dispatchEvent(new PopStateEvent("popstate"));
+    const collectionPath = title
+      .toLowerCase()
+      .replace(" collection", "")
+      .replace(/\s+/g, "-");
+
+    onClick();
+    setIsClicked(true);
+
+    // Set opacity to 0 immediately on click
+    if (cardContainerRefs.current[current]) {
+      cardContainerRefs.current[current]!.style.opacity = "0";
+    }
+
+    setTimeout(() => {
+      window.history.pushState({}, "", `/collections/${collectionPath}`);
+      window.dispatchEvent(new PopStateEvent("popstate"));
+    }, 2000);
   };
 
   return (
     <div className={classNames("section", { sectionShop: isShop })}>
       <div
-        className="card-container"
+        className={classNames("card-container", {
+          cardContainerClicked: isClicked,
+        })}
         ref={(el) => {
           cardContainerRefs.current[current] = el;
         }}
