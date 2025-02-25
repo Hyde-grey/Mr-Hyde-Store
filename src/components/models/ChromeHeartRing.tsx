@@ -9,6 +9,8 @@ import { useGLTF, useScroll } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
 import { useFrame } from "@react-three/fiber";
 
+type GLTFAction = THREE.AnimationClip;
+
 type GLTFResult = GLTF & {
   nodes: {
     Ring: THREE.Mesh;
@@ -42,7 +44,13 @@ type GLTFResult = GLTF & {
   animations: GLTFAction[];
 };
 
-export function ChromeHeartRingModel(props: JSX.IntrinsicElements["group"]) {
+export function ChromeHeartRingModel({
+  position,
+  scale,
+}: {
+  position: [number, number, number];
+  scale: [number, number, number];
+}) {
   const { nodes, materials } = useGLTF(
     "/ChromeHeartRingModel/chrome_heart_ring_Textured.gltf"
   ) as GLTFResult;
@@ -60,13 +68,7 @@ export function ChromeHeartRingModel(props: JSX.IntrinsicElements["group"]) {
   const initialRotation = { x: 0, y: Math.PI / 3.5, z: 0 };
 
   return (
-    <group
-      {...props}
-      dispose={null}
-      ref={ref}
-      scale={props.scale}
-      position={props.position}
-    >
+    <group position={position} scale={scale} dispose={null} ref={ref}>
       <group
         scale={0.13}
         position={[0, 0, 0]}

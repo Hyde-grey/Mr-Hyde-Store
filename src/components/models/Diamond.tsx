@@ -1,3 +1,4 @@
+//@ts-nocheck
 import { useGLTF, useScroll } from "@react-three/drei";
 import { MeshProps, useFrame } from "@react-three/fiber";
 import { GltfNode } from "../../components/Spiral";

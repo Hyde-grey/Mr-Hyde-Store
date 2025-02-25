@@ -1,5 +1,4 @@
 //@ts-nocheck
-
 import * as THREE from "three";
 import { useRef, useMemo, useLayoutEffect } from "react";
 import { useLoader, useThree, useFrame } from "@react-three/fiber";
@@ -13,8 +12,7 @@ type GLTFResult = GLTF & {
     pCone1_lambert1_0: THREE.Mesh;
   };
   materials: {
-    Diamond: THREE.MeshStandardMaterial;
-    // Add any other material names from your model
+    lambert1: THREE.MeshStandardMaterial;
   };
 };
 
