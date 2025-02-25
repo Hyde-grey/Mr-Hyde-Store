@@ -25,6 +25,7 @@ const HomeLayout = ({ collections, onCollectionClick }: HomeLayoutProps) => {
   });
 
   return (
+    //@ts-ignore
     <Scroll style={{ width: "100%" }} html>
       <div className={styles.hero}>
         <h1 style={{ fontSize: `${fontSize}rem` }}>Mr. Hyde Store</h1>
