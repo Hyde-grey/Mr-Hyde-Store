@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useFrame } from "@react-three/fiber";
 import classNames from "classnames";
-import buttonStyles from "../button/button.module.css";
+import buttonStyles from "../button/Button.module.css";
 import StartBorder from "../button/StartBorder";
 
 import "./Section.css";
