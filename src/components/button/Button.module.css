@@ -51,6 +51,12 @@
   transform: scale(0.98);
 }
 
+.buttonLayout:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+}
+
 .buttonDisabled {
   opacity: 0.7;
   cursor: not-allowed !important;
