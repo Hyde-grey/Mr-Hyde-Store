@@ -24,7 +24,7 @@ const Shop = () => {
   };
 
   return (
-    <MainCanvas numberOfPages={isMobile ? 7 : 5} cameraPosition={[0, 0, 16]}>
+    <MainCanvas numberOfPages={isMobile ? 7 : 4} cameraPosition={[0, 0, 16]}>
       <ChromeSpaceModel
         position={[0, 0, 0]}
         scale={[0.001, 0.001, 0.001]}

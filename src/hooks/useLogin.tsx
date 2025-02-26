@@ -4,6 +4,7 @@ import {
   signInWithEmailAndPassword,
   UserCredential,
 } from "firebase/auth";
+import { translateAuthError } from "../utils/errorTranslations";
 
 export const useLogin = () => {
   const [error, setError] = useState<string | null>(null);
@@ -26,8 +27,7 @@ export const useLogin = () => {
       setError(null);
       return userCredential;
     } catch (err: any) {
-      const errorMessage =
-        err instanceof Error ? err.message : "An error occurred during login";
+      const errorMessage = translateAuthError(err.code);
       setError(errorMessage);
       setTimeout(() => setError(null), 10000);
       return null;

@@ -24,7 +24,7 @@ const FavoritesHtmlLayout = memo(
 
     useFrame(() => {
       const baseSize = isMobile ? 3 : 10;
-      const scrollMultiplier = isMobile ? 10 : 55;
+      const scrollMultiplier = isMobile ? 10 : 18;
       setFontSize(baseSize - scroll.offset * scrollMultiplier);
     });
 

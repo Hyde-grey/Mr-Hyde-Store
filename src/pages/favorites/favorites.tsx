@@ -28,7 +28,7 @@ const Favorites = () => {
   };
 
   return (
-    <MainCanvas numberOfPages={4}>
+    <MainCanvas numberOfPages={2}>
       <FavoritesHtmlLayout
         collections={favoritedCollections}
         favorites={favorites}

@@ -26,12 +26,22 @@ const ButtonLayout = ({
     <div className={styles.buttonContainer}>
       <button
         type={buttonType}
-        className={classNames(styles.buttonLayout)}
-        disabled={disabled}
+        className={classNames(styles.buttonLayout, {
+          [styles.buttonDisabled]: disabled || isLoading,
+        })}
+        disabled={disabled || isLoading}
         onClick={onClick}
       >
-        {isLoading ? <p>Loading...</p> : children}
-        {isIcon && <BsFillArrowRightSquareFill />}
+        {isLoading ? (
+          <div className={styles.loadingSpinner}>
+            <span className={styles.loadingText}>Loading...</span>
+          </div>
+        ) : (
+          <>
+            {children}
+            {isIcon && <BsFillArrowRightSquareFill />}
+          </>
+        )}
       </button>
     </div>
   );

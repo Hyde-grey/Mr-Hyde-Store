@@ -75,10 +75,10 @@ const Login = ({
           type="submit"
           disabled={loading}
           isLoading={loading}
-          color="white"
+          color={loading ? "#666" : "white"}
           speed="5s"
         >
-          <p>Log in</p>
+          <p>{loading ? "Logging in..." : "Log in"}</p>
         </StartBorder>
       }
     >

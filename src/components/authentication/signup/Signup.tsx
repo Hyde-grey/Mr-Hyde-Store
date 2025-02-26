@@ -83,10 +83,10 @@ const SignUp = ({
           type="submit"
           disabled={loading}
           isLoading={loading}
-          color="white"
+          color={loading ? "#666" : "white"}
           speed="5s"
         >
-          <p>Sign Up</p>
+          <p>{loading ? "Creating account..." : "Sign Up"}</p>
         </StartBorder>
       }
     >

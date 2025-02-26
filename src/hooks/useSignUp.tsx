@@ -6,6 +6,7 @@ import {
 } from "firebase/auth";
 import { doc, setDoc, getDoc } from "firebase/firestore";
 import { auth, db } from "../firebase/firebaseConfig";
+import { translateAuthError } from "../utils/errorTranslations";
 
 type UseSignUpResult = {
   signUp: (
@@ -79,11 +80,8 @@ export const useSignUp = (): UseSignUpResult => {
       await createUserDocumentFromAuth(userCredential.user);
       setError(null);
       return true;
-    } catch (error) {
-      const errorMessage =
-        error instanceof Error
-          ? error.message
-          : "An error occurred during sign up";
+    } catch (err: any) {
+      const errorMessage = translateAuthError(err.code);
       setError(errorMessage);
       setTimeout(() => setError(null), 10000);
       return false;
