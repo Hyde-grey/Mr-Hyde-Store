@@ -6,6 +6,8 @@ import { useLogin } from "../../../hooks/useLogin";
 import StartBorder from "../../button/StartBorder";
 import buttonStyles from "../../button/Button.module.css";
 import styles from "../../forms/FormLayout.module.css";
+import GoogleSignIn from "../GoogleSignIn";
+
 type FormFields = {
   email: string;
   password: string;
@@ -69,17 +71,31 @@ const Login = ({
       text="Sign in with your email and password"
       formSubmitHandler={formSubmitHandler}
       ActionButton={
-        <StartBorder
-          className={buttonStyles.buttonLayout}
-          as="button"
-          type="submit"
-          disabled={loading}
-          isLoading={loading}
-          color={loading ? "#666" : "white"}
-          speed="5s"
-        >
-          <p>{loading ? "Logging in..." : "Log in"}</p>
-        </StartBorder>
+        <div className={styles.buttonStack}>
+          <StartBorder
+            className={buttonStyles.buttonLayout}
+            as="button"
+            type="submit"
+            disabled={loading}
+            isLoading={loading}
+            color={loading ? "#666" : "white"}
+            speed="5s"
+          >
+            <p>{loading ? "Logging in..." : "Log in"}</p>
+          </StartBorder>
+          <div className={styles.divider}>
+            <div className={styles.dividerLine} />
+            <span>or</span>
+            <div className={styles.dividerLine} />
+          </div>
+          <GoogleSignIn
+            onSuccess={() => {
+              triggerSpinAnimation();
+              setTimeout(() => redirectOnSubmit("/"), 2000);
+            }}
+            onError={triggerFailAnimation}
+          />
+        </div>
       }
     >
       <div className={styles.formInputContainer}>

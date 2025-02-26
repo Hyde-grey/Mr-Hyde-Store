@@ -4,6 +4,9 @@
   margin: 0 auto;
   padding: 0.5rem;
   height: 100%;
+  min-height: 550px; /* Ensure consistent height */
+  display: flex;
+  flex-direction: column;
 }
 
 .formDivider {
@@ -21,11 +24,10 @@
 
 .formInputContainer {
   width: 100%;
-
-  display: grid;
-  grid-template-rows: 1fr auto; /* First row takes available space, second row for button */
+  display: flex;
+  flex-direction: column;
   gap: 1rem;
-  min-height: 20rem; /* Ensure consistent form height */
+  flex-grow: 1; /* Allow input container to grow */
 }
 
 .formTitleContainer {
@@ -50,6 +52,26 @@
   grid-row: 2; /* Explicitly place in second row */
 }
 
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+  width: 80%;
+}
+
+.dividerLine {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.1) 20%,
+    rgba(255, 255, 255, 0.1) 80%,
+    transparent
+  );
+}
+
 .formTitle {
   margin-bottom: 1.25rem;
 }
@@ -61,18 +83,47 @@
   text-align: center;
 }
 
+.divider {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 1rem 0;
+}
+
+.divider::before,
+.divider::after {
+  content: "";
+  flex: 1;
+  width: 100%;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.divider span {
+  padding: 0 10px;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+}
+
+.buttonStack {
+  position: absolute;
+  bottom: 5%;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  align-items: center;
+  margin-top: auto; /* Push buttons to the bottom */
+}
+
 @media (max-width: 768px) {
   .formContainer {
-    width: 100%;
-    max-width: 25rem;
-    margin: 0 auto;
-    padding: 0rem;
-    height: 100%;
+    min-height: 450px;
+    max-height: 500px;
   }
 
   .formInputContainer {
     padding: 0px;
-    min-height: 14.5rem;
+    min-height: 9.5rem;
   }
 
   .formTitleContainer h2 {
@@ -81,5 +132,9 @@
 
   .formTitleContainer p {
     font-size: 0.8rem;
+  }
+
+  .buttonStack {
+    gap: 0.1rem;
   }
 }

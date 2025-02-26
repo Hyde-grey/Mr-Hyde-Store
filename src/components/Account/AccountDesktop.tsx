@@ -9,15 +9,22 @@ import {
 } from "react-icons/md";
 import { FaHeart } from "react-icons/fa";
 import styles from "./AccountDesktop.module.css";
+import { useContext } from "react";
+import { UserContext } from "../../contexts/UserContext";
 
 const AccountDesktop = ({
-  currentUserName,
   currentTab,
   handleTabChange,
-  userProfileImage,
+  userProfileImage: defaultUserProfileImage,
   logout,
   renderCurrentTab,
 }: AccountProps) => {
+  const { currentUser } = useContext(UserContext);
+
+  // Use Google profile picture if available
+  const userProfileImage = currentUser?.photoURL || defaultUserProfileImage;
+  const currentUserName = currentUser?.displayName || "User";
+
   const tabs = [
     { id: "myDetails", label: "My Details", icon: <RiAccountCircleFill /> },
     {

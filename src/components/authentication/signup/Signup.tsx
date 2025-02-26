@@ -77,17 +77,19 @@ const SignUp = ({
       text="Sign up with your email and password"
       formSubmitHandler={formSubmitHandler}
       ActionButton={
-        <StartBorder
-          className={buttonStyles.buttonLayout}
-          as="button"
-          type="submit"
-          disabled={loading}
-          isLoading={loading}
-          color={loading ? "#666" : "white"}
-          speed="5s"
-        >
-          <p>{loading ? "Creating account..." : "Sign Up"}</p>
-        </StartBorder>
+        <div className={styles.buttonStack}>
+          <StartBorder
+            className={buttonStyles.buttonLayout}
+            as="button"
+            type="submit"
+            disabled={loading}
+            isLoading={loading}
+            color={loading ? "#666" : "white"}
+            speed="5s"
+          >
+            <p>{loading ? "Creating account..." : "Sign Up"}</p>
+          </StartBorder>
+        </div>
       }
     >
       <div className={styles.formInputContainer}>
