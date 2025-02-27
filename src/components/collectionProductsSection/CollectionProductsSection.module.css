@@ -62,7 +62,7 @@
 
 @media (max-width: 768px) {
   .collectionProductsSection {
-    padding: 1rem;
+    padding: 0rem;
   }
 
   .sectionTitle h2 {
@@ -70,9 +70,10 @@
   }
 
   .productsGrid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(2, 50%);
     transform: none;
-    gap: 2rem;
+    row-gap: 2rem;
+    column-gap: 0rem;
     margin-left: 0;
     filter: blur(0);
     opacity: 1;
