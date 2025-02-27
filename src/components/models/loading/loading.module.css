@@ -1,4 +1,26 @@
-@import url(https://fonts.googleapis.com/css?family=Quattrocento+Sans);
+.quattrocento-sans-regular {
+  font-family: "Quattrocento Sans", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.quattrocento-sans-bold {
+  font-family: "Quattrocento Sans", serif;
+  font-weight: 700;
+  font-style: normal;
+}
+
+.quattrocento-sans-regular-italic {
+  font-family: "Quattrocento Sans", serif;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.quattrocento-sans-bold-italic {
+  font-family: "Quattrocento Sans", serif;
+  font-weight: 700;
+  font-style: italic;
+}
 
 .loading {
   position: fixed;

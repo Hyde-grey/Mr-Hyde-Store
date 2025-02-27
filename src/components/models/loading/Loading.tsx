@@ -19,13 +19,55 @@ const Loading = () => {
   return (
     <div className={styles.loading}>
       <div className={styles.loadingText}>
-        <span className={styles.loadingTextWords}>L</span>
-        <span className={styles.loadingTextWords}>O</span>
-        <span className={styles.loadingTextWords}>A</span>
-        <span className={styles.loadingTextWords}>D</span>
-        <span className={styles.loadingTextWords}>I</span>
-        <span className={styles.loadingTextWords}>N</span>
-        <span className={styles.loadingTextWords}>G</span>
+        <span
+          className={
+            styles.loadingTextWords + " " + styles.quattrocentoSansBold
+          }
+        >
+          L
+        </span>
+        <span
+          className={
+            styles.loadingTextWords + " " + styles.quattrocentoSansBold
+          }
+        >
+          O
+        </span>
+        <span
+          className={
+            styles.loadingTextWords + " " + styles.quattrocentoSansBold
+          }
+        >
+          A
+        </span>
+        <span
+          className={
+            styles.loadingTextWords + " " + styles.quattrocentoSansBold
+          }
+        >
+          D
+        </span>
+        <span
+          className={
+            styles.loadingTextWords + " " + styles.quattrocentoSansBold
+          }
+        >
+          I
+        </span>
+        <span
+          className={
+            styles.loadingTextWords + " " + styles.quattrocentoSansBold
+          }
+        >
+          N
+        </span>
+        <span
+          className={
+            styles.loadingTextWords + " " + styles.quattrocentoSansBold
+          }
+        >
+          G
+        </span>
       </div>
     </div>
   );
