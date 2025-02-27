@@ -5,9 +5,9 @@ import { useContext } from "react";
 import { FavoritesContext } from "../../../contexts/FavoritesContext";
 import { CartContext } from "../../../contexts/CartContext";
 import useScreenSize from "../../../hooks/useScreenSize";
-import { ChromeHeartRingModel } from "../../../components/models/ChromeHeartRing";
 import { AstroModel } from "../../../components/models/Astro";
 import { Float } from "@react-three/drei";
+import { ChromeRingModel } from "../../../components/models/Chromering";
 const ChromeHeart = () => {
   const collections = useGetCollections();
   const { addToCart } = useContext(CartContext);
@@ -32,7 +32,7 @@ const ChromeHeart = () => {
   return (
     <MainCanvas numberOfPages={isMobile ? 2.8 : 2} cameraPosition={[0, 5, 20]}>
       <Float>
-        <ChromeHeartRingModel
+        <ChromeRingModel
           scale={[0.9, 0.9, 0.9]}
           position={isMobile ? [0.5, 1.8, 0] : [3, 1.3, 0]}
         />

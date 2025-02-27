@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 
 import { ChromeSpaceModel } from "../../components/models/ChromeSpace.tsx";
 import Spiral from "../../components/Spiral.tsx";
-import { ChromeHeartRingModel } from "../../components/models/ChromeHeartRing.tsx";
+import { ChromeRingModel } from "../../components/models/Chromering.tsx";
 import { DiamondModel } from "../../components/models/Diamond.tsx";
 import { ChromeCrossModel } from "../../components/models/ChromeCross.tsx";
 import { useAnimation } from "../../context/AnimationContext.tsx";
@@ -20,7 +20,7 @@ const Home = () => {
     null
   );
 
-  const models = [ChromeHeartRingModel, DiamondModel, ChromeCrossModel];
+  const models = [ChromeRingModel, DiamondModel, ChromeCrossModel];
 
   const handleCollectionClick = (collectionPath: string) => {
     setSelectedCollection(collectionPath);
