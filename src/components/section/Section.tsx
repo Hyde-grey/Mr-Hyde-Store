@@ -5,6 +5,7 @@ import buttonStyles from "../button/Button.module.css";
 import StartBorder from "../button/StartBorder";
 
 import "./Section.css";
+import useScreenSize from "../../hooks/useScreenSize";
 
 type SectionProps = {
   img: string;
@@ -26,6 +27,7 @@ const Section = ({
   const cardContainerRefs = useRef<Array<HTMLDivElement | null>>([]);
   const [isShop, setIsShop] = useState(false);
   const [isClicked, setIsClicked] = useState(false);
+  const { isMobile } = useScreenSize();
   useEffect(() => {
     if (location.pathname === "/shop") {
       setIsShop(true);
@@ -33,24 +35,26 @@ const Section = ({
   }, [location.pathname]);
 
   useFrame(() => {
-    const viewportHeight = window.innerHeight;
+    if (!isMobile) {
+      const viewportHeight = window.innerHeight;
 
-    cardContainerRefs.current.forEach((ref) => {
-      if (!ref || isClicked) return; // Skip opacity calculation if clicked
+      cardContainerRefs.current.forEach((ref) => {
+        if (!ref || isClicked) return; // Skip opacity calculation if clicked
 
-      const rect = ref.getBoundingClientRect();
-      const elementCenterY = rect.top + rect.height / 2;
-      const viewportCenterY = viewportHeight / 2;
-      const distanceFromCenter = Math.abs(viewportCenterY - elementCenterY);
+        const rect = ref.getBoundingClientRect();
+        const elementCenterY = rect.top + rect.height / 2;
+        const viewportCenterY = viewportHeight / 2;
+        const distanceFromCenter = Math.abs(viewportCenterY - elementCenterY);
 
-      const maxOpacity = 1;
-      const opacityValue = Math.max(
-        maxOpacity - (distanceFromCenter / viewportHeight) * maxOpacity,
-        0
-      );
+        const maxOpacity = 1;
+        const opacityValue = Math.max(
+          maxOpacity - (distanceFromCenter / viewportHeight) * maxOpacity,
+          0
+        );
 
-      ref.style.opacity = `${opacityValue}`;
-    });
+        ref.style.opacity = `${opacityValue}`;
+      });
+    }
   });
 
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
