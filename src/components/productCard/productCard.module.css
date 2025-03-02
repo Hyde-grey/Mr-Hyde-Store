@@ -129,21 +129,17 @@
   }
 
   .productCardContainer {
-    width: 43%;
+    width: 45%;
 
     padding: 0.5rem;
-    border: none;
+
     background: linear-gradient(
       to top,
-      #2e2e34 0%,
-      #1e1e22 15%,
-      rgba(30, 30, 34, 0.5) 20%,
-      transparent 25%
+      rgba(24, 24, 27, 0.9),
+      rgba(0, 0, 0, 0.116)
     );
-  }
-
-  .productCardInfo {
-    margin-top: 0;
+    -webkit-backdrop-filter: blur(10px); /* For Safari */
+    backdrop-filter: blur(10px);
   }
 
   .favoriteButton {
