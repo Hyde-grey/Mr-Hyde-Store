@@ -9,12 +9,10 @@
   padding: 1rem;
   background: linear-gradient(
     to top,
-    #2e2e34 0%,
-    #1e1e22 15%,
-    rgba(30, 30, 34, 0.5) 20%,
-    transparent 35%
+    rgba(24, 24, 27, 0.9),
+    rgba(0, 0, 0, 0.116)
   );
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(10px);
   color: rgb(255, 255, 255);
   border: 1px solid rgba(255, 255, 255, 0.116);
   border-radius: 10px;
