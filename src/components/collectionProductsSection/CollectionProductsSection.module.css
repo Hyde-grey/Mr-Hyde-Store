@@ -70,10 +70,11 @@
   }
 
   .productsGrid {
-    grid-template-columns: repeat(2, 50%);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
     transform: none;
-    row-gap: 2rem;
-    column-gap: 0rem;
+
     margin-left: 0;
     filter: blur(0);
     opacity: 1;
