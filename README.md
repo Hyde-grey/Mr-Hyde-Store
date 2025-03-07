@@ -8,7 +8,7 @@ A premium e-commerce platform featuring interactive 3D product visualization, Ch
 
 ## ✨ Features
 
-- **Interactive 3D Models**: Explore products with fully interactive 3D models and animations
+- **Interactive 3D Models**: Interactive 3D models and animations
 - **Neomorphic UI Design**: Modern, sleek interface with depth and dimension
 - **Responsive Design**: Optimized experience across desktop, tablet, and mobile devices
 - **User Authentication**: Email/password and Google sign-in integration
