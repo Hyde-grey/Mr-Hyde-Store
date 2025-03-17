@@ -15,6 +15,15 @@
   align-items: center;
 }
 
+.title {
+  font-family: "Zaslia";
+  color: white;
+  margin: 0;
+  padding: 0;
+  line-height: 1;
+  font-size: 10rem;
+}
+
 .emptyState {
   width: 100%;
   text-align: center;
@@ -29,15 +38,6 @@
 
 .emptyState p {
   font-size: 1.2rem;
-}
-
-.title {
-  font-family: "Zaslia";
-  color: white;
-  margin: 0;
-  padding: 0;
-  line-height: 1;
-  font-size: 10rem;
 }
 
 @media (max-width: 768px) {

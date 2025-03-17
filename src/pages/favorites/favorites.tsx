@@ -3,7 +3,7 @@ import { useGetCollections } from "../../hooks/useGetCollections";
 import FavoritesHtmlLayout from "./favoritesHtmlLayout.tsx";
 import { useContext } from "react";
 import { FavoritesContext } from "../../contexts/FavoritesContext";
-import useScreenSize from "../../hooks/useScreenSize.tsx";
+import useScreenSize from "../../hooks/useScreenSize";
 
 const Favorites = () => {
   const collections = useGetCollections();
@@ -29,14 +29,21 @@ const Favorites = () => {
     removed.forEach((id) => removeFromFavorites(id));
   };
 
+  const calculatePages = () => {
+    if (favoritedCollections.length === 0) return 2;
+
+    const itemsPerPage = isMobile ? 2 : 4;
+    const totalItems = favoritedCollections.reduce(
+      (acc, collection) => acc + collection.products.length,
+      0
+    );
+    const contentPages = Math.ceil(totalItems / itemsPerPage);
+
+    return Math.max(2, contentPages + 1);
+  };
+
   return (
-    <MainCanvas
-      numberOfPages={favoritedCollections.reduce(
-        (pages, collection) =>
-          pages + Math.ceil(collection.products.length / (isMobile ? 2 : 4)),
-        1
-      )}
-    >
+    <MainCanvas numberOfPages={calculatePages()}>
       <FavoritesHtmlLayout
         collections={favoritedCollections}
         favorites={favorites}
