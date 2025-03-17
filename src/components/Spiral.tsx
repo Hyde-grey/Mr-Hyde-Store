@@ -35,7 +35,7 @@ const Spiral: React.FC<SpiralProps> = ({
   const groupRef = useRef<THREE.Group>(null);
   const scroll = useScroll();
 
-  const initialYOffset = initialPosition.y; // Initial vertical offset
+  const initialYOffset = initialPosition.y;
   const directionMultiplier = rotationDirection === "clockwise" ? 1 : -1;
 
   useFrame(() => {
@@ -61,11 +61,11 @@ const Spiral: React.FC<SpiralProps> = ({
     // @ts-expect-error mismatch between types
     <group ref={groupRef}>
       {models.map((Model, index) => {
-        const xOffset = index === 0 ? -10 : 0; // 20 units to the right for first model
-        const yOffset = index === 0 ? 0 : 0; // 20 units to the right for first model
-        const zOffset = index === 0 ? -7 : 0; // 20 units to the right for first model
+        const xOffset = index === 0 ? -10 : 0;
+        const yOffset = index === 0 ? 0 : 0;
+        const zOffset = index === 0 ? -7 : 0;
 
-        const angle = index * (Math.PI / 2); // Adjust this for spiral tightness
+        const angle = index * (Math.PI / 2);
         const x = radius * Math.cos(angle);
         const z = radius * Math.sin(angle);
         const y = index * height;
