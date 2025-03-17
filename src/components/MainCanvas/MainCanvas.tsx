@@ -3,6 +3,7 @@ import { Canvas, Vector3 } from "@react-three/fiber";
 import { ScrollUpdater } from "../ScrollUpdater";
 import useScreenSize from "../../hooks/useScreenSize";
 import { Euler } from "three";
+import { Suspense } from "react";
 
 export type MainCanvasProps = {
   children: React.ReactNode;
@@ -22,26 +23,30 @@ const MainCanvas = ({
   return (
     <Canvas
       camera={{ position: cameraPosition, fov: 20, rotation: cameraRotation }}
+      gl={{ antialias: true }}
     >
-      {/* @ts-expect-error mismatch library types */}
-      <ambientLight intensity={5.6} position={[-2, 0, 5]} />
-      {/* @ts-expect-error mismatch library types */}
-      <directionalLight position={[2, 1, 4]} intensity={2.6} />
-      {/* @ts-expect-error mismatch library types */}
-      <pointLight position={[1, 4, -2]} intensity={54} />
-      {!isTouch && <OrbitControls enableZoom={false} />}
+      <Suspense fallback={null}>
+        {/* @ts-expect-error mismatch library types */}
+        <ambientLight intensity={5.6} position={[-2, 0, 5]} />
+        {/* @ts-expect-error mismatch library types */}
+        <directionalLight position={[2, 1, 4]} intensity={2.6} />
+        {/* @ts-expect-error mismatch library types */}
+        <pointLight position={[1, 4, -2]} intensity={54} />
+        {!isTouch && <OrbitControls enableZoom={false} />}
 
-      <ScrollControls
-        pages={numberOfPages}
-        damping={0.1}
-        // Ensure touch events work properly
-        eps={0.00001}
-      >
-        <Stars />
-        {/* TODO: Find a better way to implement scroll event listener as useFrame cannot be used outside of Canvas */}
-        <ScrollUpdater />
-        {children}
-      </ScrollControls>
+        <ScrollControls
+          pages={numberOfPages}
+          damping={0.15}
+          eps={0.0001}
+          horizontal={false}
+          infinite={false}
+          distance={1}
+        >
+          <Stars />
+          <ScrollUpdater />
+          {children}
+        </ScrollControls>
+      </Suspense>
     </Canvas>
   );
 };
