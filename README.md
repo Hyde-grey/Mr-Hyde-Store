@@ -119,10 +119,4 @@ src/
 - LinkedIn: [Hyde François Khamsing](https://www.linkedin.com/in/hyde-fran%C3%A7ois-khamsing/)
 - GitHub: [Hyde-R](https://github.com/Hyde-R)
 
-## 📝 License
-
-This project is [MIT](LICENSE) licensed.
-
----
-
 <p align="center">Made with &#x1F5A4; and Three.js</p>
