@@ -9,7 +9,6 @@ export const ScrollUpdater = () => {
   const isInitialized = useRef(false);
   const lastScrollY = useRef(0);
 
-  // Initialize scroll state
   useEffect(() => {
     if (!isInitialized.current) {
       setScrollOffset(0);
@@ -21,7 +20,6 @@ export const ScrollUpdater = () => {
   useFrame(() => {
     const scrollY = scroll.offset;
 
-    // Only update if there's a significant change or it's the first frame
     if (
       !isInitialized.current ||
       Math.abs(scrollY - lastScrollY.current) > 0.01
