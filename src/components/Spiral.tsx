@@ -41,14 +41,19 @@ const Spiral: React.FC<SpiralProps> = ({
   useFrame(() => {
     if (groupRef.current) {
       const scrollOffset = scroll.offset;
-      // Set the initial rotation and add the scroll-based rotation
-      groupRef.current.rotation.y =
+      const targetRotation =
         initialRotation + directionMultiplier * scrollOffset * Math.PI * 2;
-      groupRef.current.position.set(
-        initialPosition.x,
-        initialYOffset - scrollOffset * scrollSpeed,
-        initialPosition.z
-      ); // Move the group down based on scroll
+      const targetY = initialYOffset - scrollOffset * scrollSpeed;
+
+      // Smoothly interpolate rotation and position
+      groupRef.current.rotation.y +=
+        (targetRotation - groupRef.current.rotation.y) * 0.05;
+      groupRef.current.position.y +=
+        (targetY - groupRef.current.position.y) * 0.05;
+
+      // Keep x and z positions stable
+      groupRef.current.position.x = initialPosition.x;
+      groupRef.current.position.z = initialPosition.z;
     }
   });
 
