@@ -6,19 +6,6 @@ A premium e-commerce platform featuring interactive 3D product visualization, Ch
 
 [View Live Demo](https://mrhydestore.netlify.app/)
 
-## 🎥 Interactive 3D Experience
-
-The heart of Mr. Hyde Store lies in its immersive 3D experience. Watch how the homepage comes to life with dynamic 3D models and smooth transitions:
-
-[![Mr. Hyde Store Demo](https://img.youtube.com/vi/cTeF2KniiLs/maxresdefault.jpg)](https://www.youtube.com/watch?v=cTeF2KniiLs)
-
-Key features demonstrated:
-
-- Dynamic spiral pattern animation with scroll-based movement
-- Smooth camera transitions when clicking collection cards
-- Responsive 3D elements that adapt to viewport changes
-- Interactive collection pages with floating 3D models
-
 ## ✨ Core Features
 
 ### 🎨 Interactive 3D Models
