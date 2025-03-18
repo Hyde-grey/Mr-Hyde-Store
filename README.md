@@ -10,7 +10,7 @@ A premium e-commerce platform featuring interactive 3D product visualization, Ch
 
 The heart of Mr. Hyde Store lies in its immersive 3D experience. Watch how the homepage comes to life with dynamic 3D models and smooth transitions:
 
-<div class="sp-embed-player" data-id="cTeF2KniiLs"><script src="https://go.screenpal.com/player/appearance/cTeF2KniiLs"></script><iframe width="100%" height="100%" style="border:0;" scrolling="no" src="https://go.screenpal.com/player/cTeF2KniiLs?width=100%&height=100%&ff=1&title=0" allowfullscreen="true"></iframe></div>
+[![Mr. Hyde Store Demo](https://img.youtube.com/vi/cTeF2KniiLs/maxresdefault.jpg)](https://www.youtube.com/watch?v=cTeF2KniiLs)
 
 Key features demonstrated:
 
