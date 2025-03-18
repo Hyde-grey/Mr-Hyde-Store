@@ -6,15 +6,55 @@ A premium e-commerce platform featuring interactive 3D product visualization, Ch
 
 [View Live Demo](https://mrhydestore.netlify.app/)
 
-## ✨ Features
+## 🎥 Interactive 3D Experience
 
-- **Interactive 3D Models**: Interactive 3D models and animations
-- **Neomorphic UI Design**: Modern, sleek interface with depth and dimension
-- **Responsive Design**: Optimized experience across desktop, tablet, and mobile devices
-- **User Authentication**: Email/password and Google sign-in integration
-- **Real-time Updates**: Instant cart and favorites management
+The heart of Mr. Hyde Store lies in its immersive 3D experience. Watch how the homepage comes to life with dynamic 3D models and smooth transitions:
 
-## 🖼️ Screenshots
+<div class="sp-embed-player" data-id="cTeF2KniiLs"><script src="https://go.screenpal.com/player/appearance/cTeF2KniiLs"></script><iframe width="100%" height="100%" style="border:0;" scrolling="no" src="https://go.screenpal.com/player/cTeF2KniiLs?width=100%&height=100%&ff=1&title=0" allowfullscreen="true"></iframe></div>
+
+Key features demonstrated:
+
+- Dynamic spiral pattern animation with scroll-based movement
+- Smooth camera transitions when clicking collection cards
+- Responsive 3D elements that adapt to viewport changes
+- Interactive collection pages with floating 3D models
+
+## ✨ Core Features
+
+### 🎨 Interactive 3D Models
+
+- Custom 3D models modified in Blender and implemented with React Three Fiber
+- Dynamic spiral pattern animation with scroll-based movement
+- Smooth camera transitions on collection card clicks
+- Responsive 3D elements that adapt to viewport changes
+
+### 🎭 Neomorphic UI Design
+
+- Modern, sleek interface with depth and dimension
+- Smooth transitions between pages and states
+- Dynamic content loading and state management
+- Responsive layouts for all devices
+
+### 🔐 User Experience
+
+- Email/password and Google sign-in integration
+- Real-time cart and favorites management
+- Smooth page transitions with Framer Motion
+- Mobile-first responsive design
+
+## 🛠️ Tech Stack
+
+- **Frontend**: React 18, TypeScript, Vite
+- **3D Rendering**: Three.js with React Three Fiber & Drei
+- **State Management**: React Context API
+- **Authentication**: Firebase Auth with Google Sign-In
+- **Database**: Firestore
+- **Styling**: CSS Modules with Neomorphic design principles
+- **Animation**: Framer Motion for UI transitions
+
+## 🖼️ Visual Showcase
+
+### Desktop Experience
 
 <div align="center">
   <img src="https://i.ibb.co/20QyCpYX/mrhydestore-netlify-app-chrome-Heart.png" width="48%" alt="Chrome Heart Collection">
@@ -32,14 +72,27 @@ A premium e-commerce platform featuring interactive 3D product visualization, Ch
   <img src="https://i.ibb.co/YBfG132B/mrhydestore-netlify-app-i-Phone-12-Pro-cart.png" width="24%" alt="Mobile Cart">
 </div>
 
-## 🛠️ Technologies
+## 🔍 Technical Implementation
 
-- **Frontend**: React 18, TypeScript, Vite
-- **3D Rendering**: Three.js with React Three Fiber & Drei
-- **State Management**: React Context API
-- **Authentication**: Firebase Auth with Google Sign-In
-- **Database**: Firestore
-- **Styling**: CSS Modules with Neomorphic design principles
+### 3D Product Visualization
+
+- Custom 3D models with interactive controls and animations
+- Scroll-based spiral pattern animation using React Three Fiber
+- Camera transitions with easing animations for collection navigation
+- Responsive 3D scene management with viewport adaptation
+
+### Scroll-Based Animations
+
+- Parallax effects and scroll-triggered animations
+- Dynamic font size scaling based on scroll position
+- Smooth model rotation and movement
+
+### Performance Optimization
+
+- Code splitting and lazy loading
+- Optimized 3D assets
+- Efficient state management
+- Responsive image loading
 
 ## 🚀 Getting Started
 
@@ -52,7 +105,7 @@ A premium e-commerce platform featuring interactive 3D product visualization, Ch
 
 ```bash
 # Clone the repository
-git clone https://github.com/Hyde-R/Mr-Hyde-Store.git
+git clone https://github.com/Hyde-grey/Mr-Hyde-Store.git
 
 # Navigate to the project directory
 cd Mr-Hyde-Store
@@ -96,14 +149,6 @@ src/
 └── utils/             # Helper functions and utilities
 ```
 
-## 🔍 Key Implementation Details
-
-- **3D Product Visualization**: Custom 3D models with interactive controls and animations
-- **Scroll-Based Animations**: Parallax effects and scroll-triggered animations
-- **Authentication Flow**: Secure login/signup with Google integration and error handling
-- **Responsive Design**: Adaptive layouts with mobile-specific optimizations
-- **Performance Optimization**: Code splitting, lazy loading, and optimized 3D assets
-
 ## 🔮 Future Improvements
 
 - [ ] Implement AR product visualization
@@ -117,6 +162,5 @@ src/
 **Hyde Grey**
 
 - LinkedIn: [Hyde François Khamsing](https://www.linkedin.com/in/hyde-fran%C3%A7ois-khamsing/)
-- GitHub: [Hyde-R](https://github.com/Hyde-R)
 
 <p align="center">Made with &#x1F5A4; and Three.js</p>
